@@ -1,3 +1,15 @@
+Sushil Thasale
+
+-> Currently pursuing Master's in Computer Science at Northeastern University, Boston, MA.
+-> Past Experience
+	1. Software Developer, Accenture Service
+	2. Software Engineer Intern, DEKA Research and Development
+-> Purpose of this repository is to develop web applications using MEAN stack.
+
+Heroku URL:
+https://webdev-thasale-sushil.herokuapp.com/
+
+
 # AngularFourMEANSeed
 
 After you clone this repository and run "npm install"
