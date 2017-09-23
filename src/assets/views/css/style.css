@@ -79,3 +79,21 @@ li.my-no-border{
 .input-margin-top{
   margin-top: 5px;
 }
+
+.my-widget-settings-bar{
+  position: absolute;
+  right: 0px;
+  padding: 5px;
+  background-color: white;
+  border-bottom-left-radius: 5px;
+  opacity: 0.6;
+  margin-right: 5px;
+}
+
+img{
+  margin-bottom: 10px;
+}
+
+iframe{
+  margin-bottom: 10px;
+}
