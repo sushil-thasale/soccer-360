@@ -1,31 +1,81 @@
-.below-header{  top: 0px;bottom: 0px;position: absolute;left: 0px;margin-top: 50px;
-                padding-top: 15px;margin-bottom: 50px;}
+body{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  max-width: 100%;
+}
 
-body{ margin-top: 60px;
-      margin-bottom: 60px;
-      padding-left: 5px;
-      padding-right: 5px;
-      max-width: 100%}
+.custom-padding-top-10{
+  padding-top: 10px;
+}
 
+.my-header-left-margin{
+  margin-left: 3px;
+}
 
-.header-left-margin{  margin-left: 3px;}
-.header-right-margin{ margin-right: 3px;}
+.my-header-right-margin{
+  margin-right: 3px;
+}
 
-.left-margin-20{  margin-left: 20px;}
-.right-margin-15{ margin-right: 15px;}
+.navbar-inverse{
+  background-color: #000000;
+  opacity: 0.8;
+}
 
-.navbar-default{  background-color: #428bca;}
+.navbar-default .navbar-brand{
+  color: white !important;
+}
 
-.navbar-inverse{  background-color: #acacac;
-                  opacity: 0.7;}
+.navbar-inverse .navbar-brand{
+  color: white !important;
+}
 
-.navbar-default .navbar-brand{  color: white !important;}
-.navbar-inverse .navbar-brand{  color: white !important;}
-.navbar a{  color: #acacac;}
+.navbar a{
+  color: #acacac;
+}
 
-.navbar a:hover{  color:white;}
+.navbar a:hover{
+  color:white;
+}
 
-li.no-border{ border-style: none;}
+li.my-no-border{
+  border-style: none;
+}
 
-.glyphicon{ margin-right:5px;}
+.glyphicon{
+  margin-right:5px;
+}
 
+.my-right-border{
+  border-right-style: solid;
+  border-bottom-color: #acacac;
+  border-right-width: 1.5px;
+}
+
+.my-left-pane {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding-top: 10px;
+  padding-left: 15px;
+  padding-right: 3px;
+  overflow: auto;
+}
+
+.my-right-pane {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding-top: 17px;
+  padding-left: 15px;
+  padding-right: 15px;
+  overflow-y: auto;
+}
+
+.input-margin-top{
+  margin-top: 5px;
+}

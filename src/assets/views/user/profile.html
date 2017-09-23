@@ -10,37 +10,35 @@
   <meta charset="UTF-8">
   <title>User Profile</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
 
-
-  <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
-
-  <link href="../css/style.css" rel="stylesheet"/>
 </head>
 
 <body>
 
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="row container-fluid">
+    <div class="col-xs-12">
 
-    <!--heading on the nav bar-->
-    <p class="navbar-header pull-left">
-      <a class="navbar-brand thick">
-        <b>Profile</b>
-      </a>
-    </p>
+      <div class="navbar-text pull-right my-header-right-margin">
+        <a href="profile.html">
+          <span class="glyphicon glyphicon-ok"></span>
+        </a>
+      </div>
 
-    <!--tick mark-->
-    <p class="navbar-text pull-right">
-      <a href="profile.html" class="navbar-link">
-        <span class="glyphicon glyphicon-ok"></span>
-      </a>
-    </p>
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          Profile
+        </a>
+      </div>
 
+    </div>
   </div>
 </nav>
 
 
-<div class="container">
+
+<div class="container custom-padding-top-10">
   <form>
     <div class="form-group">
       <label for="username">Username</label>
@@ -76,7 +74,7 @@
 </div>
 
 <!-- Footer -->
-<nav class="navbar navbar-default navbar-fixed-bottom">
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
       <a href="profile.html">

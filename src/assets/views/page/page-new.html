@@ -6,7 +6,7 @@
   <link href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
   <link rel="stylesheet" href="../css/style.css"/>
 
-  <title>Website List</title>
+  <title>Page New</title>
 
 </head>
 
@@ -15,65 +15,116 @@
 <!-- Header -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="row container-fluid">
-    <div class="col-xs-12">
+
+    <div class="col-sm-4 hidden-xs">
 
       <div class="navbar-text pull-left my-header-left-margin">
-        <a href="../user/profile.html">
+        <a href="../website/website-list.html">
           <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
       </div>
 
       <div class="navbar-text pull-right my-header-right-margin">
-        <a href="website-new.html">
+        <a href="page-new.html">
           <span class="glyphicon glyphicon-plus"></span>
         </a>
       </div>
 
       <div class="navbar-header">
         <a class="navbar-brand" href="#">
-          Websites
+          Pages
         </a>
       </div>
 
     </div>
+
+    <div class="col-sm-8 col-xs-12">
+
+      <div class="navbar-text pull-left my-header-left-margin">
+        <a href="page-list.html">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+      </div>
+
+      <div class="navbar-text pull-right my-header-right-margin">
+        <a href="page-list.html">
+          <span class="glyphicon glyphicon-ok"></span>
+        </a>
+      </div>
+
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          New Page
+        </a>
+      </div>
+
+    </div>
+
+
   </div>
 </nav>
 
-<!-- Website List -->
 <div class="row container-fluid">
-  <div class="col-xs-12 my-left-pane">
+  <!-- Website List -->
+  <div class="col-sm-4 hidden-xs my-left-pane my-right-border">
     <ul class="list-group">
 
       <li class="list-group-item my-no-border">
-        <a href="../page/page-list.html">Address Book App</a>
-        <a href="website-edit.html" class="pull-right">
+        <a href="#">Blog Post</a>
+        <a href="page-edit.html" class="pull-right">
           <span class="glyphicon glyphicon-cog my-right-margin"></span>
         </a>
       </li>
 
       <li class="list-group-item my-no-border">
-        <a href="../page/page-list.html">Blogger</a>
-        <a href="website-edit.html" class="pull-right">
+        <a href="#">Blogs</a>
+        <a href="page-edit.html" class="pull-right">
           <span class="glyphicon glyphicon-cog my-right-margin"></span>
         </a>
       </li>
 
       <li class="list-group-item my-no-border">
-        <a href="../page/page-list.html">Blogging App</a>
-        <a href="website-edit.html" class="pull-right">
+        <a href="#">Home</a>
+        <a href="page-edit.html" class="pull-right">
           <span class="glyphicon glyphicon-cog my-right-margin"></span>
         </a>
       </li>
 
       <li class="list-group-item my-no-border">
-        <a href="../page/page-list.html">Script testing App</a>
-        <a href="website-edit.html" class="pull-right">
+        <a href="#">About</a>
+        <a href="page-edit.html" class="pull-right">
+          <span class="glyphicon glyphicon-cog my-right-margin"></span>
+        </a>
+      </li>
+
+      <li class="list-group-item my-no-border">
+        <a href="#">Contact Us</a>
+        <a href="page-edit.html" class="pull-right">
           <span class="glyphicon glyphicon-cog my-right-margin"></span>
         </a>
       </li>
 
     </ul>
   </div>
+
+  <div class="col-sm-8 col-xs-12 my-right-pane">
+    <form>
+
+      <div class="form-group">
+        <label for="page-name">Name</label>
+        <input type="text" id="page-name" class="form-control"
+               placeholder="Page Name"/>
+      </div>
+
+      <div class="form-group">
+        <label for="page-title">Title</label>
+        <input type="text" id="page-title" class="form-control span6" rows="5"
+                  placeholder="Page Title"/>
+      </div>
+
+    </form>
+  </div>
+
 </div>
 
 <!-- Footer -->
