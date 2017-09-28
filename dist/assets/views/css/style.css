@@ -35,6 +35,11 @@ body{
 
 .navbar a:hover{
   color:white;
+  text-decoration: none;
+}
+
+a.no-underline-hover{
+  text-decoration: none;
 }
 
 li.my-no-border{
