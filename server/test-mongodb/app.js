@@ -32,7 +32,6 @@ module.exports = function(app)
     var TestModel = mongoose.model("TestModel", TestSchema);
 
     function findAllMessages(req, res) {
-
         TestModel
             .find()
             .then(
