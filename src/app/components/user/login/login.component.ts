@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service.client';
 import { User } from '../user.model.client';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,8 @@ import { User } from '../user.model.client';
 })
 
 export class LoginComponent implements OnInit {
+
+  @ViewChild('f') loginForm: NgForm;
 
   username: string;
   password: string;
@@ -23,11 +26,11 @@ export class LoginComponent implements OnInit {
   login(username: string, password: string) {
     this.username = username;
     this.password = password;
-    this.errorFlag = false;
     const user: User = this.userService.findUserByUsername(username);
-    if (user) {
+    if (user && user.password === this.password) {
       this.router.navigate(['/user', user.userID]);
+    } else {
+      this.errorFlag = true;
     }
-    this.router.navigate(['/user', user.userID]);
   }
 }

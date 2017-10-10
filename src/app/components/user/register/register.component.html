@@ -1,24 +1,41 @@
-<h1>hello in register</h1>
-<!--<div class="container">-->
+<div class="container">
 
-  <!--<h1>Register</h1>-->
+  <div *ngIf="errorFlag"
+       class="alert alert-danger">
+    {{errorMsg}}
+  </div>
 
-  <!--<input placeholder="username"-->
-         <!--type="text"-->
-         <!--class="form-control"/>-->
+  <h1>Register</h1>
 
-  <!--<input placeholder="password"-->
-         <!--type="password"-->
-         <!--class="form-control input-margin-top"/>-->
+  <form (ngSubmit) = "register()" #f="ngForm">
 
-  <!--<input placeholder="verify password"-->
-         <!--type="password"-->
-         <!--class="form-control input-margin-top"/>-->
+    <input placeholder="username"
+           name="username"
+           type="text"
+           class="form-control"
+           required
+           [(ngModel)]="username"/>
 
-  <!--<a class="btn btn-primary btn-block input-margin-top"-->
-     <!--href="profile.html">Register</a>-->
+    <input placeholder="password"
+           name="password"
+           type="password"
+           class="form-control input-margin-top"
+           required
+           [(ngModel)]="password"/>
 
-  <!--<a class="btn btn-danger btn-block"-->
-     <!--href="login.html" >Cancel</a>-->
+    <input placeholder="verify password"
+           name="verifyPassword"
+           type="password"
+           class="form-control input-margin-top"
+           required
+           [(ngModel)]="verifyPassword"/>
 
-<!--</div>-->
+    <a class="btn btn-primary btn-block input-margin-top"
+       (click)="register()">Register</a>
+
+    <a class="btn btn-danger btn-block"
+       routerLink="/login" >Cancel</a>
+
+  </form>
+
+</div>

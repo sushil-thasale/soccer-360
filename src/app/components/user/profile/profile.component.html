@@ -1,72 +1,87 @@
-<h1>in profile</h1>
-<!--&lt;!&ndash; Header &ndash;&gt;-->
-<!--<nav class="navbar navbar-inverse navbar-fixed-top">-->
-  <!--<div class="row container-fluid">-->
-    <!--<div class="col-xs-12">-->
+<!-- Header -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="row container-fluid">
+    <div class="col-xs-12">
 
-      <!--<div class="navbar-text pull-right my-header-right-margin">-->
-        <!--<a href="profile.html">-->
-          <!--<span class="glyphicon glyphicon-ok"></span>-->
-        <!--</a>-->
-      <!--</div>-->
+      <div class="navbar-text pull-right my-header-right-margin">
+        <a (click)="updateProfile()">
+          <span class="glyphicon glyphicon-ok"></span>
+        </a>
+      </div>
 
-      <!--<div class="navbar-header">-->
-        <!--<a class="navbar-brand" href="#">-->
-          <!--Profile-->
-        <!--</a>-->
-      <!--</div>-->
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          Profile
+        </a>
+      </div>
 
-    <!--</div>-->
-  <!--</div>-->
-<!--</nav>-->
+    </div>
+  </div>
+</nav>
 
 
-<!--&lt;!&ndash; Form for Profile &ndash;&gt;-->
-<!--<div class="container custom-padding-top-10">-->
+<!-- Form for Profile -->
+<div class="container custom-padding-top-10">
 
-  <!--<form>-->
-    <!--<div class="form-group">-->
-      <!--<label for="username">Username</label>-->
-      <!--<input type="text" class="form-control" id="username" placeholder="walice">-->
-    <!--</div>-->
-  <!--</form>-->
+  <form (ngSubmit) = "updateProfile()" #f="ngForm">
 
-  <!--<form>-->
-    <!--<div class="form-group">-->
-      <!--<label for="email">Email address</label>-->
-      <!--<input type="email" class="form-control" id="email" placeholder="alice.wonderland@unicorn.com">-->
-    <!--</div>-->
-  <!--</form>-->
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text"
+             id="username"
+             name="username"
+             class="form-control"
+             required
+             placeholder="alice"/>
+    </div>
 
-  <!--<form>-->
-    <!--<div class="form-group">-->
-      <!--<label for="first-name">First Name</label>-->
-      <!--<input type="text" class="form-control" id="first-name" placeholder="Alice">-->
-    <!--</div>-->
-  <!--</form>-->
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email"
+             class="form-control"
+             id="email"
+             name="email"
+             required
+             placeholder="alice.wonderland@unicorn.com">
+    </div>
 
-  <!--<form>-->
-    <!--<div class="form-group">-->
-      <!--<label for="last-name">Last Name</label>-->
-      <!--<input type="text" class="form-control" id="last-name" placeholder="Wonderland">-->
-    <!--</div>-->
-  <!--</form>-->
+    <div class="form-group">
+      <label for="first-name">First Name</label>
+      <input type="text"
+             class="form-control"
+             id="first-name"
+             name="firstname"
+             required
+             placeholder="Alice">
+    </div>
 
-  <!--<a class="btn btn-primary btn-block"-->
-     <!--href="../website/website-list.html">Websites</a>-->
-  <!--<a class="btn btn-danger btn-block "-->
-     <!--href="login.html" >Logout</a>-->
+    <div class="form-group">
+      <label for="last-name">Last Name</label>
+      <input type="text"
+             class="form-control"
+             id="last-name"
+             name="lastname"
+             required
+             placeholder="Wonderland">
+    </div>
 
-<!--</div>-->
+  </form>
 
-<!--&lt;!&ndash; Footer &ndash;&gt;-->
-<!--<nav class="navbar navbar-inverse navbar-fixed-bottom">-->
-  <!--<div class="container-fluid">-->
-    <!--<p class="navbar-text pull-right">-->
-      <!--<a href="profile.html">-->
-        <!--<span class="glyphicon glyphicon-user"></span>-->
-      <!--</a>-->
-    <!--</p>-->
+  <a class="btn btn-primary btn-block"
+     (click)="navigateToWebsites()">Websites</a>
+  <a class="btn btn-danger btn-block "
+     routerLink="/login" >Logout</a>
 
-  <!--</div>-->
-<!--</nav>-->
+</div>
+
+<!-- Footer -->
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a href="#">
+        <span class="glyphicon glyphicon-user"></span>
+      </a>
+    </p>
+
+  </div>
+</nav>

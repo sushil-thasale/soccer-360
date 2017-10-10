@@ -10,10 +10,10 @@ export class UserService {
   constructor() { }
 
   users: User[] = [
-    new User ( '123', 'alice', 'alice', 'Alice', 'Wonder'),
-    new User ( '234', 'bob', 'bob', 'Bob', 'Marley'),
-    new User ( '345', 'charly', 'charly', 'Charly', 'Garcia'),
-    new User ( '456', 'jannunzi', 'jannunzi', 'Jose', 'Annunzi')
+    new User ( '123', 'alice', 'alice', 'Alice', 'Wonder', 'alice@gmail.com'),
+    new User ( '234', 'bob', 'bob', 'Bob', 'Marley', 'bob@gmail.com'),
+    new User ( '345', 'charly', 'charly', 'Charly', 'Garcia', 'chaly@gmail.com'),
+    new User ( '456', 'jannunzi', 'jannunzi', 'Jose', 'Annunzi', 'jose@gmail.com')
   ];
 
   api = {
@@ -24,8 +24,9 @@ export class UserService {
     'deleteUser' : this.deleteUser
   };
 
-  createUser(userID: string, username: string, password: string, firstname: string, lastname: string) {
-    const user: User = new User(userID, username, password, firstname, lastname);
+  createUser(username: string, password: string) {
+    const userID: string = '' + Math.random;
+    const user: User = new User(userID, username, password, '', '', '');
     this.users.push(user);
     return user;
   }
@@ -42,7 +43,24 @@ export class UserService {
     }
   }
 
-  updateUser(userId: string, user: any) {  }
+  updateUser(userId: string, user: User) {
+    for (let x = 0; x < this.users.length; x++) {
+      if (this.users[x].userID === userId) {
+        this.users[x].username = user.username;
+        this.users[x].password = user.password;
+        this.users[x].firstname = user.firstname;
+        this.users[x].lastname = user.lastname;
+        this.users[x].email = user.email;
+        return this.users[x];
+      }
+    }
+  }
 
-  deleteUser(userId: string) {  }
+  deleteUser(userId: string) {
+    for (let x = 0; x < this.users.length; x++) {
+      if (this.users[x].userID === userId) {
+        this.users.splice(x, 1);
+      }
+    }
+  }
 }
