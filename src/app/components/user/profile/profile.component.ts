@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
   updateProfile() {
     if (this.user) {
       this.user.username = this.loginForm.value.username;
-      this.user.firstname = this.loginForm.value.password;
+      this.user.firstname = this.loginForm.value.firstname;
       this.user.lastname = this.loginForm.value.lastname;
       this.user.email = this.loginForm.value.email;
       if (!this.errorFlag) {
