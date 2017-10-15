@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service.client';
 import { User } from '../user.model.client';
-import {NgForm} from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -21,12 +21,13 @@ export class LoginComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.username = this.loginForm.value.username;
+    this.password = this.loginForm.value.password;
+  }
 
-  login(username: string, password: string) {
-    this.username = username;
-    this.password = password;
-    const user: User = this.userService.findUserByUsername(username);
+  login() {
+    const user: User = this.userService.findUserByUsername(this.username);
     if (user && user.password === this.password) {
       this.router.navigate(['/user', user.userID]);
     } else {

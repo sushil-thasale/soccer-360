@@ -1,75 +1,82 @@
+<!-- Header -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="row container-fluid">
 
-<!--&lt;!&ndash; Header &ndash;&gt;-->
-<!--<nav class="navbar navbar-inverse navbar-fixed-top">-->
-  <!--<div class="row container-fluid">-->
+    <div class="col-xs-12">
 
-    <!--<div class="col-xs-12">-->
+      <div class="navbar-text pull-left my-header-left-margin">
+        <a (click)="navigateToWidgetList()">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+      </div>
 
-      <!--<div class="navbar-text pull-left my-header-left-margin">-->
-        <!--<a href="widget-list.html">-->
-          <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
-        <!--</a>-->
-      <!--</div>-->
+      <div class="navbar-text pull-right my-header-right-margin">
+        <a (click)="updateWidget()">
+          <span class="glyphicon glyphicon-ok"></span>
+        </a>
+      </div>
 
-      <!--<div class="navbar-text pull-right my-header-right-margin">-->
-        <!--<a href="widget-list.html">-->
-          <!--<span class="glyphicon glyphicon-ok"></span>-->
-        <!--</a>-->
-      <!--</div>-->
+      <div class="navbar-header">
+        <a class="navbar-brand">
+          Widget Edit
+        </a>
+      </div>
 
-      <!--<div class="navbar-header">-->
-        <!--<a class="navbar-brand" href="#">-->
-          <!--Widget Edit-->
-        <!--</a>-->
-      <!--</div>-->
+    </div>
 
-    <!--</div>-->
+  </div>
+</nav>
 
-  <!--</div>-->
-<!--</nav>-->
+<!-- Widget Edit Form -->
+<div class="row container-fluid">
+  <div class="col-xs-12 custom-padding-top-10">
 
-<!--&lt;!&ndash; Widget Edit Form &ndash;&gt;-->
-<!--<div class="row container-fluid">-->
-  <!--<div class="col-xs-12 custom-padding-top-10">-->
+    <form>
 
-    <!--<form>-->
+      <div class="form-group">
+        <label for="headerText">Text</label>
+        <input type="text"
+               id="headerText"
+               name="headerText"
+               class="form-control"
+               required
+               value="{{headerText}}"
+               [(ngModel)]="headerText"
+               placeholder="Header Text"/>
+      </div>
 
-      <!--<div class="form-group">-->
-        <!--<label for="widget-name">Name</label>-->
-        <!--<input type="text" id="widget-name" class="form-control"-->
-               <!--placeholder="Page Name"/>-->
-      <!--</div>-->
+      <div class="form-group">
+      <label for="headerSize">Text Size</label>
+      <input type="text"
+             id="headerSize"
+             name="headerSize"
+             class="form-control"
+             required
+             value="{{headerSize}}"
+             [(ngModel)]="headerSize"
+             placeholder="Header Size"/>
+      </div>
 
-      <!--<div class="form-group">-->
-        <!--<label for="widget-text">Text</label>-->
-        <!--<input type="text" id="widget-text" class="form-control"-->
-               <!--placeholder="Page Title" value="US Senate reaches Compromise"/>-->
-      <!--</div>-->
+      <div class="form-group">
+        <a (click)="deleteWidget()"
+           class="btn btn-block btn-danger">
+          Delete
+        </a>
+      </div>
 
-      <!--<div class="form-group">-->
-        <!--<label for="widget-size">Text</label>-->
-        <!--<input type="text" id="widget-size" class="form-control"-->
-               <!--placeholder="Page Title" value="3"/>-->
-      <!--</div>-->
+    </form>
 
-      <!--<div class="form-group">-->
-        <!--<a href="widget-list.html" class="btn btn-block btn-danger">-->
-          <!--Delete-->
-        <!--</a>-->
-      <!--</div>-->
+  </div>
+</div>
 
-    <!--</form>-->
+<!-- Footer -->
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+  <div class="container-fluid">
+    <div class="navbar-footer navbar-text pull-right">
+      <a (click)="navigateToProfile()">
+        <span class="glyphicon glyphicon-user"></span>
+      </a>
+    </div>
+  </div>
+</nav>
 
-  <!--</div>-->
-<!--</div>-->
-
-<!--&lt;!&ndash; Footer &ndash;&gt;-->
-<!--<nav class="navbar navbar-inverse navbar-fixed-bottom">-->
-  <!--<div class="container-fluid">-->
-    <!--<div class="navbar-footer navbar-text pull-right">-->
-      <!--<a href="../user/profile.html">-->
-        <!--<span class="glyphicon glyphicon-user"></span>-->
-      <!--</a>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</nav>-->

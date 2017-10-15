@@ -1,151 +1,94 @@
+<!-- Header -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="row container-fluid">
+    <div class="col-xs-12">
 
-<!--&lt;!&ndash; Header &ndash;&gt;-->
-<!--<nav class="navbar navbar-inverse navbar-fixed-top">-->
-  <!--<div class="row container-fluid">-->
-    <!--<div class="col-xs-12">-->
+      <div class="navbar-text pull-left my-header-left-margin">
+        <a (click)="navigateToPageList()">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+      </div>
 
-      <!--<div class="navbar-text pull-left my-header-left-margin">-->
-        <!--<a href="../page/page-list.html">-->
-          <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
-        <!--</a>-->
-      <!--</div>-->
+      <div class="navbar-text pull-right my-header-right-margin">
+        <a (click)="navigateToWidgetChooser()" >
+          <span class="glyphicon glyphicon-plus"></span>
+        </a>
+      </div>
 
-      <!--<div class="navbar-text pull-right my-header-right-margin">-->
-        <!--<a href="widget-chooser.html">-->
-          <!--<span class="glyphicon glyphicon-plus"></span>-->
-        <!--</a>-->
-      <!--</div>-->
+      <div class="navbar-header">
+        <a class="navbar-brand">
+          Widgets
+        </a>
+      </div>
 
-      <!--<div class="navbar-header">-->
-        <!--<a class="navbar-brand" href="#">-->
-          <!--Widgets-->
-        <!--</a>-->
-      <!--</div>-->
+    </div>
+  </div>
+</nav>
 
-    <!--</div>-->
-  <!--</div>-->
-<!--</nav>-->
+<!-- Widget List -->
+<div class="container-fluid">
 
-<!--&lt;!&ndash; Widget List &ndash;&gt;-->
-<!--<div class="container-fluid">-->
-  <!--<div>-->
-    <!--<div class="my-widget-settings-bar list-group pull-right">-->
-      <!--<a href="widget-heading.html">-->
-        <!--<span class="glyphicon glyphicon-cog"/>-->
-      <!--</a>-->
-      <!--<a href="#">-->
-        <!--<span class="glyphicon glyphicon-align-justify"/>-->
-      <!--</a>-->
-    <!--</div>-->
-    <!--<h1>GIZMODO<h1>-->
-  <!--</div>-->
-<!--</div>-->
+  <div *ngFor="let widget of widgets">
 
-<!--<div class="container-fluid">-->
-  <!--<div>-->
-    <!--<div class="my-widget-settings-bar list-group pull-right">-->
-      <!--<a href="widget-heading.html">-->
-        <!--<span class="glyphicon glyphicon-cog"/>-->
-      <!--</a>-->
-      <!--<a href="#">-->
-        <!--<span class="glyphicon glyphicon-align-justify"/>-->
-      <!--</a>-->
-    <!--</div>-->
-    <!--<h3>US Senate Reaches Compromise on Emergency Zika Funding</h3>-->
-  <!--</div>-->
+    <div>
+      <div class="my-widget-settings-bar list-group pull-right">
+        <a (click)="navigateToWidgetEdit(widget._id, widget.widgetType)">
+          <span class="glyphicon glyphicon-cog"></span>
+        </a>
+        <a>
+          <span class="glyphicon glyphicon-align-justify"></span>
+        </a>
+      </div>
 
-  <!--<div>-->
-    <!--<div class="my-widget-settings-bar list-group pull-right">-->
-      <!--<a href="widget-image.html">-->
-        <!--<span class="glyphicon glyphicon-cog"/>-->
-      <!--</a>-->
-      <!--<a href="#">-->
-        <!--<span class="glyphicon glyphicon-align-justify"/>-->
-      <!--</a>-->
-    <!--</div>-->
-    <!--<img width="100%" height=300px"-->
-         <!--src="https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/news/2016/01_2016/aedes_albopictus_mosquito/650x350_aedes_albopictus_mosquito.jpg">-->
-  <!--</div>-->
+      <div [ngSwitch]="widget.widgetType">
 
-  <!--<div>-->
-    <!--<div class="my-widget-settings-bar list-group pull-right">-->
-      <!--<a href="widget-heading.html">-->
-        <!--<span class="glyphicon glyphicon-cog"/>-->
-      <!--</a>-->
-      <!--<a href="#">-->
-        <!--<span class="glyphicon glyphicon-align-justify"/>-->
-      <!--</a>-->
-    <!--</div>-->
-    <!--<p> In February, the <a href="https://www.nytimes.com/2016/02/09/us/politics/obama-congress-funding-combat-zika-virus.html?mcubz=0" target="_blank" rel="noopener">White House formally asked Congress for $1.8 billion</a> dollars to help combat the Zika Virus this summer. Now, the Senate has worked ut a bipartisan deal will allocate $1.1 billion in emergeny funding.</p>-->
-  <!--</div>-->
+        <div *ngSwitchCase="'HEADING'">
+          <app-header-view size="{{widget.size}}"
+                            text="{{widget.text}}"></app-header-view>
+        </div>
 
-<!--</div>-->
+        <div *ngSwitchCase="'HTML'">
+          <app-html-view htmlSnippet="{{widget.text}}"></app-html-view>
+        </div>
 
-<!--<div class="container-fluid">-->
+        <div *ngSwitchCase="'YOUTUBE'">
+          <app-youtube-view url="{{widget.url}}"
+                            width="{{widget.width}}"></app-youtube-view>
+        </div>
 
-  <!--<div>-->
-    <!--<div class="my-widget-settings-bar list-group pull-right">-->
-      <!--<a href="widget-heading.html">-->
-        <!--<span class="glyphicon glyphicon-cog"/>-->
-      <!--</a>-->
-      <!--<a href="#">-->
-        <!--<span class="glyphicon glyphicon-align-justify"/>-->
-      <!--</a>-->
-    <!--</div>-->
-    <!--<h3>Man in Wingsuit Flies Straight Through a Ring of Fire.</h3>-->
-  <!--</div>-->
+        <div *ngSwitchCase="'IMAGE'">
+          <app-image-view url="{{widget.url}}" width="{{widget.width}}"></app-image-view>
+        </div>
 
-  <!--<div>-->
-    <!--<div class="my-widget-settings-bar list-group pull-right">-->
-      <!--<a href="widget-youtube.html">-->
-        <!--<span class="glyphicon glyphicon-cog"/>-->
-      <!--</a>-->
-      <!--<a href="#">-->
-        <!--<span class="glyphicon glyphicon-align-justify"/>-->
-      <!--</a>-->
-    <!--</div>-->
-    <!--<iframe width="100%" height="300px"-->
-            <!--src="https://www.youtube.com/embed/uLWLashCXHE"-->
-            <!--frameborder="0" allowfullscreen></iframe>-->
-  <!--</div>-->
+      </div>
 
-  <!--<div>-->
-    <!--<div class="my-widget-settings-bar list-group pull-right">-->
-      <!--<a href="widget-heading.html">-->
-        <!--<span class="glyphicon glyphicon-cog"/>-->
-      <!--</a>-->
-      <!--<a href="#">-->
-        <!--<span class="glyphicon glyphicon-align-justify"/>-->
-      <!--</a>-->
-    <!--</div>-->
-    <!--<p>Flying in wingsuit? That's just not enough anymore. Anyone could do that (I would never do that.) You have to make it more extreme like by hitting a target while you're cutting through the air at crazy speeds. Or by making that target a small ring that you have to somehow fly through. Or by lighting that ring on fire. Or by.. actually, that should be extreme enough for now.</p>-->
-  <!--</div>-->
+    </div>
 
+  </div>
 
-<!--</div>-->
+</div>
 
+<!-- Footer -->
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+  <div class="container-fluid">
 
-<!--&lt;!&ndash; Footer &ndash;&gt;-->
-<!--<nav class="navbar navbar-inverse navbar-fixed-bottom">-->
-  <!--<div class="container-fluid">-->
+    <div class="navbar-footer navbar-text pull-left my-header-right-margin">
+      <a>
+        <span class="glyphicon glyphicon-play"></span>
+      </a>
+    </div>
 
-    <!--<div class="navbar-footer navbar-text pull-left my-header-right-margin">-->
-      <!--<a href="#">-->
-        <!--<span class="glyphicon glyphicon-play"></span>-->
-      <!--</a>-->
-    <!--</div>-->
+    <div class="navbar-footer navbar-text pull-left my-header-left-margin">
+      <a>
+        <span class="glyphicon glyphicon-eye-open"></span>
+      </a>
+    </div>
 
-    <!--<div class="navbar-footer navbar-text pull-left my-header-left-margin">-->
-      <!--<a href="#">-->
-        <!--<span class="glyphicon glyphicon-eye-open"></span>-->
-      <!--</a>-->
-    <!--</div>-->
+    <div class="navbar-footer navbar-text pull-right">
+      <a (click)="navigateToProfile()">
+        <span class="glyphicon glyphicon-user"></span>
+      </a>
+    </div>
 
-    <!--<div class="navbar-footer navbar-text pull-right">-->
-      <!--<a href="../user/profile.html">-->
-        <!--<span class="glyphicon glyphicon-user"></span>-->
-      <!--</a>-->
-    <!--</div>-->
-
-  <!--</div>-->
-<!--</nav>-->
+  </div>
+</nav>

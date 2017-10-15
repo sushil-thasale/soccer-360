@@ -25,7 +25,7 @@ export class UserService {
   };
 
   createUser(username: string, password: string) {
-    const userID: string = '' + Math.random;
+    const userID: string = '' + (new Date()).getTime();
     const user: User = new User(userID, username, password, '', '', '');
     this.users.push(user);
     return user;
@@ -35,12 +35,14 @@ export class UserService {
     for (let x = 0; x < this.users.length; x++) {
       if (this.users[x].userID === userId) {  return this.users[x]; }
     }
+    return null;
   }
 
   findUserByUsername(username: string) {
     for (let x = 0; x < this.users.length; x++) {
       if (this.users[x].username === username) {  return this.users[x]; }
     }
+    return null;
   }
 
   updateUser(userId: string, user: User) {
@@ -54,6 +56,7 @@ export class UserService {
         return this.users[x];
       }
     }
+    return null;
   }
 
   deleteUser(userId: string) {
@@ -62,5 +65,6 @@ export class UserService {
         this.users.splice(x, 1);
       }
     }
+    return null;
   }
 }

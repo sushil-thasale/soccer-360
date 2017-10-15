@@ -29,11 +29,11 @@ const APP_ROUTES: Routes = [
   { path : 'user/:userID/website/new' , component: WebsiteNewComponent},
   { path : 'user/:userID/website/:websiteID' , component: WebsiteEditComponent},
   { path : 'user/:userID/website/:websiteID/page' , component: PageListComponent},
-  { path : 'user/:userID/website/:websiteID/page/:pageID' , component: PageEditComponent},
   { path : 'user/:userID/website/:websiteID/page/new' , component: PageNewComponent},
+  { path : 'user/:userID/website/:websiteID/page/:pageID' , component: PageEditComponent},
+  { path : 'user/:userID/website/:websiteID/page/:pageID/widget' , component: WidgetListComponent},
   { path : 'user/:userID/website/:websiteID/page/:pageID/widget/new' , component: WidgetChooserComponent},
   { path : 'user/:userID/website/:websiteID/page/:pageID/widget/:widgetID' , component: WidgetEditComponent},
-  { path : 'user/:userID/website/:websiteID/page/:pageID/widget' , component: WidgetListComponent},
 ];
 
 // Export the routes as module providers

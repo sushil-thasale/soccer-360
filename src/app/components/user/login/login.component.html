@@ -7,37 +7,41 @@
 
 <h1>Login</h1>
 
-<form (ngSubmit) = "login(username, password)" #f="ngForm">
+<form (ngSubmit) = "login()" #f="ngForm">
 
   <input placeholder="username"
          type="text"
          name="username"
          class="form-control"
          required
-         [(ngModel)]="username"/>
+         [(ngModel)]="username"
+         ngModel
+         #o_username = "ngModel"/>
 
-  <!--<span class="help-block" *ngIf="!username.valid && !username.touched">-->
-      <!--Please enter username!-->
-   <!--</span>-->
+  <span class="help-block" *ngIf="o_username.touched && o_username.invalid">
+      Please enter username!
+  </span>
 
   <input placeholder="password"
          name="password"
          type="password"
          class="form-control input-margin-top"
          required
-         [(ngModel)]="password"/>
+         [(ngModel)]="password"
+         ngModel
+         #o_password="ngModel"/>
 
-  <!--<span class="help-block" *ngIf="!password.valid && !password.touched">-->
-      <!--Please enter password!-->
-   <!--</span>-->
+  <span class="help-block" *ngIf="o_password.touched && o_password.invalid">
+      Please enter password!
+   </span>
 
   <button class="btn btn-primary btn-block input-margin-top"
           type="submit"
-          (click)="login(username, password)"
-          [disabled]="!f.valid">Login</button>
+          (click)="login()"
+          [disabled]="f.invalid">Login</button>
 
-  <a class="btn btn-success btn-block"
-          routerLink='/register'>Register</a>
+  <button class="btn btn-success btn-block"
+          routerLink='/register'>Register</button>
 
 </form>
 

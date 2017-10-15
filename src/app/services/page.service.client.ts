@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, Response } from '@angular/http';
 import 'rxjs/Rx';
-import { environment } from '../../environments/environment';
-import { Router } from '@angular/router';
+import { Page } from '../components/page/page.model.client';
 
 // injecting service into module
 @Injectable()
@@ -11,31 +9,89 @@ export class PageService {
 
   constructor() { }
 
-  pages = [
-    { '_id': '321', 'name': 'Post 1', 'websiteId': '456', 'description': 'Lorem' },
-    { '_id': '432', 'name': 'Post 2', 'websiteId': '456', 'description': 'Lorem' },
-    { '_id': '543', 'name': 'Post 3', 'websiteId': '456', 'description': 'Lorem' }
+  pages: Page[] = [
+    new Page ( '321', 'Post 1', '890', 'Lorem' ),
+    new Page ( '432', 'Post 2', '890', 'Lorem' ),
+    new Page ( '543', 'Post 3', '890', 'Lorem' )
   ];
 
   api = {
     'createPage'   : this.createPage,
-    'findPageByWebsiteId' : this.findPageByWebsiteId,
+    'findPageByWebsiteId' : this.findPagesByWebsiteId,
     'findPageById' : this.findPageById,
     'updatePage' : this.updatePage,
     'deletePage' : this.deletePage
   };
 
-  createPage(websiteId: string, page: any) {
-    page._id = Math.random();
-    this.pages.push(page);
-    return page;
+  createPage(websiteID: string, name: string, title: string) {
+    const _id: string = '' + (new Date()).getTime();
+    // check if page name exists
+    if (!this.validatePageName(websiteID, name)) {
+      return false;
+    }
+    const newPage: Page = new Page(_id, name, websiteID, title);
+    this.pages.push(newPage);
+    return true;
   }
 
-  findPageByWebsiteId(websiteId: string) {}
+  validatePageName(websiteID: string, name: string) {
+    const websitePages: Page[] = this.findPagesByWebsiteId(websiteID);
+    for (let i = 0; i < websitePages.length; i++) {
+      if (websitePages[i].name === name) {
+        return false;
+      }
+    }
+    return true;
+  }
 
-  findPageById(pageId: string)  {}
+  validatePage(websiteID: string, pageID: string, name: string) {
+    const websitePages: Page[] = this.findPagesByWebsiteId(websiteID);
+    for (let i = 0; i < websitePages.length; i++) {
+      if (websitePages[i]._id !== pageID && websitePages[i].name === name) {
+        return false;
+      }
+    }
+    return true;
+  }
 
-  updatePage(pageId: string, page: any) {}
+  findPagesByWebsiteId(websiteID: string) {
+    const websitePages: Page[] = [];
+    for ( let i = 0; i < this.pages.length; i++) {
+      if (this.pages[i].websiteID === websiteID) {
+        websitePages.push(this.pages[i]);
+      }
+    }
+    return websitePages;
+  }
 
-  deletePage(pageId: string) {}
+  findPageById(pageID: string)  {
+    for ( let i = 0; i < this.pages.length; i++) {
+      if (this.pages[i]._id === pageID) {
+        return this.pages[i];
+      }
+    }
+    return null;
+  }
+
+  updatePage(websiteID: string, pageID: string, name: string, title: string) {
+    // check if page name exists
+    if (!this.validatePage(websiteID, pageID, name)) {
+      return false;
+    }
+    for ( let i = 0; i < this.pages.length; i++) {
+      if (this.pages[i]._id === pageID) {
+        this.pages[i].name = name;
+        this.pages[i].title = title;
+        return true;
+      }
+    }
+  }
+
+  deletePage(pageID: string) {
+    for ( let i = 0; i < this.pages.length; i++) {
+      if (this.pages[i]._id === pageID) {
+        this.pages.splice(i, 1);
+      }
+    }
+  }
 }

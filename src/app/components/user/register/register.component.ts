@@ -18,16 +18,17 @@ export class RegisterComponent implements OnInit {
   password: string;
   verifyPassword: string;
   errorFlag: boolean;
-  errorMsg = 'username already exists! Choose a different one!';
+  errorMsg = 'Username already exists! Choose a different one!';
 
   constructor(private userService: UserService, private router: Router) { }
 
-  ngOnInit() { }
-
-  register() {
+  ngOnInit() {
     this.username = this.loginForm.value.username;
     this.password = this.loginForm.value.password;
     this.verifyPassword = this.loginForm.value.verifyPassword;
+  }
+
+  register() {
     const user: User = this.userService.findUserByUsername(this.username);
     if (!user && this.password === this.verifyPassword) {
       const newUser: User = this.userService.createUser(this.username, this.password);

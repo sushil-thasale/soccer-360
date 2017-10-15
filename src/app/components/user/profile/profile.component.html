@@ -10,7 +10,7 @@
       </div>
 
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand">
           Profile
         </a>
       </div>
@@ -19,9 +19,13 @@
   </div>
 </nav>
 
-
 <!-- Form for Profile -->
 <div class="container custom-padding-top-10">
+
+  <div *ngIf="errorFlag"
+       class="alert alert-danger">
+    {{errorMsg}}
+  </div>
 
   <form (ngSubmit) = "updateProfile()" #f="ngForm">
 
@@ -31,7 +35,9 @@
              id="username"
              name="username"
              class="form-control"
+             value="{{user.username}}"
              required
+             [(ngModel)] = "user.username"
              placeholder="alice"/>
     </div>
 
@@ -41,8 +47,10 @@
              class="form-control"
              id="email"
              name="email"
+             value="{{user.email}}"
+             placeholder="alice.wonderland@unicorn.com"
              required
-             placeholder="alice.wonderland@unicorn.com">
+             [(ngModel)] = "user.email"/>
     </div>
 
     <div class="form-group">
@@ -51,8 +59,10 @@
              class="form-control"
              id="first-name"
              name="firstname"
+             value="{{user.firstname}}"
              required
-             placeholder="Alice">
+             placeholder="Alice"
+             [(ngModel)] = "user.firstname"/>
     </div>
 
     <div class="form-group">
@@ -61,16 +71,18 @@
              class="form-control"
              id="last-name"
              name="lastname"
+             value="{{user.lastname}}"
              required
-             placeholder="Wonderland">
+             placeholder="Wonderland"
+             [(ngModel)] = "user.lastname"/>
     </div>
 
   </form>
 
-  <a class="btn btn-primary btn-block"
-     (click)="navigateToWebsites()">Websites</a>
-  <a class="btn btn-danger btn-block "
-     routerLink="/login" >Logout</a>
+  <button class="btn btn-primary btn-block"
+     (click)="navigateToWebsites()">Websites</button>
+  <button class="btn btn-danger btn-block "
+     routerLink="/login" >Logout</button>
 
 </div>
 
@@ -78,7 +90,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a href="#">
+      <a>
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </p>

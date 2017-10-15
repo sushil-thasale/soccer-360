@@ -1,78 +1,82 @@
+<!-- Header -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="row container-fluid">
 
-<!--&lt;!&ndash; Header &ndash;&gt;-->
-<!--<nav class="navbar navbar-inverse navbar-fixed-top">-->
-  <!--<div class="row container-fluid">-->
+    <div class="col-xs-12">
 
-    <!--<div class="col-xs-12">-->
+      <div class="navbar-text pull-left my-header-left-margin">
+        <a (click)="navigateToWidgetList()">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+      </div>
 
-      <!--<div class="navbar-text pull-left my-header-left-margin">-->
-        <!--<a href="widget-list.html">-->
-          <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
-        <!--</a>-->
-      <!--</div>-->
+      <div class="navbar-text pull-right my-header-right-margin">
+        <a (click)="updateWidget()">
+          <span class="glyphicon glyphicon-ok"></span>
+        </a>
+      </div>
 
-      <!--<div class="navbar-text pull-right my-header-right-margin">-->
-        <!--<a href="widget-list.html">-->
-          <!--<span class="glyphicon glyphicon-ok"></span>-->
-        <!--</a>-->
-      <!--</div>-->
+      <div class="navbar-header">
+        <a class="navbar-brand">
+          Widget Edit
+        </a>
+      </div>
 
-      <!--<div class="navbar-header">-->
-        <!--<a class="navbar-brand" href="#">-->
-          <!--Widget Edit-->
-        <!--</a>-->
-      <!--</div>-->
+    </div>
 
-    <!--</div>-->
+  </div>
+</nav>
 
-  <!--</div>-->
-<!--</nav>-->
+<!-- Widget Edit Form -->
+<div class="row container-fluid">
+  <div class="col-xs-12 custom-padding-top-10">
 
-<!--&lt;!&ndash; Widget edit Form &ndash;&gt;-->
-<!--<div class="container-fluid">-->
-  <!--<div class="col-xs-12 custom-padding-top-10">-->
+    <form>
 
-    <!--<form>-->
+      <div class="form-group">
+        <label for="youtubeUrl">Youtube URL</label>
+        <input type="text"
+               id="youtubeUrl"
+               name="youtubeUrl"
+               class="form-control"
+               required
+               value="{{youtubeUrl}}"
+               [(ngModel)]="youtubeUrl"
+               placeholder="URL"/>
+      </div>
 
-      <!--<div class="form-group">-->
-        <!--<label for="youtube-name">Name</label>-->
-        <!--<input type="text" id="youtube-name" class="form-control"/>-->
-      <!--</div>-->
+      <div class="form-group">
+        <label for="width">Video width</label>
+        <input type="text"
+               id="width"
+               name="width"
+               class="form-control"
+               required
+               [(ngModel)]="width"
+               value="{{width}}"
+               placeholder="100%"/>
+      </div>
 
-      <!--<div class="form-group">-->
-        <!--<label for="youtube-text">Text</label>-->
-        <!--<input type="text" id="youtube-text" class="form-control"/>-->
-      <!--</div>-->
+      <div class="form-group">
+        <a (click)="deleteWidget()"
+           class="btn btn-block btn-danger">
+          Delete
+        </a>
+      </div>
 
-      <!--<div class="form-group">-->
-        <!--<label for="youtube-url">URL</label>-->
-        <!--<input type="text" id="youtube-url" class="form-control"-->
-               <!--placeholder="https://youtube.com"/>-->
-      <!--</div>-->
+    </form>
 
-      <!--<div class="form-group">-->
-        <!--<label for="youtube-width">Width</label>-->
-        <!--<input type="text" id="youtube-width" class="form-control"/>-->
-      <!--</div>-->
+  </div>
+</div>
 
-      <!--<div class="form-group">-->
-        <!--<a href="widget-list.html" class="btn btn-block btn-danger">-->
-          <!--Delete-->
-        <!--</a>-->
-      <!--</div>-->
+<!-- Footer -->
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+  <div class="container-fluid">
+    <div class="navbar-footer navbar-text pull-right">
+      <a (click)="navigateToProfile()">
+        <span class="glyphicon glyphicon-user"></span>
+      </a>
+    </div>
+  </div>
+</nav>
 
-    <!--</form>-->
-
-  <!--</div>-->
-<!--</div>-->
-
-<!--&lt;!&ndash; Footer &ndash;&gt;-->
-<!--<nav class="navbar navbar-inverse navbar-fixed-bottom">-->
-  <!--<div class="container-fluid">-->
-    <!--<div class="navbar-footer navbar-text pull-right">-->
-      <!--<a href="../user/profile.html">-->
-        <!--<span class="glyphicon glyphicon-user"></span>-->
-      <!--</a>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</nav>-->

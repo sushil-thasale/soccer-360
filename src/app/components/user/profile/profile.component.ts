@@ -10,17 +10,14 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
+
 export class ProfileComponent implements OnInit {
 
   @ViewChild('f') loginForm: NgForm;
-
+  user: User;
   userID: string;
-  username: string;
-  firstname: string;
-  lastname: string;
-  email: string;
   errorFlag: boolean;
-  errorMsg = 'All values are required!';
+  errorMsg = 'All values are required to update the form!';
 
   constructor(private userService: UserService, private router: Router, private  route: ActivatedRoute) { }
 
@@ -28,22 +25,18 @@ export class ProfileComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.userID = params['userID'];
     });
-    this.username = this.loginForm.value.username;
-    this.firstname = this.loginForm.value.password;
-    this.lastname = this.loginForm.value.lastname;
-    this.email = this.loginForm.value.email;
+    this.user = this.userService.findUserById(this.userID);
   }
 
   updateProfile() {
-    const user: User = this.userService.findUserById(this.userID);
-    if (user) {
-      user.username = this.username;
-      user.firstname = this.firstname;
-      user.lastname = this.lastname;
-      user.email = this.email;
+    if (this.user) {
+      this.user.username = this.loginForm.value.username;
+      this.user.firstname = this.loginForm.value.password;
+      this.user.lastname = this.loginForm.value.lastname;
+      this.user.email = this.loginForm.value.email;
       if (!this.errorFlag) {
-        this.userService.updateUser(this.userID, user);
-        this.router.navigate(['/user', user.userID]);
+        this.userService.updateUser(this.userID, this.user);
+        this.router.navigate(['/user', this.user.userID]);
       }
     } else {
       this.errorFlag = true;
