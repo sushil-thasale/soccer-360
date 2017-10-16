@@ -7,7 +7,6 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   templateUrl: './image-view.component.html',
   styleUrls: ['./image-view.component.css']
 })
-
 export class ImageViewComponent implements OnInit {
 
   @Input() url: string;
@@ -18,11 +17,10 @@ export class ImageViewComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    this.sanitizedURL = this.photoURL();
+    this.sanitizedURL = this.getSafeUrl();
   }
 
-  photoURL() {
+  getSafeUrl() {
     return this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
   }
-
 }
