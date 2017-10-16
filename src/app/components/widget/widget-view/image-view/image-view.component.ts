@@ -19,11 +19,10 @@ export class ImageViewComponent implements OnInit {
 
   ngOnInit() {
     this.sanitizedURL = this.photoURL();
-    console.log(this.sanitizedURL);
   }
 
   photoURL() {
-    return this.sanitizer.bypassSecurityTrustUrl(this.url);
+    return this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
   }
 
 }
