@@ -27,21 +27,28 @@ export class WidgetImageComponent implements OnInit {
       this.websiteID = params['websiteID'];
       this.pageID = params['pageID'];
     });
-    this.widget = this.widgetService.findWidgetById(this.widgetID);
-    this.imageUrl = this.widget.url;
-    this.width = this.widget.width;
+    this.widgetService.findWidgetById(this.widgetID)
+      .subscribe((widget: any) => {
+        this.widget = widget;
+        this.imageUrl = this.widget.url;
+        this.width = this.widget.width;
+      });
   }
 
   updateWidget() {
     this.widget.url = this.imageUrl;
     this.widget.width = this.width;
-    this.widgetService.updateWidget(this.widgetID, this.widget);
-    this.navigateToWidgetList();
+    this.widgetService.updateWidget(this.widgetID, this.widget)
+      .subscribe((widget: any) => {
+        this.navigateToWidgetList();
+      });
   }
 
   deleteWidget() {
-    this.widgetService.deleteWidget(this.widgetID);
-    this.navigateToWidgetList();
+    this.widgetService.deleteWidget(this.widgetID)
+      .subscribe((status: any) => {
+        this.navigateToWidgetList();
+      });
   }
 
   navigateToWidgetList() {

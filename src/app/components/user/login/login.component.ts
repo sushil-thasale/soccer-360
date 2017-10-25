@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service.client';
 import { User } from '../user.model.client';
 import { NgForm } from '@angular/forms';
+import 'rxjs/Rx';
 
 @Component({
   selector: 'app-login',
@@ -27,11 +28,12 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    const user: User = this.userService.findUserByUsername(this.username);
-    if (user && user.password === this.password) {
-      this.router.navigate(['/user', user.userID]);
-    } else {
-      this.errorFlag = true;
-    }
+    this.userService.findUserByCredentials(this.username, this.password)
+      .subscribe((user: User) => {
+        if (user) {
+          this.router.navigate(['/user', user._id]);
+        }
+      });
+    this.errorFlag = true;
   }
 }

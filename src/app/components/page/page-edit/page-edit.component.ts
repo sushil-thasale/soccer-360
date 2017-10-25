@@ -15,9 +15,10 @@ export class PageEditComponent implements OnInit {
   userID: string;
   websiteID: string;
   pageID: string;
+  page: Page;
   pages: Page[];
   pageName: string;
-  pageTitle: string;
+  pageDescription: string;
   errorFlag: boolean;
   errorMsg = 'Page Name is required!';
 
@@ -29,10 +30,18 @@ export class PageEditComponent implements OnInit {
       this.websiteID = params['websiteID'];
       this.pageID = params['pageID'];
     });
-    this.pages = this.pageService.findPagesByWebsiteId(this.websiteID);
-    const page: Page = this.pageService.findPageById(this.pageID);
-    this.pageName = page.name;
-    this.pageTitle = page.title;
+
+    this.pageService.findPagesByWebsiteId(this.websiteID)
+      .subscribe((pages: Page[]) => {
+        this.pages = pages;
+      });
+
+    this.pageService.findPageById(this.pageID)
+      .subscribe((page: Page) => {
+        this.page = page;
+        this.pageName = this.page.name;
+        this.pageDescription = this.page.description;
+      });
   }
 
   updatePage() {
@@ -40,23 +49,28 @@ export class PageEditComponent implements OnInit {
       this.errorMsg = 'Page Name is required!';
       this.errorFlag = true;
     } else {
-      const success: boolean = this.pageService.updatePage(this.websiteID, this.pageID, this.pageName, this.pageTitle);
-      if (!success) {
-        this.errorMsg = 'This Page already exists!';
-        this.errorFlag = true;
+      // check if website exists
+      if (this.pageService.validatePage(this.websiteID, this.pageID, this.pageName)) {
+        const newPage: Page = new Page(this.pageID, this.pageName, this.websiteID, this.pageDescription);
+        this.pageService.updatePage(newPage)
+          .subscribe((page: Page) => {
+            this.navigateToPageList();
+          });
       } else {
-        this.navigateToPageList();
+        this.errorMsg = 'This Page Name already exists!';
+        this.errorFlag = true;
       }
     }
   }
-
   isEmptyOrSpaces(str: string) {
     return !str || str.trim() === '';
   }
 
   deletePage() {
-    this.pageService.deletePage(this.pageID);
-    this.navigateToPageList();
+    this.pageService.deletePage(this.pageID)
+      .subscribe((status: any) => {
+        this.navigateToPageList();
+      });
   }
 
   navigateToProfile() {

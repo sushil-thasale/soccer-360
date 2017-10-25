@@ -29,12 +29,22 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    const user: User = this.userService.findUserByUsername(this.username);
-    if (!user && this.password === this.verifyPassword) {
-      const newUser: User = this.userService.createUser(this.username, this.password);
-      this.router.navigate(['/user', newUser.userID]);
+    this.userService.findUserByUsername(this.username)
+      .subscribe((user: User) => {
+        if (user) {
+          this.errorFlag = true;
+          return;
+        }
+      });
+
+    if (this.password === this.verifyPassword) {
+      this.userService.createUser(this.username, this.password)
+        .subscribe((newUser: User) => {
+          this.router.navigate(['/user', newUser._id]);
+        });
     } else {
       this.errorFlag = true;
+      this.errorMsg = 'Password doesn\'t match!!';
     }
   }
 }

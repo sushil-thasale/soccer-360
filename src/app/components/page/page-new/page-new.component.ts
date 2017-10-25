@@ -16,7 +16,7 @@ export class PageNewComponent implements OnInit {
   websiteID: string;
   pages: Page[];
   pageName: string;
-  pageTitle: string;
+  pageDescription: string;
   errorFlag: boolean;
   errorMsg = 'Page Name is required!';
 
@@ -27,7 +27,10 @@ export class PageNewComponent implements OnInit {
       this.userID = params['userID'];
       this.websiteID = params['websiteID'];
     });
-    this.pages = this.pageService.findPagesByWebsiteId(this.websiteID);
+    this.pageService.findPagesByWebsiteId(this.websiteID)
+      .subscribe((pages: Page[]) => {
+        this.pages = pages;
+      });
   }
 
   createPage() {
@@ -35,12 +38,16 @@ export class PageNewComponent implements OnInit {
       this.errorMsg = 'page Name is required!';
       this.errorFlag = true;
     } else {
-      const success: boolean = this.pageService.createPage(this.websiteID, this.pageName, this.pageTitle);
-      if (!success) {
-        this.errorMsg = 'This page already exists!';
-        this.errorFlag = true;
+      // check if page exists
+      if (this.pageService.validatePageName(this.websiteID, this.pageName)) {
+        const newPage: Page = new Page('', this.pageName, this.websiteID, this.pageDescription);
+        this.pageService.createPage(this.websiteID, newPage)
+          .subscribe((page: Page) => {
+            this.navigateToPageList();
+          });
       } else {
-        this.navigateToPageList();
+        this.errorMsg = 'This Page Name already exists!';
+        this.errorFlag = true;
       }
     }
   }

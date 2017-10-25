@@ -27,21 +27,28 @@ export class WidgetHeaderComponent implements OnInit {
       this.websiteID = params['websiteID'];
       this.pageID = params['pageID'];
     });
-    this.widget = this.widgetService.findWidgetById(this.widgetID);
-    this.headerText = this.widget.text;
-    this.headerSize = this.widget.size;
+    this.widgetService.findWidgetById(this.widgetID)
+      .subscribe((widget: any) => {
+        this.widget = widget;
+        this.headerText = this.widget.text;
+        this.headerSize = this.widget.size;
+      });
   }
 
   updateWidget() {
     this.widget.text = this.headerText;
     this.widget.size = this.headerSize;
-    this.widgetService.updateWidget(this.widgetID, this.widget);
-    this.navigateToWidgetList();
+    this.widgetService.updateWidget(this.widgetID, this.widget)
+      .subscribe((widget: any) => {
+        this.navigateToWidgetList();
+      });
   }
 
   deleteWidget() {
-    this.widgetService.deleteWidget(this.widgetID);
-    this.navigateToWidgetList();
+    this.widgetService.deleteWidget(this.widgetID)
+      .subscribe((status: any) => {
+        this.navigateToWidgetList();
+      });
   }
 
   navigateToWidgetList() {

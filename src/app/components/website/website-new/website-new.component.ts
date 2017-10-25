@@ -13,6 +13,7 @@ import { WebsiteService } from '../../../services/website.service.client';
 export class WebsiteNewComponent implements OnInit {
 
   userID: string;
+  website: Website;
   websites: Website[];
   websiteName: string;
   websiteDescription: string;
@@ -25,7 +26,11 @@ export class WebsiteNewComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.userID = params['userID'];
     });
-    this.websites = this.websiteService.findWebsitesByUser(this.userID);
+
+    this.websiteService.findWebsitesByUser(this.userID)
+      .subscribe((websites: Website[]) => {
+        this.websites = websites;
+      });
   }
 
   createWebsite() {
@@ -33,12 +38,16 @@ export class WebsiteNewComponent implements OnInit {
       this.errorMsg = 'Website Name is required!';
       this.errorFlag = true;
     } else {
-      const success: boolean = this.websiteService.createWebsite(this.userID, this.websiteName, this.websiteDescription);
-      if (!success) {
+      // check if website exists
+      if (this.websiteService.validateWebsiteName(this.userID, this.websiteName)) {
+        const newWebsite: Website = new Website('', this.websiteName, this.userID, this.websiteDescription);
+        this.websiteService.createWebsite(this.userID, newWebsite)
+          .subscribe((website: Website) => {
+            this.navigateToWebsiteList();
+          });
+      } else {
         this.errorMsg = 'This Website already exists!';
         this.errorFlag = true;
-      } else {
-        this.navigateToWebsiteList();
       }
     }
   }

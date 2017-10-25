@@ -23,7 +23,10 @@ export class PageListComponent implements OnInit {
       this.userID = params['userID'];
       this.websiteID = params['websiteID'];
     });
-    this.pages = this.pageService.findPagesByWebsiteId(this.websiteID);
+    this.pageService.findPagesByWebsiteId(this.websiteID)
+      .subscribe((pages: Page[]) => {
+        this.pages = pages;
+      });
   }
 
   navigateToProfile() {

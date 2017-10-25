@@ -20,7 +20,11 @@ export class WebsiteListComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.userID = params['userID'];
     });
-    this.websites = this.websiteService.findWebsitesByUser(this.userID);
+
+    this.websiteService.findWebsitesByUser(this.userID)
+      .subscribe((websites: Website[]) => {
+        this.websites = websites;
+      });
   }
 
   navigateToProfile() {

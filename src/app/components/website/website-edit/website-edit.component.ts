@@ -14,6 +14,7 @@ export class WebsiteEditComponent implements OnInit {
 
   userID: string;
   websiteID: string;
+  website: Website;
   websites: Website[];
   websiteName: string;
   websiteDescription: string;
@@ -27,10 +28,18 @@ export class WebsiteEditComponent implements OnInit {
       this.userID = params['userID'];
       this.websiteID = params['websiteID'];
     });
-    this.websites = this.websiteService.findWebsitesByUser(this.userID);
-    const website: Website = this.websiteService.findWebsiteById(this.websiteID);
-    this.websiteName = website.name;
-    this.websiteDescription = website.description;
+
+    this.websiteService.findWebsitesByUser(this.userID)
+      .subscribe((websites: Website[]) => {
+        this.websites = websites;
+      });
+
+    this.websiteService.findWebsiteById(this.websiteID)
+      .subscribe((website: Website) => {
+        this.website = website;
+        this.websiteName = this.website.name;
+        this.websiteDescription = this.website.description;
+      });
   }
 
   updateWebsite() {
@@ -38,12 +47,16 @@ export class WebsiteEditComponent implements OnInit {
       this.errorMsg = 'Website Name is required!';
       this.errorFlag = true;
     } else {
-      const success: boolean = this.websiteService.updateWebsite(this.userID, this.websiteID, this.websiteName, this.websiteDescription);
-      if (!success) {
+      // check if website exists
+      if (this.websiteService.validateWebsite(this.userID, this.websiteID, this.websiteName)) {
+        const newWebsite: Website = new Website(this.websiteID, this.websiteName, this.userID, this.websiteDescription);
+        this.websiteService.updateWebsite(newWebsite)
+          .subscribe((website: Website) => {
+            this.navigateToWebsiteList();
+          });
+      } else {
         this.errorMsg = 'This Website already exists!';
         this.errorFlag = true;
-      } else {
-        this.navigateToWebsiteList();
       }
     }
   }
@@ -53,8 +66,10 @@ export class WebsiteEditComponent implements OnInit {
   }
 
   deleteWebsite() {
-    this.websiteService.deleteWebsite(this.websiteID);
-    this.navigateToWebsiteList();
+    this.websiteService.deleteWebsite(this.websiteID)
+      .subscribe((status: any) => {
+        this.navigateToWebsiteList();
+      });
   }
 
   navigateToProfile() {
