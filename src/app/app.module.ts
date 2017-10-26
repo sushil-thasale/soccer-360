@@ -32,6 +32,7 @@ import { HeaderViewComponent } from './components/widget/widget-view/header-view
 import { YoutubeViewComponent } from './components/widget/widget-view/youtube-view/youtube-view.component';
 import { ImageViewComponent } from './components/widget/widget-view/image-view/image-view.component';
 import { HtmlViewComponent } from './components/widget/widget-view/html-view/html-view.component';
+import { SortableDirective } from '../../assignment/directives/sortable.directive';
 
 @NgModule({
   // Declare components here
@@ -58,6 +59,7 @@ import { HtmlViewComponent } from './components/widget/widget-view/html-view/htm
     YoutubeViewComponent,
     ImageViewComponent,
     HtmlViewComponent,
+    SortableDirective
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,7 @@ import { HtmlViewComponent } from './components/widget/widget-view/html-view/htm
     FormsModule,
     Routing
   ],
-  providers: [UserService, WebsiteService, PageService, WidgetService],
+  providers: [UserService, WebsiteService, PageService, WidgetService, SortableDirective],
   bootstrap: [AppComponent]
 })
 

@@ -28,6 +28,8 @@
 <!-- Widget List -->
 <div class="container-fluid">
 
+  <div appSortable (newIndexes)="updateWidgetPosition($event.startIndex, $event.endIndex)">
+
   <div *ngFor="let widget of widgets">
 
     <div>
@@ -63,6 +65,8 @@
       </div>
 
     </div>
+
+  </div>
 
   </div>
 

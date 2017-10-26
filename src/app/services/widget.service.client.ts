@@ -15,7 +15,8 @@ export class WidgetService {
     'findWidgetsByPageId' : this.findWidgetsByPageId,
     'findWidgetById': this.findWidgetById,
     'updateWidget': this.updateWidget,
-    'deleteWidget': this.deleteWidget
+    'deleteWidget': this.deleteWidget,
+    'updateWidgetPosition': this.updateWidgetPosition
   };
 
   widgets: any[];
@@ -58,6 +59,14 @@ export class WidgetService {
     return this.http.delete(url)
       .map((res: Response) => {
         return res.status;
+      });
+  }
+
+  updateWidgetPosition (pageID: string, startIndex: number, endIndex: number) {
+    const url: string = this.baseUrl + '/api/page/' + pageID + '/widget?startIndex=' + startIndex + '&endIndex=' + endIndex;
+    return this.http.put(url, null)
+      .map((res: Response) => {
+        return res.json();
       });
   }
 }

@@ -46,4 +46,16 @@ export class WidgetListComponent implements OnInit {
     this.router.navigate(['/user', this.userID, 'website', this.websiteID, 'page', this.pageID, 'widget',
       widgetID], { queryParams: { type: type }});
   }
+
+  navigateToWidgetList() {
+    this.router.navigate(['/user', this.userID, 'website', this.websiteID, 'page', this.pageID, 'widget']);
+  }
+
+  updateWidgetPosition(startIndex: number, endIndex: number) {
+    this.widgetService.updateWidgetPosition(this.pageID, startIndex, endIndex)
+      .subscribe((widgets: any[]) => {
+        this.widgets = widgets;
+        this.navigateToWidgetList();
+      });
+  }
 }
