@@ -31,6 +31,21 @@
 <div class="row container-fluid">
   <div class="col-xs-12 custom-padding-top-10">
 
+
+    <form ngNoForm action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+        <input  name="myFile"   type="file" class="form-control"/>
+      </div>
+      <input  name="widgetId" value="{{widgetID}}"   style="display: none"/>
+      <input  name="websiteId" value="{{websiteID}}"   style="display: none"/>
+      <input  name="pageId" value="{{pageID}}"   style="display: none"/>
+      <input  name="userId" value="{{userID}}"   style="display: none"/>
+      <div class="form-group">
+        <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
+      </div>
+      <br/>
+    </form>
+
     <form>
 
       <div class="form-group">

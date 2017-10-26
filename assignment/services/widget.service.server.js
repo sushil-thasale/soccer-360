@@ -13,12 +13,18 @@ module.exports = function(app){
     { "_id": "789", "widgetType": "HTML", "pageID": "321", "text": "<p>Lorem ipsum</p>"}
   ];
 
+  var multer = require('multer');
+  var fs = require('fs');
+  var uploadsFolderPath = __dirname + '/../../public/uploads';
+  var upload = multer({dest: uploadsFolderPath});
+
   app.post("/api/page/:pageID/widget", createWidget);
   app.get("/api/page/:pageID/widget", findAllWidgetsForPage);
   app.get("/api/widget/:widgetID", findWidgetById);
   app.put("/api/widget/:widgetID", updateWidget);
   app.delete("/api/widget/:widgetID", deleteWidget);
   app.put("/api/page/:pageID/widget", updateWidgetPosition);
+  app.post("/api/upload", upload.single('myFile'), uploadImage);
 
   function createWidget(req, res){
     var newWidget = req.body;
@@ -106,4 +112,33 @@ module.exports = function(app){
     return;
   }
 
+  function uploadImage(req, res) {
+    var widgetId      = req.body.widgetId;
+    var myFile        = req.file;
+    var userId = req.body.userId;
+    var websiteId = req.body.websiteId;
+    var pageId = req.body.pageId;
+
+    var originalname  = myFile.originalname; // file name on user's computer
+    var filename      = myFile.filename;     // new file name in upload folder
+    var path          = myFile.path;         // full path of uploaded file
+    var destination   = myFile.destination;  // folder where file is saved to
+    var size          = myFile.size;
+    var mimetype      = myFile.mimetype;
+
+    imageWidget = widgets.find(function (i) {
+      return i._id === widgetId;
+    });
+
+    if (imageWidget.url) {
+      fs.unlink(uploadsFolderPath + "/" + imageWidget["fileName"], function () {
+      });
+    }
+
+    imageWidget.url = req.protocol + '://' + req.get('host') + "/uploads/" + myFile.filename;
+
+    imageWidget["fileName"] = myFile.filename;
+
+    res.redirect(req.get('referrer'));
+  }
 };

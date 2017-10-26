@@ -3,6 +3,7 @@ import { Router} from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { WidgetService } from '../../../../services/widget.service.client';
 import { Input } from '@angular/core';
+import { environment} from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-widget-image',
@@ -18,6 +19,8 @@ export class WidgetImageComponent implements OnInit {
   width: string;
 
   @Input() widgetID: string;
+
+  baseUrl: string = environment.baseUrl;
 
   constructor(private widgetService: WidgetService, private router: Router, private  route: ActivatedRoute) { }
 
