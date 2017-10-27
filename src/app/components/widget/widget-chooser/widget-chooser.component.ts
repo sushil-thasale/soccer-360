@@ -25,17 +25,17 @@ export class WidgetChooserComponent implements OnInit {
   }
 
   createHeaderWidget() {
-    const newWidget: any = { '_id': '', 'widgetType': 'HEADING', 'pageId': '', 'size': 4, 'text': '' };
+    const newWidget: any = { '_id': '', 'widgetType': 'HEADING', 'pageID': '', 'size': 4, 'text': '' };
     this.createWidget(newWidget);
   }
 
   createImageWidget() {
-    const newWidget: any = {'_id': '', 'widgetType': 'IMAGE', 'pageId': '', 'width': '100%', 'url': 'URL'};
+    const newWidget: any = {'_id': '', 'widgetType': 'IMAGE', 'pageID': '', 'width': '100%', 'url': 'URL'};
     this.createWidget(newWidget);
   }
 
   createYoutubeWidget() {
-    const newWidget: any = {'_id': '', 'widgetType': 'YOUTUBE', 'pageId': '', 'width': '100%', 'url': 'URL'};
+    const newWidget: any = {'_id': '', 'widgetType': 'YOUTUBE', 'pageID': '', 'width': '100%', 'url': 'URL'};
     this.createWidget(newWidget);
   }
 

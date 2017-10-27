@@ -1579,15 +1579,15 @@ var WidgetChooserComponent = (function () {
         });
     };
     WidgetChooserComponent.prototype.createHeaderWidget = function () {
-        var newWidget = { '_id': '', 'widgetType': 'HEADING', 'pageId': '', 'size': 4, 'text': '' };
+        var newWidget = { '_id': '', 'widgetType': 'HEADING', 'pageID': '', 'size': 4, 'text': '' };
         this.createWidget(newWidget);
     };
     WidgetChooserComponent.prototype.createImageWidget = function () {
-        var newWidget = { '_id': '', 'widgetType': 'IMAGE', 'pageId': '', 'width': '100%', 'url': 'URL' };
+        var newWidget = { '_id': '', 'widgetType': 'IMAGE', 'pageID': '', 'width': '100%', 'url': 'URL' };
         this.createWidget(newWidget);
     };
     WidgetChooserComponent.prototype.createYoutubeWidget = function () {
-        var newWidget = { '_id': '', 'widgetType': 'YOUTUBE', 'pageId': '', 'width': '100%', 'url': 'URL' };
+        var newWidget = { '_id': '', 'widgetType': 'YOUTUBE', 'pageID': '', 'width': '100%', 'url': 'URL' };
         this.createWidget(newWidget);
     };
     WidgetChooserComponent.prototype.createWidget = function (newWidget) {

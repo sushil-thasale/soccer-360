@@ -14,9 +14,8 @@ module.exports = function(app){
   ];
 
   var multer = require('multer');
-  var fs = require('fs');
-  var uploadsFolderPath = __dirname + '/../../public/uploads';
-  var upload = multer({dest: uploadsFolderPath});
+  var uploadPath= __dirname + '/../../src/assets/uploads';
+  var upload = multer({dest: uploadPath});
 
   app.post("/api/page/:pageID/widget", createWidget);
   app.get("/api/page/:pageID/widget", findAllWidgetsForPage);
@@ -95,14 +94,17 @@ module.exports = function(app){
     var startIndex = parseInt(req.query.startIndex);
     var endIndex = parseInt(req.query.endIndex);
 
+    // find all widgets belonging to that page
     var pageWidgets = widgets.filter(function (w) {
       return w.pageID === pageID;
     });
 
+    // find all the other widgets
     var nonPageWidgets = widgets.filter(function (w) {
       return pageWidgets.indexOf(w) < 0;
     });
 
+    // change indexing of page widgets
     var widgetAtStart = pageWidgets[startIndex];
     pageWidgets.splice(startIndex, 1);
     pageWidgets.splice(endIndex, 0, widgetAtStart);
@@ -113,31 +115,17 @@ module.exports = function(app){
   }
 
   function uploadImage(req, res) {
-    var widgetId      = req.body.widgetId;
+    var widgetID      = req.body.widgetId;
     var myFile        = req.file;
-    var userId = req.body.userId;
-    var websiteId = req.body.websiteId;
-    var pageId = req.body.pageId;
+    var filename      = myFile.filename;
 
-    var originalname  = myFile.originalname; // file name on user's computer
-    var filename      = myFile.filename;     // new file name in upload folder
-    var path          = myFile.path;         // full path of uploaded file
-    var destination   = myFile.destination;  // folder where file is saved to
-    var size          = myFile.size;
-    var mimetype      = myFile.mimetype;
-
-    imageWidget = widgets.find(function (i) {
-      return i._id === widgetId;
+    imageWidget = widgets.find(function (widget) {
+      return widget._id === widgetID;
     });
 
-    if (imageWidget.url) {
-      fs.unlink(uploadsFolderPath + "/" + imageWidget["fileName"], function () {
-      });
-    }
+    // imageWidget.url = req.protocol + '://' + req.get('host') + '/uploads/' + filename;
 
-    imageWidget.url = req.protocol + '://' + req.get('host') + "/uploads/" + myFile.filename;
-
-    imageWidget["fileName"] = myFile.filename;
+    imageWidget.url = '/uploads/'+filename;
 
     res.redirect(req.get('referrer'));
   }
