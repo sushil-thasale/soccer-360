@@ -16,7 +16,8 @@ export class WidgetService {
     'findWidgetById': this.findWidgetById,
     'updateWidget': this.updateWidget,
     'deleteWidget': this.deleteWidget,
-    'updateWidgetPosition': this.updateWidgetPosition
+    'updateWidgetPosition': this.updateWidgetPosition,
+    'getFileByName': this.getFileByName
   };
 
   widgets: any[];
@@ -65,6 +66,14 @@ export class WidgetService {
   updateWidgetPosition (pageID: string, startIndex: number, endIndex: number) {
     const url: string = this.baseUrl + '/api/page/' + pageID + '/widget?startIndex=' + startIndex + '&endIndex=' + endIndex;
     return this.http.put(url, null)
+      .map((res: Response) => {
+        return res.json();
+      });
+  }
+
+  getFileByName (fileName: string) {
+    const url: string = this.baseUrl + '/api/upload/' + fileName;
+    return this.http.get(url)
       .map((res: Response) => {
         return res.json();
       });
