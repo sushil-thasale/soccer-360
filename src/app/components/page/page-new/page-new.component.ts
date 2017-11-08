@@ -35,12 +35,13 @@ export class PageNewComponent implements OnInit {
 
   createPage() {
     if (!this.pageName) {
-      this.errorMsg = 'page Name is required!';
+      this.errorMsg = 'Page Name is required!';
       this.errorFlag = true;
     } else {
       // check if page exists
       if (this.pageService.validatePageName(this.websiteID, this.pageName)) {
-        const newPage: Page = new Page('', this.pageName, this.websiteID, this.pageDescription);
+        // const newPage: Page = new Page('', this.pageName, this.websiteID, this.pageDescription);
+        const newPage = {'websiteId': this.websiteID, 'name': this.pageName, 'description': this.pageDescription };
         this.pageService.createPage(this.websiteID, newPage)
           .subscribe((page: Page) => {
             this.navigateToPageList();

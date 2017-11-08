@@ -2,7 +2,7 @@ module.exports = function () {
 
   var model = null;
   var mongoose = require('mongoose');
-  var WidgetSchema = require('./widget.schema.server');
+  var WidgetSchema = require('./widget.schema.server')();
   var WidgetModel = mongoose.model('WidgetModel', WidgetSchema);
 
   var api = {
@@ -15,9 +15,10 @@ module.exports = function () {
     "setModel": setModel
   };
 
-  function createWidget(pageId, widget) {
+  function createWidget(pageId, newWidget) {
+    console.log('create widget model ' + newWidget.size);
     return WidgetModel
-      .create(widget)
+      .create(newWidget)
       .then(function (widget) {
         return model.PageModel
           .findPageById(pageId)

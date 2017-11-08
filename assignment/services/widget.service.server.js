@@ -33,6 +33,7 @@ module.exports = function(app, WidgetModel){
 
     WidgetModel.createWidget(pageID, newWidget)
       .then(function (widget) {
+        console.log('create widget server ' + newWidget.size);
         res.json(widget);
       }, function (err) {
         res.send(err);

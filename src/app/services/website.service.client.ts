@@ -19,13 +19,14 @@ export class WebsiteService {
     'deleteWebsite' : this.deleteWebsite
   };
 
-  userWebsites: Website[];
+  userWebsites: Website[] = [];
   baseUrl: string = environment.baseUrl;
 
-  createWebsite(userID: string, website: Website) {
+  createWebsite(userID: string, website: any) {
     const url: string = this.baseUrl + '/api/user/' + userID + '/website';
     return this.http.post(url, website)
       .map((res: Response) => {
+        console.log('response =>' + res);
         return res.json();
       });
   }
@@ -44,7 +45,7 @@ export class WebsiteService {
     return true;
   }
 
-  validateWebsite(userID: string, webisteID: string, name: string) {
+  validateWebsite(userID: string, websiteID: string, name: string) {
 
     this.findWebsitesByUser(userID)
       .subscribe((websites: Website[]) => {
@@ -52,7 +53,7 @@ export class WebsiteService {
       });
 
     for (let i = 0; i < this.userWebsites.length; i++) {
-      if (this.userWebsites[i]._id !== webisteID && this.userWebsites[i].name === name) {
+      if (this.userWebsites[i]._id !== websiteID && this.userWebsites[i].name === name) {
         return false;
       }
     }

@@ -26,8 +26,8 @@ module.exports = function (app, UserModel) {
   }
 
   function findUser(req, res) {
-    var username = req.query.username;
-    var password = req.query.password;
+    var username = req.query['username'];
+    var password = req.query['password'];
 
     if (username && password) {
       findUserByCredentials(req, res);
@@ -35,14 +35,14 @@ module.exports = function (app, UserModel) {
     else if (username) {
       findUserByUsername(req, res);
     }
-
   }
 
   function findUserByUsername(req, res) {
-    var username = req.query.username;
+    var username = req.query['username'];
 
     UserModel.findUserByUsername(username)
       .then(function (user) {
+        console.log('findUserByUsername server ' + user);
         res.json(user);
       }, function (err) {
         res.send(err);
@@ -50,13 +50,15 @@ module.exports = function (app, UserModel) {
   }
 
   function findUserByCredentials(req, res) {
-    var username = req.query.username;
-    var password = req.query.password;
+    var username = req.query['username'];
+    var password = req.query['password'];
 
     UserModel.findUserByCredentials(username, password)
       .then(function (user) {
+        console.log("in user service server " + user);
         res.json(user);
       }, function (err) {
+        console.log("in user service err " + err);
         res.send(err);
       });
   }
@@ -66,6 +68,7 @@ module.exports = function (app, UserModel) {
 
     UserModel.findUserById(userID)
       .then(function (user) {
+        console.log("findUserById in user service server " + user);
         res.json(user);
       }, function (err) {
         res.send(err);
@@ -78,6 +81,7 @@ module.exports = function (app, UserModel) {
 
     UserModel.updateUser(userID, updatedUser)
       .then(function (user) {
+        console.log("updateUser in user service server " + user.username);
         res.json(user);
       }, function (err) {
         res.send(err);

@@ -14,9 +14,10 @@ module.exports = function(app, PageModel) {
   app.delete("/api/page/:pageID", deletePage);
 
   function createPage(req, res){
+    var websiteId = req.params.websiteID;
     var newPage = req.body;
 
-    PageModel.createPage(newPage)
+    PageModel.createPage(websiteId, newPage)
       .then(function (page) {
         res.json(page);
       }, function (err) {
@@ -29,6 +30,7 @@ module.exports = function(app, PageModel) {
 
     PageModel.findAllPagesForWebsite(websiteID)
       .then(function (pages) {
+        console.log("list pages server " + pages);
         res.json(pages);
       }, function (err) {
         res.send(err);

@@ -40,9 +40,11 @@ export class WebsiteNewComponent implements OnInit {
     } else {
       // check if website exists
       if (this.websiteService.validateWebsiteName(this.userID, this.websiteName)) {
-        const newWebsite: Website = new Website('', this.websiteName, this.userID, this.websiteDescription);
+        // const newWebsite: Website = new Website('', this.websiteName, this.userID, this.websiteDescription);
+        const newWebsite = {'developerId': this.userID, 'name': this.websiteName, 'description': this.websiteDescription};
         this.websiteService.createWebsite(this.userID, newWebsite)
-          .subscribe((website: Website) => {
+          .subscribe((website) => {
+            console.log('in website create' + website);
             this.navigateToWebsiteList();
           });
       } else {

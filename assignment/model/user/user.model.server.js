@@ -2,7 +2,7 @@ module.exports = function () {
 
   var model = null;
   var mongoose = require('mongoose');
-  var UserSchema = require('./user.schema.server');
+  var UserSchema = require('./user.schema.server')();
   var UserModel = mongoose.model('UserModel', UserSchema);
 
   var api = {
@@ -16,7 +16,10 @@ module.exports = function () {
   };
 
   function createUser(user) {
-    return UserModel.create(user);
+    return UserModel.create(user, function (err, doc) {
+      console.log('createUser error ' + err);
+      console.log('createUser doc ' + doc);
+    });
   }
 
   function findUserById(userId) {
@@ -24,8 +27,12 @@ module.exports = function () {
   }
 
   function findUserByUsername(username) {
+    console.log('findUserByUsername ' + username);
     return UserModel.find({
       "username":username
+    }, function (err, doc) {
+      console.log('findUserByUsername error' + err);
+      console.log('findUserByUsername doc' + doc);
     });
   }
 
@@ -33,6 +40,9 @@ module.exports = function () {
     return UserModel.find({
       "username":username,
       "password":password
+    }, function (err, doc) {
+      console.log('findUserByCredentials err ' + err);
+      console.log('findUserByCredentials doc ' + doc);
     });
   }
 

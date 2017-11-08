@@ -19,11 +19,11 @@ export class PageService {
     'deletePage' : this.deletePage
   };
 
-  websitePages: Page[];
+  websitePages: Page[] = [];
   baseUrl: string = environment.baseUrl;
 
 
-  createPage(websiteID: string, newPage: Page) {
+  createPage(websiteID: string, newPage: any) {
     const url: string = this.baseUrl + '/api/website/' + websiteID + '/page';
     return this.http.post(url, newPage)
       .map((res: Response) => {

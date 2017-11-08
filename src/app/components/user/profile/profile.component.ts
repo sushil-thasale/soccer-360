@@ -22,14 +22,18 @@ export class ProfileComponent implements OnInit {
   constructor(private userService: UserService, private router: Router, private  route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.user = new User('', '', '', '', '', '');
+
     this.route.params.subscribe(params => {
       this.userID = params['userID'];
     });
 
     this.userService.findUserById(this.userID)
       .subscribe((user: User) => {
-        this.user =  user;
-        this.errorFlag = false;
+        if (user) {
+          this.user = user;
+          this.errorFlag = false;
+        }
     });
   }
 
