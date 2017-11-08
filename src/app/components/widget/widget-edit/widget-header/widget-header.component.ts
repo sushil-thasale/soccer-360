@@ -28,27 +28,39 @@ export class WidgetHeaderComponent implements OnInit {
       this.pageID = params['pageID'];
     });
     this.widgetService.findWidgetById(this.widgetID)
-      .subscribe((widget: any) => {
-        this.widget = widget;
-        this.headerText = this.widget.text;
-        this.headerSize = this.widget.size;
-      });
+      .subscribe(
+        (widget: any) => {
+          this.widget = widget;
+          this.headerText = this.widget.text;
+          this.headerSize = this.widget.size;
+        }, (error) => {
+          console.log('Failed to find widget by ID!');
+          return;
+        });
   }
 
   updateWidget() {
     this.widget.text = this.headerText;
     this.widget.size = this.headerSize;
     this.widgetService.updateWidget(this.widgetID, this.widget)
-      .subscribe((widget: any) => {
-        this.navigateToWidgetList();
-      });
+      .subscribe(
+        (widget: any) => {
+          this.navigateToWidgetList();
+        }, (error) => {
+          console.log('Error in updating widget!!');
+          return;
+        });
   }
 
   deleteWidget() {
     this.widgetService.deleteWidget(this.widgetID)
-      .subscribe((status: any) => {
-        this.navigateToWidgetList();
-      });
+      .subscribe(
+        (status: any) => {
+          this.navigateToWidgetList();
+        }, (error) => {
+          console.log('Failed to delete a widget!');
+          return;
+        });
   }
 
   navigateToWidgetList() {

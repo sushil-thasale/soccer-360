@@ -41,9 +41,13 @@ export class WidgetChooserComponent implements OnInit {
 
   createWidget(newWidget: any) {
     this.widgetService.createWidget(this.pageID, newWidget)
-      .subscribe((widget: any) => {
-        this.navigateToWidgetEdit(widget._id, widget.widgetType);
-      });
+      .subscribe(
+        (widget: any) => {
+          this.navigateToWidgetEdit(widget._id, widget.widgetType);
+        }, (error) => {
+          console.log('Failed to create Widget');
+          return;
+        });
   }
 
   navigateToProfile() {

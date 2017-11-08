@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
   errorFlag: boolean;
-  errorMsg = 'Invalid username or password !';
+  errorMsg: string;
 
   constructor(private userService: UserService, private router: Router) { }
 
@@ -31,14 +31,16 @@ export class LoginComponent implements OnInit {
     this.password = this.loginForm.value.password;
 
     this.userService.findUserByCredentials(this.username, this.password)
-      .subscribe((user) => {
-        console.log('in login subscribe' + user.username + user._id);
-        if (user) {
-          console.log('in login' + user);
-          this.router.navigate(['/user', user._id]);
-        } else {
-          this.errorFlag = true;
-        }
-      });
+      .subscribe(
+        (user: User) => {
+          console.log('in login subscribe' + user.username + user._id);
+          if (user) {
+            console.log('in login' + user);
+            this.router.navigate(['/user', user._id]);
+          }
+        }, (error) => {
+            this.errorFlag = true;
+            this.errorMsg = 'Invalid username or password !';
+        });
   }
 }

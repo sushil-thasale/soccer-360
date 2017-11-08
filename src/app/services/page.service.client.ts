@@ -33,9 +33,12 @@ export class PageService {
 
   validatePageName(websiteID: string, name: string) {
     this.findPagesByWebsiteId(websiteID)
-      .subscribe((pages: Page[]) => {
-        this.websitePages = pages;
-      });
+      .subscribe(
+        (pages: Page[]) => {
+          this.websitePages = pages;
+        }, (error) => {
+          console.log('Error in Finding Pages');
+        });
 
     for (let i = 0; i < this.websitePages.length; i++) {
       if (this.websitePages[i].name === name) {
@@ -47,9 +50,12 @@ export class PageService {
 
   validatePage(websiteID: string, pageID: string, name: string) {
     this.findPagesByWebsiteId(websiteID)
-      .subscribe((pages: Page[]) => {
-        this.websitePages = pages;
-      });
+      .subscribe(
+        (pages: Page[]) => {
+          this.websitePages = pages;
+        }, (error) => {
+          console.log('Error in Finding Pages');
+        });
 
     for (let i = 0; i < this.websitePages.length; i++) {
       if (this.websitePages[i]._id !== pageID && this.websitePages[i].name === name) {

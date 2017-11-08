@@ -24,10 +24,15 @@ export class WidgetListComponent implements OnInit {
       this.websiteID = params['websiteID'];
       this.pageID = params['pageID'];
     });
+
     this.widgetService.findWidgetsByPageId(this.pageID)
-      .subscribe((widgets: any[]) => {
-        this.widgets = widgets;
-      });
+      .subscribe(
+        (widgets: any[]) => {
+          this.widgets = widgets;
+        }, (error) => {
+          console.log('Error in finding Widgets by pageId');
+          return;
+        });
   }
 
   navigateToProfile() {

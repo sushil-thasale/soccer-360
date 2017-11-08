@@ -24,9 +24,12 @@ export class PageListComponent implements OnInit {
       this.websiteID = params['websiteID'];
     });
     this.pageService.findPagesByWebsiteId(this.websiteID)
-      .subscribe((pages: Page[]) => {
-        this.pages = pages;
-      });
+      .subscribe(
+        (pages: Page[]) => {
+          this.pages = pages;
+        }, (error) => {
+          console.log('Error in finding Pages!');
+        });
   }
 
   navigateToProfile() {

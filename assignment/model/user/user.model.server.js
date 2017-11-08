@@ -1,76 +1,84 @@
 module.exports = function () {
 
+  var api = {
+    createUser: createUser,
+    findUserById: findUserById,
+    findUserByUsername: findUserByUsername,
+    findUserByCredentials: findUserByCredentials,
+    updateUser: updateUser,
+    deleteUser:deleteUser,
+    setModel: setModel
+  };
+
   var model = null;
   var mongoose = require('mongoose');
   var UserSchema = require('./user.schema.server')();
   var UserModel = mongoose.model('UserModel', UserSchema);
 
-  var api = {
-    "createUser": createUser,
-    "findUserById": findUserById,
-    "findUserByUsername": findUserByUsername,
-    "findUserByCredentials": findUserByCredentials,
-    "updateUser": updateUser,
-    "deleteUser":deleteUser,
-    "setModel": setModel
-  };
+  return api;
 
   function createUser(user) {
-    return UserModel.create(user, function (err, doc) {
-      console.log('createUser error ' + err);
-      console.log('createUser doc ' + doc);
-    });
+    //console.log(user);
+    return UserModel.create(user);
   }
 
-  function findUserById(userId) {
-    return UserModel.findById(userId);
+  function findUserById(userId){
+    return UserModel
+      .findById(userId);
   }
 
-  function findUserByUsername(username) {
-    console.log('findUserByUsername ' + username);
-    return UserModel.find({
-      "username":username
-    }, function (err, doc) {
-      console.log('findUserByUsername error' + err);
-      console.log('findUserByUsername doc' + doc);
-    });
+  function findUserByUsername(username){
+    return UserModel
+      .find({"username": username});
   }
 
-  function findUserByCredentials(username, password) {
-    return UserModel.find({
-      "username":username,
-      "password":password
-    }, function (err, doc) {
-      console.log('findUserByCredentials err ' + err);
-      console.log('findUserByCredentials doc ' + doc);
-    });
+  function findUserByCredentials(username, password){
+
+    return UserModel
+      .find({"username": username, "password": password});
   }
 
-  function updateUser(userId, updatedUser) {
-    return UserModel.update(
-      {_id:userId},
-      {$set:updatedUser});
+  function updateUser(userId, newUser){
+    return UserModel.update({_id:userId},{$set:newUser});
   }
 
-  function deleteUser(userId) {
-    UserModel
+  function deleteUser(userId){
+    return UserModel
       .findById(userId)
-      .then(function (user) {
-        deleteUserWebsites(user.websites)
-      });
-
-    return UserModel.remove({_id:userId});
+      .then(function(user) {
+        var userWebsites = user.websites;
+        //return recursiveDelete(userWebsites, userId);
+        return deleteAllChildren(userWebsites, userId);
+      }, function(err){
+        return err;
+      })
   }
 
-  function deleteUserWebsites(websites) {
-    for(var website in websites) {
-      model.WebsiteModel.deleteWebsite(website);
+  //function recursiveDelete(userWebsites, userId){
+  function deleteAllChildren(userWebsites, userId){
+    if(userWebsites.length == 0){
+      return UserModel.remove({_id: userId})
+        .then(function (response) {
+          //if(response.result.n == 1 && response.result.ok == 1){
+          return response;
+          //}
+        }, function (err) {
+          return err;
+        });
     }
+
+    return model.websiteModel.deleteWebsiteAndChildren(userWebsites.shift())
+      .then(function(response) {
+        //if (response.result.n == 1 && response.result.ok == 1) {
+        //return recursiveDelete(userWebsites, userId);
+        return deleteAllChildren(userWebsites, userId);
+        //}
+      }, function(err){
+        return err;
+      })
   }
 
   function setModel(_model) {
     model = _model;
   }
-
-  return api;
 };

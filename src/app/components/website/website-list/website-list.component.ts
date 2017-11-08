@@ -17,15 +17,18 @@ export class WebsiteListComponent implements OnInit {
   constructor(private websiteService: WebsiteService, private router: Router, private  route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.websites = [];
     this.route.params.subscribe(params => {
       this.userID = params['userID'];
     });
 
     this.websiteService.findWebsitesByUser(this.userID)
-      .subscribe((websites: Website[]) => {
-        console.log('findWebsitesByUser website list ' + websites);
-        this.websites = websites;
-      });
+      .subscribe(
+        (websites: Website[]) => {
+          this.websites = websites;
+          }, (error) => {
+          console.log('Websites cannot be loaded');
+        });
   }
 
   navigateToProfile() {

@@ -29,12 +29,14 @@ export class ProfileComponent implements OnInit {
     });
 
     this.userService.findUserById(this.userID)
-      .subscribe((user: User) => {
-        if (user) {
+      .subscribe(
+        (user: User) => {
           this.user = user;
           this.errorFlag = false;
-        }
-    });
+        }, (error) => {
+          this.errorFlag = true;
+          this.errorMsg = 'User not found!!';
+        });
   }
 
   updateProfile() {
@@ -45,14 +47,14 @@ export class ProfileComponent implements OnInit {
       this.user.email = this.loginForm.value.email;
       if (!this.errorFlag) {
         this.userService.updateUser(this.userID, this.user)
-          .subscribe((user: User) => {
-            if (user) {
+          .subscribe(
+            (user: User) => {
               this.router.navigate(['/user', user._id]);
-            }
-          });
+            }, (error) => {
+              this.errorFlag = true;
+              this.errorMsg = 'Some problems with update!!';
+            });
       }
-    } else {
-      this.errorFlag = true;
     }
   }
 

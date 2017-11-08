@@ -28,9 +28,14 @@ export class WebsiteNewComponent implements OnInit {
     });
 
     this.websiteService.findWebsitesByUser(this.userID)
-      .subscribe((websites: Website[]) => {
-        this.websites = websites;
-      });
+      .subscribe(
+        (websites: Website[]) => {
+          this.websites = websites;
+        }, (error) => {
+          this.errorFlag = true;
+          this.errorMsg = 'Website no found!!';
+          console.log('Website No Found!');
+        });
   }
 
   createWebsite() {
@@ -40,13 +45,17 @@ export class WebsiteNewComponent implements OnInit {
     } else {
       // check if website exists
       if (this.websiteService.validateWebsiteName(this.userID, this.websiteName)) {
-        // const newWebsite: Website = new Website('', this.websiteName, this.userID, this.websiteDescription);
         const newWebsite = {'developerId': this.userID, 'name': this.websiteName, 'description': this.websiteDescription};
         this.websiteService.createWebsite(this.userID, newWebsite)
-          .subscribe((website) => {
-            console.log('in website create' + website);
-            this.navigateToWebsiteList();
-          });
+          .subscribe(
+            (website) => {
+              console.log('in website create' + website);
+              this.navigateToWebsiteList();
+            }, (error) => {
+              this.errorMsg = 'Error in creating new Website!';
+              this.errorFlag = true;
+              console.log('error in creating website!');
+            });
       } else {
         this.errorMsg = 'This Website already exists!';
         this.errorFlag = true;

@@ -1,7 +1,7 @@
 module.exports = function () {
 
   // connection string for local testing
-  var connectionString = 'mongodb://127.0.0.1:27017/WebAppMakerDB';
+  var connectionString = 'mongodb://127.0.0.1:27017/newWebApp';
 
   // logic to host app on heroku
   if(process.env.MLAB_USERNAME_WEBDEV) { // check if running remotely
@@ -17,27 +17,22 @@ module.exports = function () {
     useMongoClient: true
   });
 
-
-
-
-
-
-  var UserModel = require('./user/user.model.server')();
-  var WebsiteModel = require('./website/website.model.server')();
-  var PageModel = require('./page/page.model.server')();
-  var WidgetModel = require('./widget/widget.model.server')();
+  var userModel       = require("./user/user.model.server")();
+  var websiteModel    = require("./website/website.model.server")();
+  var pageModel       = require("./page/page.model.server")();
+  var widgetModel     = require("./widget/widget.model.server")();
 
   var model = {
-    UserModel:    UserModel,
-    WebsiteModel: WebsiteModel,
-    PageModel:    PageModel,
-    WidgetModel:  WidgetModel
+    userModel: userModel,
+    websiteModel: websiteModel,
+    pageModel:pageModel,
+    widgetModel:widgetModel
   };
 
-  UserModel.setModel(model);
-  WebsiteModel.setModel(model);
-  PageModel.setModel(model);
-  WidgetModel.setModel(model);
+  userModel.setModel(model);
+  websiteModel.setModel(model);
+  pageModel.setModel(model);
+  widgetModel.setModel(model);
 
   return model;
 };

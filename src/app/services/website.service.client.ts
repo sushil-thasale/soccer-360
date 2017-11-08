@@ -26,7 +26,6 @@ export class WebsiteService {
     const url: string = this.baseUrl + '/api/user/' + userID + '/website';
     return this.http.post(url, website)
       .map((res: Response) => {
-        console.log('response =>' + res);
         return res.json();
       });
   }
@@ -35,6 +34,9 @@ export class WebsiteService {
     this.findWebsitesByUser(userID)
       .subscribe((websites: Website[]) => {
         this.userWebsites = websites;
+      }, (error) => {
+        console.log('Error in finding findWebsitesByUser');
+        return false;
       });
 
     for (let i = 0; i < this.userWebsites.length; i++) {
@@ -46,10 +48,12 @@ export class WebsiteService {
   }
 
   validateWebsite(userID: string, websiteID: string, name: string) {
-
     this.findWebsitesByUser(userID)
       .subscribe((websites: Website[]) => {
         this.userWebsites = websites;
+      }, (error) => {
+        console.log('Error in finding findWebsitesByUser');
+        return false;
       });
 
     for (let i = 0; i < this.userWebsites.length; i++) {

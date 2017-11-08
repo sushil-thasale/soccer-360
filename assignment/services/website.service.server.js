@@ -21,12 +21,13 @@ module.exports = function(app, WebsiteModel){
     var userID = req.params.userID;
     var newWebsite = req.body;
 
-    WebsiteModel.createWebsiteForUser(userID, newWebsite)
+    WebsiteModel
+      .createWebsiteForUser(userID, newWebsite)
       .then(function (website) {
-        console.log(website.size);
         res.json(website);
-      }, function (err) {
-        res.send(err);
+      },function (err) {
+        console.log(err);
+        res.sendStatus(404);
       });
   }
 

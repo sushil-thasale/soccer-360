@@ -28,27 +28,39 @@ export class WidgetYoutubeComponent implements OnInit {
       this.pageID = params['pageID'];
     });
     this.widgetService.findWidgetById(this.widgetID)
-      .subscribe((widget: any) => {
-        this.widget = widget;
-        this.youtubeUrl = this.widget.url;
-        this.width = this.widget.width;
-      });
+      .subscribe(
+        (widget: any) => {
+          this.widget = widget;
+          this.youtubeUrl = this.widget.url;
+          this.width = this.widget.width;
+        }, (error) => {
+          console.log('Failed to find widget by ID!');
+          return;
+        });
   }
 
   updateWidget() {
     this.widget.url = this.youtubeUrl;
     this.widget.width = this.width;
     this.widgetService.updateWidget(this.widgetID, this.widget)
-      .subscribe((widget: any) => {
-        this.navigateToWidgetList();
-      });
+      .subscribe(
+        (widget: any) => {
+          this.navigateToWidgetList();
+        }, (error) => {
+          console.log('Error in updating widget!!');
+          return;
+        });
   }
 
   deleteWidget() {
     this.widgetService.deleteWidget(this.widgetID)
-      .subscribe((status: any) => {
-        this.navigateToWidgetList();
-      });
+      .subscribe(
+        (status: any) => {
+          this.navigateToWidgetList();
+        }, (error) => {
+          console.log('Failed to delete a widget!');
+          return;
+        });
   }
 
   navigateToWidgetList() {

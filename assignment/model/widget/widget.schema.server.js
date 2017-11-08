@@ -1,9 +1,8 @@
-module.exports = function () {
-  var mongoose = require('mongoose');
-
+module.exports = function() {
+  var mongoose = require("mongoose");
   var WidgetSchema = mongoose.Schema({
     pageID: {type: mongoose.Schema.Types.ObjectId, ref: 'PageModel'},
-    widgetType: {type: String, enum:['HEADING', 'IMAGE', 'YOUTUBE', 'HTML']},
+    widgetType: {type:String, enum:['HEADING','IMAGE','YOUTUBE','HTML','TEXT']},
     name: String,
     text: String,
     placeholder: String,
@@ -17,7 +16,7 @@ module.exports = function () {
     icon: String,
     deletable: Boolean,
     formatted: Boolean,
-  }, {collection: "Widgets"});
-
+    dateCreated: {type: Date, default: Date.now()}
+  }, {collection: "widgets"});
   return WidgetSchema;
 };

@@ -28,9 +28,12 @@ export class PageNewComponent implements OnInit {
       this.websiteID = params['websiteID'];
     });
     this.pageService.findPagesByWebsiteId(this.websiteID)
-      .subscribe((pages: Page[]) => {
-        this.pages = pages;
-      });
+      .subscribe(
+        (pages: Page[]) => {
+          this.pages = pages;
+        }, (error) => {
+          console.log('Error in finding Pages!');
+        });
   }
 
   createPage() {
@@ -40,12 +43,15 @@ export class PageNewComponent implements OnInit {
     } else {
       // check if page exists
       if (this.pageService.validatePageName(this.websiteID, this.pageName)) {
-        // const newPage: Page = new Page('', this.pageName, this.websiteID, this.pageDescription);
         const newPage = {'websiteId': this.websiteID, 'name': this.pageName, 'description': this.pageDescription };
         this.pageService.createPage(this.websiteID, newPage)
-          .subscribe((page: Page) => {
-            this.navigateToPageList();
-          });
+          .subscribe(
+            (page: Page) => {
+              this.navigateToPageList();
+            }, (error) => {
+              console.log('Failed to Create Page');
+              return;
+            });
       } else {
         this.errorMsg = 'This Page Name already exists!';
         this.errorFlag = true;

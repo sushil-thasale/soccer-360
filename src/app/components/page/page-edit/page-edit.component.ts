@@ -37,11 +37,16 @@ export class PageEditComponent implements OnInit {
       });
 
     this.pageService.findPageById(this.pageID)
-      .subscribe((page: Page) => {
-        this.page = page;
-        this.pageName = this.page.name;
-        this.pageDescription = this.page.description;
-      });
+      .subscribe(
+        (page: Page) => {
+          this.page = page;
+          this.pageName = this.page.name;
+          this.pageDescription = this.page.description;
+        }, (error) => {
+          this.errorFlag = true;
+          this.errorMsg = 'Error in finding page!!';
+          console.log('Error in finding Page');
+        });
   }
 
   updatePage() {
@@ -53,24 +58,32 @@ export class PageEditComponent implements OnInit {
       if (this.pageService.validatePage(this.websiteID, this.pageID, this.pageName)) {
         const newPage: Page = new Page(this.pageID, this.pageName, this.websiteID, this.pageDescription);
         this.pageService.updatePage(newPage)
-          .subscribe((page: Page) => {
-            this.navigateToPageList();
-          });
+          .subscribe(
+            (page: Page) => {
+              this.navigateToPageList();
+            }, (error) => {
+              console.log('Failed to Update Page!');
+              return;
+            });
       } else {
         this.errorMsg = 'This Page Name already exists!';
         this.errorFlag = true;
       }
     }
   }
+
   isEmptyOrSpaces(str: string) {
     return !str || str.trim() === '';
   }
 
   deletePage() {
     this.pageService.deletePage(this.pageID)
-      .subscribe((status: any) => {
-        this.navigateToPageList();
-      });
+      .subscribe(
+        (status: any) => {
+          this.navigateToPageList();
+        }, (error) => {
+          console.log('Delete was not successful!!');
+        });
   }
 
   navigateToProfile() {
