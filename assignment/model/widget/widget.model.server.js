@@ -16,22 +16,27 @@ module.exports = function () {
   };
 
   function createWidget(pageId, newWidget) {
-    console.log('create widget model ' + newWidget.size);
-    return WidgetModel
-      .create(newWidget)
-      .then(function (widget) {
-        return model.PageModel
-          .findPageById(pageId)
-          .then(function (page) {
-            page.widgets.push(widget._id);
-            page.save();
-            widget.save();
-          }, function (err) {
-            return err;
-          })
-      }, function (err) {
-        return err;
-      });
+
+    // return WidgetModel
+    //   .create(newWidget)
+    //   .then(function (widget) {
+    //     return model.PageModel
+    //       .findPageById(pageId)
+    //       .then(function (page) {
+    //         page.widgets.push(widget._id);
+    //         page.save();
+    //         widget.save();
+    //       }, function (err) {
+    //         return err;
+    //       })
+    //   }, function (err) {
+    //     return err;
+    //   });
+
+    return WidgetModel.create(newWidget, function (err, doc) {
+      console.log('createWidget error ' + err);
+      console.log('createWidget doc ' + doc);
+    });
   }
 
   function findWidgetById(widgetId) {
@@ -39,7 +44,7 @@ module.exports = function () {
   }
 
   function findAllWidgetsForPage(pageId) {
-    return WidgetModel.find({"pageId": pageId});
+    return WidgetModel.find({"pageID": pageId});
   }
 
   function updateWidget(widgetId, updatedWidget) {
@@ -49,15 +54,7 @@ module.exports = function () {
   }
 
   function deleteWidget(widgetId) {
-    return WidgetModel.findById(widgetId).populate('pageId')
-      .exec()
-      .then(function(widget) {
-        widget.pageId.widgets.splice(widget.pageId.widgets.indexOf(widgetId), 1);
-        widget.pageId.save();
-        return WidgetModel.remove({_id: widgetId});
-      }, function(err){
-        return err;
-      })
+    return WidgetModel.remove({'_id': widgetId});
   }
 
   function reorderWidget(pageId, startIndex, endIndex) {

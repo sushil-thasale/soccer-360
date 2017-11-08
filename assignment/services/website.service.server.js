@@ -23,6 +23,7 @@ module.exports = function(app, WebsiteModel){
 
     WebsiteModel.createWebsiteForUser(userID, newWebsite)
       .then(function (website) {
+        console.log(website.size);
         res.json(website);
       }, function (err) {
         res.send(err);
