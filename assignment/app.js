@@ -1,7 +1,7 @@
 module.exports = function(app) {
 
   // connection string for local testing
-  var connectionString = 'mongodb://127.0.0.1:27017/newWebApp2';
+  var connectionString = 'mongodb://127.0.0.1:27017/test';
 
   // logic to host app on heroku
   if(process.env.MLAB_USERNAME_WEBDEV) { // check if running remotely
