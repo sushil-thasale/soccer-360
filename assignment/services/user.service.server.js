@@ -6,6 +6,18 @@ module.exports = function(app, userModel) {
   app.put("/api/user/:userId", updateUser);
   app.delete("/api/user/:userId", deleteUser);
 
+  function createUser(req, res){
+    var newUser = req.body;
+
+    userModel
+      .createUser(newUser)
+      .then(function(user) {
+        res.json(user);
+      }, function (error) {
+        res.sendStatus(500).send(error);
+      });
+  }
+
   function findUser(req, res) {
     var username = req.query.username;
     var password = req.query.password;
@@ -59,15 +71,7 @@ module.exports = function(app, userModel) {
   function updateUser(req, res) {
     var userId = req.params.userId;
     var newUser = req.body;
-    /*for (var u in users) {
-        if (users[u]._id == userId) {
-            users[u].firstName = newUser.firstName;
-            users[u].lastName = newUser.lastName;
-            users[u].email = newUser.email;
-            res.json(users[u]);
-            return;
-        }
-    }*/
+
     userModel
       .updateUser(userId, newUser)
       .then(function(user) {
@@ -81,37 +85,13 @@ module.exports = function(app, userModel) {
 
   function deleteUser(req, res) {
     var userId = req.params.userId;
-    /*for(var u in users) {
-        if(users[u]._id == userId) {
-            users.splice(u, 1);
-            res.sendStatus(200);
-            return;
-        }
-    }
 
-    res.sendStatus(404);*/
     userModel
       .deleteUser(userId)
       .then(function (response) {
         res.sendStatus(200);
       },function (err) {
         res.sendStatus(404);
-      });
-  }
-
-  function createUser(req, res){
-    var newUser = req.body;
-    /*newUser._id = (new Date()).getTime() + "";
-    users.push(newUser);
-    res.json(newUser);*/
-
-    userModel
-      .createUser(newUser)
-      .then(function(user) {
-        //console.log(user);
-        res.json(user);
-      }, function (error) {
-        res.sendStatus(500).send(error);
       });
   }
 }

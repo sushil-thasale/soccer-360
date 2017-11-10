@@ -62,6 +62,14 @@
           <app-image-view url="{{widget.url}}" width="{{widget.width}}"></app-image-view>
         </div>
 
+        <div *ngSwitchCase="'TEXT'">
+          <app-text-view rows="{{widget.rows}}"
+                         text="{{widget.text}}"
+                         formatted="{{widget.formatted}}"
+                         placeholder="{{widget.placeholder}}">
+          </app-text-view>
+        </div>
+
       </div>
 
     </div>

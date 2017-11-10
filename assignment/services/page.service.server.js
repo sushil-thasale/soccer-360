@@ -1,12 +1,6 @@
 
 module.exports = function(app, PageModel) {
 
-  // var pages = [
-  //   { "_id": "321", "name": "Post 1", "websiteID": "456", "description": "Lorem1" },
-  //   { "_id": "432", "name": "Post 2", "websiteID": "456", "description": "Lorem2" },
-  //   { "_id": "543", "name": "Post 3", "websiteID": "456", "description": "Lorem3" }
-  // ];
-
   app.post("/api/website/:websiteID/page", createPage);
   app.get("/api/website/:websiteID/page", findPagesByWebsiteId);
   app.get("/api/page/:pageID", findPageById);
@@ -30,7 +24,6 @@ module.exports = function(app, PageModel) {
 
     PageModel.findAllPagesForWebsite(websiteID)
       .then(function (pages) {
-        console.log("list pages server " + pages);
         res.json(pages);
       }, function (err) {
         res.send(err);

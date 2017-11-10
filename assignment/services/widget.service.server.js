@@ -1,17 +1,4 @@
-
 module.exports = function(app, WidgetModel){
-
-  // var widgets = [
-  //   { "_id": "123", "widgetType": "HEADING", "pageID": "321", "size": 2, "text": "GIZMODO"},
-  //   { "_id": "234", "widgetType": "HEADING", "pageID": "321", "size": 4, "text": "Lorem ipsum"},
-  //   { "_id": "345", "widgetType": "IMAGE", "pageID": "321", "width": "100%",
-  //     "url": "http://lorempixel.com/400/200/"},
-  //   { "_id": "456", "widgetType": "HTML", "pageID": "321", "text": "<p>Lorem ipsum</p>"},
-  //   { "_id": "567", "widgetType": "HEADING", "pageID": "321", "size": 4, "text": "Lorem ipsum"},
-  //   { "_id": "678", "widgetType": "YOUTUBE", "pageID": "321", "width": "100%",
-  //     "url": "https://youtu.be/AM2Ivdi9c4E" },
-  //   { "_id": "789", "widgetType": "HTML", "pageID": "321", "text": "<p>Lorem ipsum</p>"}
-  // ];
 
   var multer = require('multer');
   var uploadPath= __dirname + '/../../src/assets/uploads';
@@ -102,17 +89,22 @@ module.exports = function(app, WidgetModel){
     var myFile = req.file;
     var filename = myFile.filename;
 
-    var imageWidget = findWidgetById(req, res);
-
-    // imageWidget.url = "/assets/uploads/" + filename;
-    imageWidget.url = req.protocol + '://' + req.get('host') + "/assets/uploads/" + filename;
-
-    WidgetModel.updateWidget(widgetID, imageWidget)
-      .then(function (widget) {
-        res.json(widget);
-      }, function (err) {
-        res.send(err);
-      });
+    // var imageWidget = WidgetModel.findWidgetById(widgetID)
+    //   .then(function (widget) {
+    //     return widget;
+    //   }, function (err) {
+    //     console.log(err);
+    //   });
+    //
+    // // imageWidget.url = "/assets/uploads/" + filename;
+    // imageWidget.url = req.protocol + '://' + req.get('host') + "/assets/uploads/" + filename;
+    //
+    // WidgetModel.updateWidget(widgetID, imageWidget)
+    //   .then(function (widget) {
+    //     res.json(widget);
+    //   }, function (err) {
+    //     res.send(err);
+    //   });
 
     res.redirect(req.get('referrer'));
   }

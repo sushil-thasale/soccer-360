@@ -1,4 +1,5 @@
 module.exports = function () {
+
   var model = null;
   var mongoose = require("mongoose");
   var WidgetSchema = require('./widget.schema.server')();
@@ -16,8 +17,6 @@ module.exports = function () {
     "reorderWidget": reorderWidget,
     "setModel": setModel
   };
-
-  return api;
 
   function createWidget(pageId, newWidget){
     return WidgetModel
@@ -47,24 +46,25 @@ module.exports = function () {
     return model.pageModel
       .findPageById(pageId)
       .then(function(page) {
-        var wdgs = page.widgets;
+        var pageWidgets = page.widgets;
         var widgets = [];
         var count = page.widgets.length;
-        return getAllWidgets(count, wdgs, widgets);
+        return getAllWidgets(count, pageWidgets, widgets);
       }, function(err){
         return err;
       })
   }
 
-  function getAllWidgets(count, wdgs, widgets){
+  function getAllWidgets(count, pageWidgets, widgets){
     if(count==0){
       return widgets;
     }
-    return WidgetModel.findById(wdgs.shift())
+
+    return WidgetModel.findById(pageWidgets.shift())
       .then(function(widget) {
         widgets.push(widget);
         count--;
-        return getAllWidgets(count, wdgs, widgets);
+        return getAllWidgets(count, pageWidgets, widgets);
       }, function(err){
         return err;
       })
@@ -112,4 +112,6 @@ module.exports = function () {
   function setModel(_model) {
     model = _model;
   }
+
+  return api;
 }

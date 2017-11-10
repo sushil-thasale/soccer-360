@@ -39,6 +39,16 @@ export class WidgetChooserComponent implements OnInit {
     this.createWidget(newWidget);
   }
 
+  createHTMLWidget() {
+    const newWidget: any = {'pageID': this.pageID, 'widgetType': 'HTML', 'text': '', 'name': ''};
+    this.createWidget(newWidget);
+  }
+
+  createTextWidget() {
+    const newWidget: any = {'pageID': this.pageID, 'widgetType': 'TEXT', 'text': '', 'name': ''};
+    this.createWidget(newWidget);
+  }
+
   createWidget(newWidget: any) {
     this.widgetService.createWidget(this.pageID, newWidget)
       .subscribe(

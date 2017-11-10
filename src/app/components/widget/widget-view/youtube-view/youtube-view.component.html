@@ -1,7 +1,7 @@
-<iframe width={{width}}
-        height="300 px"
-        [src]="sanitizedURL"
-        class = "e2e-iframe-trusted-src"
-        frameborder="0"
-        allowfullscreen>
-</iframe>
+<div [style.width]="width"
+     class="youtube-widget">
+  <iframe [src]="sanitizedURL"
+          frameborder="0"
+          allowfullscreen>
+  </iframe>
+</div>

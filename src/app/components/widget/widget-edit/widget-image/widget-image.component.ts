@@ -66,6 +66,10 @@ export class WidgetImageComponent implements OnInit {
         });
   }
 
+  setImageUrl(url: string) {
+    this.imageUrl = url;
+  }
+
   navigateToWidgetList() {
     this.router.navigate(['/user', this.userID, 'website', this.websiteID, 'page', this.pageID, 'widget']);
   }

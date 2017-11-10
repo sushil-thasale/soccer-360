@@ -73,6 +73,12 @@
       </div>
 
       <div class="form-group">
+        <label>Flickr Service</label>
+        <app-flickr-image-search (eventEmitter)="setImageUrl($event.url)">
+        </app-flickr-image-search>
+      </div>
+
+      <div class="form-group">
         <a (click)="deleteWidget()"
            class="btn btn-block btn-danger">
           Delete

@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { TestComponent } from './components/test/test.component';
@@ -8,6 +7,7 @@ import { Routing } from './app.routing';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { TestService } from './services/test.service.client';
+
 import { LoginComponent } from './components/user/login/login.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { RegisterComponent } from './components/user/register/register.component';
@@ -20,19 +20,28 @@ import { PageNewComponent } from './components/page/page-new/page-new.component'
 import { WidgetHeaderComponent } from './components/widget/widget-edit//widget-header/widget-header.component';
 import { WidgetImageComponent } from './components/widget/widget-edit/widget-image/widget-image.component';
 import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-youtube/widget-youtube.component';
+import { WidgetHtmlComponent} from './components/widget/widget-edit/widget-html/widget-html.component';
 import { WidgetChooserComponent } from './components/widget/widget-chooser/widget-chooser.component';
 import { WidgetEditComponent } from './components/widget/widget-edit/widget-edit.component';
 import { WidgetListComponent } from './components/widget/widget-list/widget-list.component';
+
+import { HeaderViewComponent } from './components/widget/widget-view/header-view/header-view.component';
+import { YoutubeViewComponent } from './components/widget/widget-view/youtube-view/youtube-view.component';
+import { ImageViewComponent } from './components/widget/widget-view/image-view/image-view.component';
+import { HtmlViewComponent } from './components/widget/widget-view/html-view/html-view.component';
 
 import { UserService } from './services/user.service.client';
 import { WebsiteService } from './services/website.service.client';
 import { PageService } from './services/page.service.client';
 import { WidgetService } from './services/widget.service.client';
-import { HeaderViewComponent } from './components/widget/widget-view/header-view/header-view.component';
-import { YoutubeViewComponent } from './components/widget/widget-view/youtube-view/youtube-view.component';
-import { ImageViewComponent } from './components/widget/widget-view/image-view/image-view.component';
-import { HtmlViewComponent } from './components/widget/widget-view/html-view/html-view.component';
+import { FlickrService } from './services/flickr.service.client';
+
 import { SortableDirective } from '../../assignment/directives/sortable.directive';
+
+import { QuillEditorModule } from 'ngx-quill-editor';
+import { WidgetTextComponent } from './components/widget/widget-edit/widget-text/widget-text.component';
+import { TextViewComponent } from './components/widget/widget-view/text-view/text-view.component';
+import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 
 @NgModule({
   // Declare components here
@@ -52,6 +61,8 @@ import { SortableDirective } from '../../assignment/directives/sortable.directiv
     WidgetHeaderComponent,
     WidgetImageComponent,
     WidgetYoutubeComponent,
+    WidgetHtmlComponent,
+    WidgetTextComponent,
     WidgetChooserComponent,
     WidgetEditComponent,
     WidgetListComponent,
@@ -59,15 +70,18 @@ import { SortableDirective } from '../../assignment/directives/sortable.directiv
     YoutubeViewComponent,
     ImageViewComponent,
     HtmlViewComponent,
-    SortableDirective
+    SortableDirective,
+    TextViewComponent,
+    FlickrImageSearchComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
-    Routing
+    Routing,
+    QuillEditorModule
   ],
-  providers: [UserService, WebsiteService, PageService, WidgetService, SortableDirective],
+  providers: [UserService, WebsiteService, PageService, WidgetService, SortableDirective, FlickrService],
   bootstrap: [AppComponent]
 })
 

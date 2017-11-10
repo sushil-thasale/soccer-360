@@ -1,20 +1,19 @@
 module.exports = function() {
+
   var model = null;
   var mongoose = require("mongoose");
   var WebsiteSchema = require('./website.schema.server')();
   var WebsiteModel = mongoose.model('WebsiteModel', WebsiteSchema);
 
   var api = {
-    findAllWebsitesForUser: findAllWebsitesForUser,
     createWebsiteForUser: createWebsiteForUser,
     findWebsiteById: findWebsiteById,
+    findAllWebsitesForUser: findAllWebsitesForUser,
     updateWebsite: updateWebsite,
     deleteWebsite: deleteWebsite,
-    deleteWebsiteAndChildren: deleteWebsiteAndChildren,
+    deleteWebsiteHelper: deleteWebsiteHelper,
     setModel: setModel
   }
-
-  return api;
 
   function findAllWebsitesForUser(userId) {
     return WebsiteModel.find({"developerId": userId});
@@ -55,43 +54,36 @@ module.exports = function() {
       .then(function(website) {
         website.developerId.websites.splice(website.developerId.websites.indexOf(websiteId), 1);
         website.developerId.save();
-        return deleteWebsiteAndChildren(websiteId);
+        return deleteWebsiteHelper(websiteId);
       }, function(err) {
         return err;
       })
   }
 
-  function deleteWebsiteAndChildren(websiteId){
+  function deleteWebsiteHelper(websiteId){
     return WebsiteModel.findById(websiteId).select({'pages':1})
       .then(function (website) {
         var pgs = website.pages;
-
-        //return recursiveDelete(pgs, websiteId);
-        return deleteChildren(pgs, websiteId);
+        return deleteWebsiteAndPages(pgs, websiteId);
       }, function (err) {
         return err;
       });
   }
 
-  //function recursiveDelete(pgs, websiteId) {
-  function deleteChildren(pgs, websiteId) {
-
+  function deleteWebsiteAndPages(pgs, websiteId) {
     if(pgs.length == 0){
       return WebsiteModel.remove({_id: websiteId})
         .then(function (response) {
-          //if(response.result.n == 1 && response.result.ok == 1){
           return response;
-          //}
         }, function (err) {
           return err;
         });
     }
 
-    return model.pageModel.deletePageAndChildren(pgs.shift())
+    return model.pageModel.deletePageHelper(pgs.shift())
       .then(function (response) {
-
         if(response.result.n == 1 && response.result.ok == 1){
-          return deleteChildren(pgs, websiteId);
+          return deleteWebsiteAndPages(pgs, websiteId);
         }
       }, function (err) {
         return err;
@@ -101,4 +93,6 @@ module.exports = function() {
   function setModel(_model) {
     model = _model;
   }
+
+  return api;
 };

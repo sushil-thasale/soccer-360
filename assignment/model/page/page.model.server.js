@@ -11,7 +11,7 @@ module.exports = function () {
     findAllPagesForWebsite: findAllPagesForWebsite,
     updatePage: updatePage,
     deletePage: deletePage,
-    deletePageAndChildren: deletePageAndChildren,
+    deletePageHelper: deletePageHelper,
     setModel: setModel
   }
 
@@ -53,24 +53,24 @@ module.exports = function () {
       .then(function(page) {
         page.websiteID.pages.splice(page.websiteID.pages.indexOf(pageId), 1);
         page.websiteID.save();
-        return deletePageAndChildren(pageId);
+        return deletePageHelper(pageId);
       }, function(err){
         return err;
       })
   }
 
-  function deletePageAndChildren(pageId){
+  function deletePageHelper(pageId){
     return PageModel
       .findById(pageId)
       .then(function(page) {
         var pageWidgets = page.widgets;
-        return deleteWidgetsOfPage(pageWidgets, pageId);
+        return deletePageAndWidgets(pageWidgets, pageId);
       }, function(err){
         return err;
       })
   }
 
-  function deleteWidgetsOfPage(pageWidgets, pageId){
+  function deletePageAndWidgets(pageWidgets, pageId){
     if(pageWidgets.length == 0){
       return PageModel.remove({_id: pageId})
         .then(function(response) {
@@ -80,10 +80,10 @@ module.exports = function () {
         })
     }
 
-    return model.widgetModel.deleteWidgetOfPage(wdgs.shift())
+    return model.widgetModel.deleteWidgetOfPage(pageWidgets.shift())
       .then(function (response) {
         if(response.result.n == 1 && response.result.ok == 1){
-          return deleteWidgetsOfPage(wdgs, pageId);
+          return deletePageAndWidgets(pageWidgets, pageId);
         }
       }, function (err) {
         return err;
