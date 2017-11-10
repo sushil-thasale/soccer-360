@@ -81,7 +81,7 @@ import { FlickrImageSearchComponent } from './components/widget/widget-edit/widg
     Routing,
     QuillEditorModule
   ],
-  providers: [UserService, WebsiteService, PageService, WidgetService, SortableDirective, FlickrService],
+  providers: [TestService, UserService, WebsiteService, PageService, WidgetService, SortableDirective, FlickrService],
   bootstrap: [AppComponent]
 })
 
