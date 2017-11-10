@@ -1,0 +1,122 @@
+<!-- Header -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="row container-fluid">
+
+    <div class="col-xs-12">
+
+      <div class="navbar-text pull-left my-header-left-margin">
+        <a (click)="navigateToWidgetList()">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+      </div>
+
+      <div class="navbar-text pull-right my-header-right-margin">
+        <a (click)="updateWidget()">
+          <span class="glyphicon glyphicon-ok"></span>
+        </a>
+      </div>
+
+      <div class="navbar-header">
+        <a class="navbar-brand">
+          Widget Edit
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</nav>
+
+<!-- Widget Edit Form -->
+<div class="row container-fluid">
+  <div class="col-xs-12 custom-padding-top-10">
+
+    <form>
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text"
+               id="name"
+               name="name"
+               class="form-control"
+               required
+               value="{{name}}"
+               [(ngModel)]="name"
+               placeholder="Name"/>
+      </div>
+
+      <div class="form-group">
+        <label for="text">Text</label>
+        <input type="text"
+               id="text"
+               name="text"
+               class="form-control"
+               required
+               value="{{text}}"
+               [(ngModel)]="text"
+               placeholder="Header Text"/>
+      </div>
+
+      <div class="form-group">
+        <label for="rows">Rows</label>
+        <input type="number"
+               id="rows"
+               name="rows"
+               class="form-control"
+               required
+               value="{{rows}}"
+               [(ngModel)]="rows"
+               placeholder="0"/>
+      </div>
+
+      <div class="form-group">
+        <label for="placeholder">Placeholder</label>
+        <input type="text"
+               id="placeholder"
+               name="placeholder"
+               class="form-control"
+               required
+               value="{{placeholder}}"
+               [(ngModel)]="placeholder"
+               placeholder="..."/>
+      </div>
+
+      <div class="form-group input-group">
+        <input type="text"
+               readonly
+               value="Formatted"
+               class="form-control"/>
+        <span class="input-group-addon">
+          <input name = "formatted"
+                 id = "formatted"
+                 value="{{formatted}}"
+                 [(ngModel)]="formatted"
+                 (click)="toggleFormatted()"
+                 type="checkbox"/>
+        </span>
+      </div>
+
+
+      <div class="form-group">
+        <a (click)="deleteWidget()"
+           class="btn btn-block btn-danger">
+          Delete
+        </a>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+  <div class="container-fluid">
+    <div class="navbar-footer navbar-text pull-right">
+      <a (click)="navigateToProfile()">
+        <span class="glyphicon glyphicon-user"></span>
+      </a>
+    </div>
+  </div>
+</nav>
+
