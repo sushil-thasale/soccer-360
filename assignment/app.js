@@ -1,5 +1,5 @@
 module.exports = function(app) {
-
+/*
   // connection string for local testing
   var connectionString = 'mongodb://127.0.0.1:27017/test';
 
@@ -16,7 +16,7 @@ module.exports = function(app) {
   mongoose.connect(connectionString, {
     useMongoClient: true
   });
-
+*/
   var models = require('./model/models.server')();
   require('./services/user.service.server')(app, models.userModel);
   require('./services/website.service.server')(app, models.websiteModel);
