@@ -19,12 +19,14 @@ import { WidgetChooserComponent } from './components/widget/widget-chooser/widge
 import { WidgetEditComponent } from './components/widget/widget-edit/widget-edit.component';
 import { WidgetListComponent } from './components/widget/widget-list/widget-list.component';
 
+import { AuthGuard } from './services/auth-guard.service';
+
 const APP_ROUTES: Routes = [
   { path : '', component : HomeComponent},
   { path : 'test', component: TestComponent},
   { path : 'login' , component: LoginComponent},
   { path : 'register' , component: RegisterComponent },
-  { path : 'user/:userID' , component: ProfileComponent},
+  { path : 'user/:userID' , component: ProfileComponent, canActivate: [AuthGuard]},
   { path : 'user/:userID/website' , component: WebsiteListComponent},
   { path : 'user/:userID/website/new' , component: WebsiteNewComponent},
   { path : 'user/:userID/website/:websiteID' , component: WebsiteEditComponent},

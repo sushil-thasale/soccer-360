@@ -9,6 +9,8 @@ module.exports = function(app, userModel) {
   app.delete("/api/user/:userId", deleteUser);
   app.post  ('/api/login', passport.authenticate('local'), login);
   app.post('/api/logout', logout);
+  app.post ('/api/register', register);
+  app.get ('/api/loggedin', loggedin);
 
   function createUser(req, res){
     var newUser = req.body;
@@ -149,5 +151,28 @@ module.exports = function(app, userModel) {
   function logout(req, res) {
     req.logout();
     res.send(200);
+  }
+
+  function register (req, res) {
+    var user = req.body;
+    userModel
+      .createUser(user)
+      .then(
+        function(user){
+          if(user){
+            req.login(user, function(err) {
+              if(err) {
+                res.status(400).send(err);
+              } else {
+                res.json(user);
+              }
+            });
+          }
+        }
+      );
+  }
+
+  function loggedin(req, res) {
+    res.send(req.isAuthenticated() ? req.user : '0');
   }
 }
