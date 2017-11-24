@@ -4,6 +4,7 @@ import { UserService } from '../../../services/user.service.client';
 import { User } from '../user.model.client';
 import { NgForm } from '@angular/forms';
 import 'rxjs/Rx';
+import { SharedService } from '../../../services/shared.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
   errorFlag: boolean;
   errorMsg: string;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private  sharedService: SharedService) { }
 
   ngOnInit() {
     this.errorFlag = false;
@@ -30,17 +31,28 @@ export class LoginComponent implements OnInit {
     this.username = this.loginForm.value.username;
     this.password = this.loginForm.value.password;
 
-    this.userService.findUserByCredentials(this.username, this.password)
+  //   this.userService.findUserByCredentials(this.username, this.password)
+  //     .subscribe(
+  //       (user: User) => {
+  //         console.log('in login subscribe' + user.username + user._id);
+  //         if (user) {
+  //           console.log('in login' + user);
+  //           this.router.navigate(['/user', user._id]);
+  //         }
+  //       }, (error) => {
+  //           this.errorFlag = true;
+  //           this.errorMsg = 'Invalid username or password !';
+  //       });
+  // }
+    this.userService.login(this.username, this.password)
       .subscribe(
-        (user: User) => {
-          console.log('in login subscribe' + user.username + user._id);
-          if (user) {
-            console.log('in login' + user);
-            this.router.navigate(['/user', user._id]);
-          }
-        }, (error) => {
-            this.errorFlag = true;
-            this.errorMsg = 'Invalid username or password !';
-        });
+        (user: any) => {
+          this.sharedService.user = user;
+          this.router.navigate(['/user', user._id])},
+        (error: any) => {
+          console.log(error);
+        }
+      );
   }
+
 }

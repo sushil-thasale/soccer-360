@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/Rx';
 import { User } from '../components/user/user.model.client';
 import { environment } from '../../environments/environment';
-import { Http, Response } from '@angular/http';
+import { Http, Response, RequestOptions } from '@angular/http';
 
 // injecting service into module
 @Injectable()
@@ -21,6 +21,36 @@ export class UserService {
   };
 
   baseUrl: string = environment.baseUrl;
+  options = new RequestOptions();
+
+  login(username: String, password: String) {
+
+    this.options.withCredentials = true;
+
+    const body = {
+      username : username,
+      password : password
+    };
+    const url: string = this.baseUrl + '/api/login';
+    return this.http.post(url, body, this.options)
+      .map(
+        (res: Response) => {
+          const data = res.json();
+          return data;
+        }
+      );
+  }
+
+  logout() {
+    this.options.withCredentials = true;
+    const url: string = this.baseUrl + '/api/logout';
+    return this.http.post(url, '', this.options)
+      .map(
+        (res: Response) => {
+          const data = res;
+        }
+      );
+  }
 
   createUser(username: string, password: string) {
     const url: string = this.baseUrl + '/api/user';

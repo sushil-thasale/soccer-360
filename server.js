@@ -9,7 +9,17 @@ const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 const app = express();
+const cookieParser = require('cookie-parser');
+const session      = require('express-session');
+const passport = require('passport');
 
+// Configure Express Session Support
+app.use(cookieParser());
+app.use(session({ secret: process.env.SESSION_SECRET }));
+
+// Configure and Initialize Passport and Passport Session Support
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
