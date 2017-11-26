@@ -30,32 +30,25 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    // this.userService.findUserByUsername(this.username)
-    //   .subscribe(
-    //     (user: User) => {
-    //     this.errorFlag = true;
-    //     this.errorMsg = 'Username already exists! Choose a different one!';
-    //   }, (error) => {
-    //     if (this.password === this.verifyPassword) {
-    //       this.userService.createUser(this.username, this.password)
-    //         .subscribe((newUser: User) => {
-    //           if (newUser) {
-    //             this.router.navigate(['/user', newUser._id]);
-    //           }
-    //         });
-    //     } else {
-    //       this.errorFlag = true;
-    //       this.errorMsg = 'Password doesn\'t match!!';
-    //     }
-    //   });
-    this.userService.register(this.username, this.password)
+    this.userService.findUserByUsername(this.username)
       .subscribe(
-        (user: any) => {
-          this.router.navigate(['/user', user._id]);
-        },
-        (error: any) => {
-          // this.error = error._body;
+        (user: User) => {
+        this.errorFlag = true;
+        this.errorMsg = user.username + ' : Username already exists! Choose a different one!';
+      }, (error: any) => {
+        if (this.password === this.verifyPassword) {
+          this.userService.register(this.username, this.password)
+            .subscribe(
+              (newUser: User) => {
+                this.router.navigate(['/user', newUser._id]);
+              }, (error2: any) => {
+                console.log(error2);
+              }
+            );
+        } else {
+          this.errorFlag = true;
+          this.errorMsg = 'Password doesn\'t match!!';
         }
-      );
+      });
   }
 }

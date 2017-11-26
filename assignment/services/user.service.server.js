@@ -11,7 +11,7 @@ module.exports = function(app, userModel) {
   passport.deserializeUser(deserializeUser);
 
   // Implement Passport Local Strategy
-  var LocalStrategy = require('passport-local').Strategy;
+  var LocalStrategy = require('passport-local').Strategy
   passport.use(new LocalStrategy(localStrategy));
 
   // Implement PassportJS Facebook Strategy
@@ -21,9 +21,9 @@ module.exports = function(app, userModel) {
     // clientID     : process.env.FACEBOOK_CLIENT_ID,
     // clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
     // callbackURL  : process.env.FACEBOOK_CALLBACK_URL
-    clientID: 818087008315982,
-    clientSecret: '939a0b59398bcba8ba559d290c49d703',
-    callbackURL:'http://localhost:3000/auth/facebook/callback'
+    clientID: 197859230783421,
+    clientSecret: '139096962f09ea6608cef1c8a0e98c79',
+    callbackURL:'http://localhost:3100/auth/facebook/callback'
   };
 
   passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
@@ -35,9 +35,13 @@ module.exports = function(app, userModel) {
   app.delete("/api/user/:userId", deleteUser);
   app.post('/api/login', passport.authenticate('local'), login);
   app.post('/api/logout', logout);
-  app.post ('/api/register', register);
-  app.get('/api/loggedin', loggedin);
-  app.get('/facebook/login', passport.authenticate('facebook', { scope : 'email' }));
+  app.post('/api/register', register);
+  app.post('/api/loggedIn', loggedIn);
+
+  // route for facebook authentication and login
+  app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+
+  // handle the callback after facebook has authenticated the user
   app.get('/auth/facebook/callback',passport.authenticate('facebook', {
     failureRedirect: '/#/login'
   }), function(req, res){
@@ -153,28 +157,21 @@ module.exports = function(app, userModel) {
 
   function localStrategy(username, password, done) {
     userModel
-      .findUserByCredentials(username, password)
-      .then(
-        function(user) {
+      .findUserByUsername(username)
+      .then(function(user){
           if(user && bcrypt.compareSync(password, user[0].password)){
-            return done(null, user);
-          } else {
-            return done(null, false);
+            return done(null, user[0]);
           }
+          return done(null, false);
         },
         function(err) {
           if (err) { return done(err); }
-        }
-      );
+        })
   }
 
   function login(req, res) {
     var user = req.user;
-    if(user && bcrypt.compareSync(password, user.password)) {
-      return done(null, user);
-    } else {
-      return done(null, false);
-    }
+    res.json(user);
   }
 
   function logout(req, res) {
@@ -205,7 +202,7 @@ module.exports = function(app, userModel) {
       );
   }
 
-  function loggedin(req, res) {
+  function loggedIn(req, res) {
     if(req.isAuthenticated()) {
       res.json(req.user);
     } else {

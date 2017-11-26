@@ -19,6 +19,7 @@ import { WidgetChooserComponent } from './components/widget/widget-chooser/widge
 import { WidgetEditComponent } from './components/widget/widget-edit/widget-edit.component';
 import { WidgetListComponent } from './components/widget/widget-list/widget-list.component';
 
+import { SharedService } from './services/shared.service';
 import { AuthGuard } from './services/auth-guard.service';
 
 const APP_ROUTES: Routes = [
@@ -26,16 +27,16 @@ const APP_ROUTES: Routes = [
   { path : 'test', component: TestComponent},
   { path : 'login' , component: LoginComponent},
   { path : 'register' , component: RegisterComponent },
-  { path : 'user/:userID' , component: ProfileComponent, canActivate: [AuthGuard]},
-  { path : 'user/:userID/website' , component: WebsiteListComponent},
-  { path : 'user/:userID/website/new' , component: WebsiteNewComponent},
-  { path : 'user/:userID/website/:websiteID' , component: WebsiteEditComponent},
-  { path : 'user/:userID/website/:websiteID/page' , component: PageListComponent},
-  { path : 'user/:userID/website/:websiteID/page/new' , component: PageNewComponent},
-  { path : 'user/:userID/website/:websiteID/page/:pageID' , component: PageEditComponent},
-  { path : 'user/:userID/website/:websiteID/page/:pageID/widget' , component: WidgetListComponent},
-  { path : 'user/:userID/website/:websiteID/page/:pageID/widget/new' , component: WidgetChooserComponent},
-  { path : 'user/:userID/website/:websiteID/page/:pageID/widget/:widgetID' , component: WidgetEditComponent},
+  { path : 'user/:userID' , component: ProfileComponent, canActivate: [AuthGuard] },
+  { path : 'user/:userID/website' , component: WebsiteListComponent, canActivate: [AuthGuard]},
+  { path : 'user/:userID/website/new' , component: WebsiteNewComponent, canActivate: [AuthGuard]},
+  { path : 'user/:userID/website/:websiteID' , component: WebsiteEditComponent, canActivate: [AuthGuard]},
+  { path : 'user/:userID/website/:websiteID/page' , component: PageListComponent, canActivate: [AuthGuard]},
+  { path : 'user/:userID/website/:websiteID/page/new' , component: PageNewComponent, canActivate: [AuthGuard]},
+  { path : 'user/:userID/website/:websiteID/page/:pageID' , component: PageEditComponent, canActivate: [AuthGuard]},
+  { path : 'user/:userID/website/:websiteID/page/:pageID/widget' , component: WidgetListComponent, canActivate: [AuthGuard]},
+  { path : 'user/:userID/website/:websiteID/page/:pageID/widget/new' , component: WidgetChooserComponent, canActivate: [AuthGuard]},
+  { path : 'user/:userID/website/:websiteID/page/:pageID/widget/:widgetID' , component: WidgetEditComponent, canActivate: [AuthGuard]},
 ];
 
 // Export the routes as module providers

@@ -24,8 +24,7 @@ export class UserService {
   baseUrl: string = environment.baseUrl;
   options = new RequestOptions();
 
-  login(username: String, password: String) {
-
+  login(username: string, password: string) {
     this.options.withCredentials = true;
 
     const body = {
@@ -80,7 +79,7 @@ export class UserService {
           if (user !== 0) {
             this.sharedService.user = user;
             return true;
-          } else {
+          } else if (user === 0) {
             // this.router.navigate(['/login']);
             return false;
           }

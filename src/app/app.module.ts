@@ -43,6 +43,9 @@ import { WidgetTextComponent } from './components/widget/widget-edit/widget-text
 import { TextViewComponent } from './components/widget/widget-view/text-view/text-view.component';
 import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 
+import { SharedService } from './services/shared.service';
+import { AuthGuard } from './services/auth-guard.service';
+
 @NgModule({
   // Declare components here
   declarations: [
@@ -81,7 +84,15 @@ import { FlickrImageSearchComponent } from './components/widget/widget-edit/widg
     Routing,
     QuillEditorModule
   ],
-  providers: [TestService, UserService, WebsiteService, PageService, WidgetService, SortableDirective, FlickrService],
+  providers: [TestService,
+    UserService,
+    WebsiteService,
+    PageService,
+    WidgetService,
+    SortableDirective,
+    FlickrService,
+    SharedService,
+    AuthGuard],
   bootstrap: [AppComponent]
 })
 

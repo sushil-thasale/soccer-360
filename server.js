@@ -9,31 +9,33 @@ const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 const app = express();
-const cookieParser = require('cookie-parser');
-const session      = require('express-session');
-const passport = require('passport');
+var cookieParser = require('cookie-parser');
+var session      = require('express-session');
+var passport = require('passport');
+var cors = require('cors');
+app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
+
+// Point static path to dist -- For building -- REMOVE
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // Configure Express Session Support
 app.use(cookieParser());
-app.use(session({ secret: process.env.SESSION_SECRET }));
+app.use(session({ secret: "cats" }));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Configure and Initialize Passport and Passport Session Support
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// Point static path to dist -- For building -- REMOVE
-app.use(express.static(path.join(__dirname, 'dist')));
-
 // CORS
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  next();
-});
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, X-Auth-Token");
+//   res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
+//   next();
+// });
 
 
 const port = process.env.PORT || '3100';
