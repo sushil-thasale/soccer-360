@@ -42,10 +42,10 @@ module.exports = function(app, userModel) {
   app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
   // handle the callback after facebook has authenticated the user
-  app.get('/auth/facebook/callback',passport.authenticate('facebook', {
-    failureRedirect: '/#/login'
+  app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+    failureRedirect: "http://localhost:4200/login"
   }), function(req, res){
-    var url = '/#/user/' + req.user._id.toString();
+    var url = "http://localhost:4200/user/" + req.user._id;
     res.redirect(url);
   });
 
