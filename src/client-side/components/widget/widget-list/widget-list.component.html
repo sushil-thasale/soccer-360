@@ -1,0 +1,106 @@
+<!-- Header -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="row container-fluid">
+    <div class="col-xs-12">
+
+      <div class="navbar-text pull-left my-header-left-margin">
+        <a (click)="navigateToPageList()">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+      </div>
+
+      <div class="navbar-text pull-right my-header-right-margin">
+        <a (click)="navigateToWidgetChooser()" >
+          <span class="glyphicon glyphicon-plus"></span>
+        </a>
+      </div>
+
+      <div class="navbar-header">
+        <a class="navbar-brand">
+          Widgets
+        </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+<!-- Widget List -->
+<div class="container-fluid">
+
+  <div appSortable (newIndexes)="updateWidgetPosition($event.startIndex, $event.endIndex)">
+
+  <div *ngFor="let widget of widgets">
+
+    <div>
+      <div class="my-widget-settings-bar list-group pull-right">
+        <a (click)="navigateToWidgetEdit(widget._id, widget.widgetType)">
+          <span class="glyphicon glyphicon-cog"></span>
+        </a>
+        <a>
+          <span class="glyphicon glyphicon-align-justify"></span>
+        </a>
+      </div>
+
+      <div [ngSwitch]="widget.widgetType">
+
+        <div *ngSwitchCase="'HEADING'">
+          <app-header-view size="{{widget.size}}"
+                            text="{{widget.text}}"></app-header-view>
+        </div>
+
+        <div *ngSwitchCase="'HTML'">
+          <app-html-view htmlSnippet="{{widget.text}}"></app-html-view>
+        </div>
+
+        <div *ngSwitchCase="'YOUTUBE'">
+          <app-youtube-view url="{{widget.url}}"
+                            width="{{widget.width}}"></app-youtube-view>
+        </div>
+
+        <div *ngSwitchCase="'IMAGE'">
+          <app-image-view url="{{widget.url}}" width="{{widget.width}}"></app-image-view>
+        </div>
+
+        <div *ngSwitchCase="'TEXT'">
+          <app-text-view rows="{{widget.rows}}"
+                         text="{{widget.text}}"
+                         formatted="{{widget.formatted}}"
+                         placeholder="{{widget.placeholder}}">
+          </app-text-view>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  </div>
+
+</div>
+
+<!-- Footer -->
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+  <div class="container-fluid">
+
+    <div class="navbar-footer navbar-text pull-left my-header-right-margin">
+      <a>
+        <span class="glyphicon glyphicon-play"></span>
+      </a>
+    </div>
+
+    <div class="navbar-footer navbar-text pull-left my-header-left-margin">
+      <a>
+        <span class="glyphicon glyphicon-eye-open"></span>
+      </a>
+    </div>
+
+    <div class="navbar-footer navbar-text pull-right">
+      <a (click)="navigateToProfile()">
+        <span class="glyphicon glyphicon-user"></span>
+      </a>
+    </div>
+
+  </div>
+</nav>

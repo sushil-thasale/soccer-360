@@ -1,0 +1,54 @@
+<!-- Header -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="row container-fluid">
+    <div class="col-xs-12">
+
+      <div class="navbar-text pull-left my-header-left-margin">
+        <a (click)="navigateToWebsiteList()">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+      </div>
+
+      <div class="navbar-text pull-right my-header-right-margin">
+        <a (click)="navigateToPageNew()">
+          <span class="glyphicon glyphicon-plus"></span>
+        </a>
+      </div>
+
+      <div class="navbar-header">
+        <a class="navbar-brand">
+          Pages
+        </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+<!-- Page List -->
+<div class="row container-fluid">
+  <div class="col-xs-12 my-left-pane">
+    <ul class="list-group">
+
+      <li class="list-group-item my-no-border"
+          *ngFor="let page of pages">
+        <a (click)="navigateToWidgetList(page)" class="no-underline-hover">{{page.name}}</a>
+        <a (click)="navigateToPageEdit(page)" class="pull-right">
+          <span class="glyphicon glyphicon-cog my-right-margin"></span>
+        </a>
+      </li>
+
+    </ul>
+  </div>
+</div>
+
+<!-- Footer -->
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+  <div class="container-fluid">
+    <div class="navbar-footer navbar-text pull-right">
+      <a (click)="navigateToProfile()">
+        <span class="glyphicon glyphicon-user"></span>
+      </a>
+    </div>
+  </div>
+</nav>

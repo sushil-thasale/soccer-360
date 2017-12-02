@@ -1521,7 +1521,7 @@ function stringParse( string ) {
 		if ( values ) {
 			parsed = inst[ spaceName ]( values );
 
-			// If this was an rgba parse the assignment might happen twice
+			// If this was an rgba parse the server-side might happen twice
 			// oh well....
 			inst[ spaces[ spaceName ].cache ] = parsed[ spaces[ spaceName ].cache ];
 			rgba = inst._rgba = parsed._rgba;

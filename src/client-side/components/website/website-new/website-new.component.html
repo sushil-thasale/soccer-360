@@ -1,0 +1,125 @@
+<!-- Header -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="row container-fluid">
+
+    <!-- Header - Left Pane -->
+    <div class="col-sm-4 hidden-xs">
+
+      <div class="navbar-text pull-left my-header-left-margin">
+        <a (click)="navigateToProfile()">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+      </div>
+
+      <div class="navbar-text pull-right my-header-right-margin">
+        <a (click)="reloadPage()">
+          <span class="glyphicon glyphicon-plus"></span>
+        </a>
+      </div>
+
+      <div class="navbar-header">
+        <a class="navbar-brand">
+          Websites
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Header - Right Pane -->
+    <div class="col-sm-8 col-xs-12">
+
+      <div class="navbar-text pull-left my-header-left-margin">
+        <a (click)="navigateToWebsiteList()">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+      </div>
+
+      <div class="navbar-text pull-right my-header-right-margin">
+        <a (click)="createWebsite()">
+          <span class="glyphicon glyphicon-ok"></span>
+        </a>
+      </div>
+
+      <div class="navbar-header">
+        <a class="navbar-brand">
+          New Website
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</nav>
+
+<div class="row container-fluid">
+
+  <!-- Left Pane - Website List -->
+  <div class="col-sm-4 hidden-xs my-left-pane my-right-border">
+    <ul class="list-group">
+
+      <li class="list-group-item my-no-border"
+          *ngFor="let website of websites">
+        <a (click)="navigateToPages(website)" class="no-underline-hover">{{website.name}}</a>
+        <a (click)="navigateToWebsiteEdit(website)" class="pull-right">
+          <span class="glyphicon glyphicon-cog my-right-margin"></span>
+        </a>
+      </li>
+
+    </ul>
+  </div>
+
+  <!-- Right Pane - Forms -->
+  <div class="col-sm-8 col-xs-12 my-right-pane">
+
+    <div *ngIf="errorFlag"
+         class="alert alert-danger">
+      {{errorMsg}}
+    </div>
+
+    <form (submit)="createWebsite()"  #f="ngForm">
+
+      <div class="form-group">
+        <label for="websiteName">Name</label>
+        <input type="text"
+               id="websiteName"
+               name="websiteName"
+               class="form-control"
+               placeholder="Name"
+               required
+               [(ngModel)] = "websiteName"
+               ngModel
+               #o_websiteName = "ngModel"/>
+      </div>
+
+      <span class="help-block"
+            *ngIf="o_websiteName.touched && o_websiteName.invalid">
+      Please enter website name!
+      </span>
+
+      <div class="form-group">
+        <label for="websiteDescription">Description</label>
+        <textarea id="websiteDescription"
+                  name = "websiteDescription"
+                  class="form-control span6"
+                  rows="5"
+                  placeholder="Description"
+                  [(ngModel)] = "websiteDescription"
+                  ngModel
+                  #o_websiteDescription = "ngModel"></textarea>
+      </div>
+
+    </form>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+  <div class="container-fluid">
+    <div class="navbar-footer navbar-text pull-right">
+      <a (click)="navigateToProfile()">
+        <span class="glyphicon glyphicon-user"></span>
+      </a>
+    </div>
+  </div>
+</nav>

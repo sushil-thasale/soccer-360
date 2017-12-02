@@ -13,7 +13,7 @@ var cookieParser = require('cookie-parser');
 var session      = require('express-session');
 var passport = require('passport');
 // var cors = require('cors');
-// app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
+// client-side.use(cors({credentials: true, origin: 'http://localhost:4200'}));
 
 // Point static path to dist -- For building -- REMOVE
 app.use(express.static(path.join(__dirname, 'dist')));
@@ -41,7 +41,7 @@ app.use(function(req, res, next) {
 const port = process.env.PORT || '3100';
 app.set('port', port);
 
-require("./assignment/app.js")(app);
+require("./server-side/app.js")(app);
 
 // Create HTTP server
 const server = http.createServer(app);

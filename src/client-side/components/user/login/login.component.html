@@ -1,0 +1,53 @@
+<div class="container">
+
+<div *ngIf="errorFlag"
+     class="alert alert-danger">
+  {{errorMsg}}
+</div>
+
+<h1>Login</h1>
+
+<form #f="ngForm">
+
+  <input placeholder="username"
+         type="text"
+         name="username"
+         class="form-control"
+         required
+         [(ngModel)]="username"
+         ngModel
+         #o_username = "ngModel"/>
+
+  <span class="help-block" *ngIf="o_username.touched && o_username.invalid">
+      Please enter username!
+  </span>
+
+  <input placeholder="password"
+         name="password"
+         type="password"
+         class="form-control input-margin-top"
+         required
+         [(ngModel)]="password"
+         ngModel
+         #o_password="ngModel"/>
+
+  <span class="help-block" *ngIf="o_password.touched && o_password.invalid">
+      Please enter password!
+   </span>
+
+  <button class="btn btn-primary btn-block input-margin-top"
+          type="submit"
+          (click)="login()"
+          [disabled]="f.invalid">Login</button>
+
+  <button class="btn btn-success btn-block"
+          routerLink='/register'>Register</button>
+
+  <a href="/auth/facebook" class="btn btn-primary btn-block">
+    <span class="fa fa-facebook"></span>
+    Facebook
+  </a>
+
+</form>
+
+</div>

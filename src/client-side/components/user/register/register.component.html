@@ -1,0 +1,65 @@
+<div class="container">
+
+  <div *ngIf="errorFlag"
+       class="alert alert-danger">
+    {{errorMsg}}
+  </div>
+
+  <h1>Register</h1>
+
+  <form #f="ngForm">
+
+    <input placeholder="username"
+           name="username"
+           type="text"
+           class="form-control"
+           required
+           [(ngModel)]="username"
+           ngModel
+           #o_username = "ngModel"/>
+
+    <span class="help-block" *ngIf="o_username.touched && o_username.invalid">
+      Please enter username!
+    </span>
+
+    <input placeholder="password"
+           name="password"
+           type="password"
+           class="form-control input-margin-top"
+           required
+           [(ngModel)]="password"
+           ngModel
+           #o_password = "ngModel"/>
+
+    <span class="help-block" *ngIf="o_password.touched && o_password.invalid">
+      Please enter password!
+    </span>
+
+    <input placeholder="verify password"
+           name="verifyPassword"
+           type="password"
+           class="form-control input-margin-top"
+           required
+           [(ngModel)]="verifyPassword"
+           ngModel
+           #o_verifyPassword = "ngModel"/>
+
+    <span class="help-block" *ngIf="o_verifyPassword.touched && o_verifyPassword.invalid">
+      Please verify password!
+    </span>
+
+    <span class="help-block" *ngIf="o_verifyPassword.valid && verifyPassword != password">
+      Passwords doesn't match!
+    </span>
+
+    <button class="btn btn-primary btn-block input-margin-top"
+            type="submit"
+            [disabled]="!f.valid"
+            (click)="register()">Register</button>
+
+    <button class="btn btn-danger btn-block"
+       routerLink="/login" >Cancel</button>
+
+  </form>
+
+</div>
