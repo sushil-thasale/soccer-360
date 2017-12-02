@@ -21,9 +21,10 @@ module.exports = function(app, userModel) {
     // clientID     : process.env.FACEBOOK_CLIENT_ID,
     // clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
     // callbackURL  : process.env.FACEBOOK_CALLBACK_URL
-    clientID: 197859230783421,
-    clientSecret: '139096962f09ea6608cef1c8a0e98c79',
-    callbackURL:'http://localhost:3100/auth/facebook/callback'
+    clientID: 172378833356209,
+    clientSecret: '1a89f6a855ec268d1cf3d70b5cdab5bb',
+    // callbackURL:'http://localhost:3100/auth/facebook/callback'
+    callbackURL:'https://webdev-thasale-sushil.herokuapp.com/auth/facebook/callback'
   };
 
   passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
@@ -43,9 +44,9 @@ module.exports = function(app, userModel) {
 
   // handle the callback after facebook has authenticated the user
   app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-    failureRedirect: "http://localhost:4200/login"
+    failureRedirect: "/login"
   }), function(req, res){
-    var url = "http://localhost:4200/user/" + req.user._id;
+    var url = "/user/" + req.user._id;
     res.redirect(url);
   });
 
