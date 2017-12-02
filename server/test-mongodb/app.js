@@ -16,7 +16,7 @@ module.exports = function(app)
     var username = process.env.MLAB_USERNAME_WEBDEV; // get from environment
     var password = process.env.MLAB_PASSWORD_WEBDEV;
     connectionString = 'mongodb://' + username + ':' + password;
-    connectionString += '@ds135534.mlab.com:35534/heroku_451qtmbx'; // use yours
+    connectionString += '@ds129066.mlab.com:29066/heroku_bvh7kprb'; // use yours
   }
 
   // updates to mongoose
