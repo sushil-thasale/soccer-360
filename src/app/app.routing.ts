@@ -41,7 +41,7 @@ const APP_ROUTES: Routes = [
   { path : 'user/:userID/website/:websiteID/page/:pageID/widget/:widgetID' , component: WidgetEditComponent, canActivate: [AuthGuard]},
   { path : 'calender' , component: MatchCalenderComponent},
   { path : 'search' , component: SearchMatchObjectsComponent},
-  { path : 'matchDetails/:matchID' , component: MatchDetailsComponent},
+  { path : 'match/:matchID' , component: MatchDetailsComponent},
 ];
 
 // Export the routes as module providers

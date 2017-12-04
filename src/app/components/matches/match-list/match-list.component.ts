@@ -1,6 +1,7 @@
 import {Component, OnChanges, OnInit} from '@angular/core';
 import { Input } from '@angular/core';
 import { SoccerServiceClient } from '../../../services/soccer.service.client';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-match-list',
@@ -13,7 +14,7 @@ export class MatchListComponent implements OnInit, OnChanges {
 
   matches: any;
 
-  constructor(private soccerService: SoccerServiceClient) { }
+  constructor(private soccerService: SoccerServiceClient, private router: Router) { }
 
   ngOnInit() {
     this.searchMatches();
@@ -29,12 +30,18 @@ export class MatchListComponent implements OnInit, OnChanges {
       .getMatchesByDate(this.date)
       .subscribe(
         (data: any) => {
-          let val = data._body;
-          val = JSON.parse(val);
-          this.matches = val;
+          this.matches = this.parseBody(data);
         }
       );
   }
 
+  parseBody(data: any) {
+    let val = data._body;
+    val = JSON.parse(val);
+    return val;
+  }
 
+  navigateToMatchDetails(matchId: string) {
+    this.router.navigate(['/match', matchId]);
+  }
 }

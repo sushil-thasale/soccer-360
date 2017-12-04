@@ -12,6 +12,56 @@
   <!-- Right Pane - Match Details -->
   <div class="col-sm-8 col-xs-12 my-right-pane">
 
+    <!--match score-->
+    <div *ngIf="match" class="text-center">
+      <div *ngIf="match.localteam_score == '?' || match.localteam_score == ''">
+        {{match.localteam_name}} - {{match.visitorteam_name}}
+      </div>
+
+      <div *ngIf="match.localteam_score != '?' && match.localteam_score != ''">
+        {{match.localteam_name}} ({{match.localteam_score}}) - ({{match.visitorteam_score}}) {{match.visitorteam_name}}
+      </div>
+    </div>
+
+    <!--match details menu scrollbar-->
+    <div class="scrollmenu">
+      <a (click)="changeMatchDetailsType('FACTS')">Match Facts</a>
+      <a (click)="changeMatchDetailsType('LINEUP')">Line Up</a>
+      <a (click)="changeMatchDetailsType('COMMENTARY')">Commentary</a>
+      <a (click)="changeMatchDetailsType('MATCH_STATS')">Match Stats</a>
+      <a (click)="changeMatchDetailsType('PLAYER_STATS')">Player Stats</a>
+      <a (click)="changeMatchDetailsType('STANDINGS')">Standings</a>
+    </div>
+
+    <!--match details component-->
+    <div [ngSwitch]="matchDetailsType">
+
+      <div *ngSwitchCase="'FACTS'">
+        <app-match-facts></app-match-facts>
+      </div>
+
+      <div *ngSwitchCase="'LINEUP'">
+        <app-match-lineup></app-match-lineup>
+      </div>
+
+      <div *ngSwitchCase="'COMMENTARY'">
+        <app-match-commentary></app-match-commentary>
+      </div>
+
+      <div *ngSwitchCase="'MATCH_STATS'">
+        <app-match-stats></app-match-stats>
+      </div>
+
+      <div *ngSwitchCase="'PLAYER_STATS'">
+        <app-match-player-stats></app-match-player-stats>
+      </div>
+
+      <div *ngSwitchCase="'STANDINGS'">
+        <app-match-team-standings></app-match-team-standings>
+      </div>
+
+    </div>
+
   </div>
 
 </div>

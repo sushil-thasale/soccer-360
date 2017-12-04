@@ -56,7 +56,15 @@ import { SearchMatchObjectsComponent } from './components/matches/search-match-o
 import { HomeFooterComponent } from './components/home/home-footer/home-footer.component';
 import { HomeUserProfileComponent } from './components/user/home-user-profile/home-user-profile.component';
 import { HomeHeaderComponent } from './components/home/home-header/home-header.component';
+
 import { MatchDetailsComponent } from './components/matches/match-details/match-details.component';
+import { MatchEventsComponent} from './components/matches/match-details/match-events/match-events.component';
+import { MatchFactsComponent} from './components/matches/match-details/match-facts/match-facts.component';
+import { MatchLineupComponent} from './components/matches/match-details/match-lineup/match-lineup.component';
+import { MatchCommentaryComponent} from './components/matches/match-details/match-commentary/match-commentary.component';
+import { MatchStatsComponent} from './components/matches/match-details/match-stats/match-stats.component';
+import { MatchPlayerStatsComponent} from './components/matches/match-details/match-player-stats/match-player-stats.component';
+import { MatchTeamStandingsComponent} from './components/matches/match-details/match-team-standings/match-team-standings.component';
 
 @NgModule({
   // Declare components here
@@ -95,7 +103,14 @@ import { MatchDetailsComponent } from './components/matches/match-details/match-
     HomeFooterComponent,
     HomeHeaderComponent,
     HomeUserProfileComponent,
-    MatchDetailsComponent
+    MatchDetailsComponent,
+    MatchEventsComponent,
+    MatchFactsComponent,
+    MatchLineupComponent,
+    MatchCommentaryComponent,
+    MatchStatsComponent,
+    MatchPlayerStatsComponent,
+    MatchTeamStandingsComponent
   ],
   imports: [
     BrowserModule,
