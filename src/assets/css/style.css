@@ -118,3 +118,8 @@ iframe{
   width: 100%;
   height: 100%;
 }
+
+.app-logo{
+  font-family: 'Gill Sans MT Condensed';
+  font-size:xx-large;
+}

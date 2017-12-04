@@ -9,6 +9,6 @@ describe('angular-four-mean-seed App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to client-side!');
+    expect(page.getParagraphText()).toEqual('Welcome to app!');
   });
 });

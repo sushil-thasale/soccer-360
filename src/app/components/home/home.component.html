@@ -1,0 +1,83 @@
+<!-- Header -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+
+  <!--app logo and name-->
+  <div class="pull-left my-header-left-margin">
+    <a class="navbar-brand">
+      <span class="glyphicon glyphicon-globe"></span>
+      <b class="app-logo">Soccer 360</b>
+    </a>
+  </div>
+
+  <!--options-->
+  <div class="pull-right my-header-right-margin">
+    <!--calender-->
+    <a class="navbar-brand" (click)="navigateToCalender()">
+      <span class="glyphicon glyphicon-calendar"></span>
+    </a>
+
+    <!--search-->
+    <a class="navbar-brand">
+      <span class="glyphicon glyphicon-search" (click)="navigateToSearch()"></span>
+    </a>
+
+    <!--logout-->
+    <a class="navbar-brand">
+      <span class="glyphicon glyphicon-off" (click)="logout()"></span>
+    </a>
+  </div>
+
+  <!--matches-->
+  <div class="my-header-left-margin">
+    <a class="navbar-brand">
+      <b class="app-logo">Matches</b>
+    </a>
+  </div>
+
+</nav>
+
+<!--main body-->
+<div class="row container-fluid">
+
+  <!-- Left Pane - User details -->
+  <div class="col-sm-4 hidden-xs my-left-pane my-right-border">
+    <ul class="list-group">
+
+      <!--<li class="list-group-item my-no-border"-->
+          <!--*ngFor="let website of websites">-->
+        <!--<a (click)="navigateToPages(website)" class="no-underline-hover">{{website.name}}</a>-->
+        <!--<a (click)="navigateToWebsiteEdit(website)" class="pull-right">-->
+          <!--<span class="glyphicon glyphicon-cog my-right-margin"></span>-->
+        <!--</a>-->
+      <!--</li>-->
+
+    </ul>
+  </div>
+
+  <!-- Right Pane - Matches -->
+  <div class="col-sm-8 col-xs-12 my-right-pane">
+
+    <app-matches date="{{currDate.toDateString()}}"></app-matches>
+
+  </div>
+
+</div>
+
+<!-- Footer -->
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+
+  <!--home-->
+  <div class="pull-left my-header-left-margin">
+    <a class="navbar-brand">
+      <span class="glyphicon glyphicon-home" (click)="navigateToHome()"></span>
+    </a>
+  </div>
+
+  <!--profile and settings-->
+  <div class="pull-right my-header-right-margin">
+    <a class="navbar-brand">
+      <span class="glyphicon glyphicon-user" (click)="navigateToProfile()"></span>
+    </a>
+  </div>
+
+</nav>

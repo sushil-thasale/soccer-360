@@ -11,7 +11,7 @@ module.exports = function(app)
   // connection string for local testing
   var connectionString = 'mongodb://127.0.0.1:27017/test';
 
-  // logic to host client-side on heroku
+  // logic to host app on heroku
   if(process.env.MLAB_USERNAME_WEBDEV) { // check if running remotely
     var username = process.env.MLAB_USERNAME_WEBDEV; // get from environment
     var password = process.env.MLAB_PASSWORD_WEBDEV;
@@ -45,7 +45,7 @@ module.exports = function(app)
     }
 
     function createMessage(req, res) {
-        console.log("in client-side");
+        console.log("in app");
         TestModel
             .create(req.body)
             .then(

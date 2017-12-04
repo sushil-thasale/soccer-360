@@ -12,8 +12,6 @@ const app = express();
 var cookieParser = require('cookie-parser');
 var session      = require('express-session');
 var passport = require('passport');
-// var cors = require('cors');
-// client-side.use(cors({credentials: true, origin: 'http://localhost:4200'}));
 
 // Point static path to dist -- For building -- REMOVE
 app.use(express.static(path.join(__dirname, 'dist')));
@@ -57,5 +55,3 @@ app.get('*', function (req, res) {
 
 
 server.listen( port , () => console.log('Running'));
-
-
