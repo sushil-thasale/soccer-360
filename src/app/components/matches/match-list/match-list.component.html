@@ -1,0 +1,18 @@
+<ul class="list-group">
+
+  <li class="list-group-item my-no-border"
+      *ngFor="let match of matches">
+    <a class="text-center">
+
+      <div *ngIf="match.localteam_score == '?' || match.localteam_score == ''">
+        {{match.localteam_name}} - {{match.visitorteam_name}}
+      </div>
+
+      <div *ngIf="match.localteam_score != '?' && match.localteam_score != ''">
+        {{match.localteam_name}} ({{match.localteam_score}}) - ({{match.visitorteam_score}}) {{match.visitorteam_name}}
+      </div>
+
+    </a>
+  </li>
+
+</ul>

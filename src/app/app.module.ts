@@ -55,7 +55,8 @@ import { DpDatePickerModule } from 'ng2-date-picker';
 import { SearchMatchObjectsComponent } from './components/matches/search-match-objects/search-match-objects.component';
 import { HomeFooterComponent } from './components/home/home-footer/home-footer.component';
 import { HomeUserProfileComponent } from './components/user/home-user-profile/home-user-profile.component';
-import { HomeHeaderComponent } from "./components/home/home-header/home-header.component";
+import { HomeHeaderComponent } from './components/home/home-header/home-header.component';
+import { MatchDetailsComponent } from './components/matches/match-details/match-details.component';
 
 @NgModule({
   // Declare components here
@@ -93,7 +94,8 @@ import { HomeHeaderComponent } from "./components/home/home-header/home-header.c
     SearchMatchObjectsComponent,
     HomeFooterComponent,
     HomeHeaderComponent,
-    HomeUserProfileComponent
+    HomeUserProfileComponent,
+    MatchDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -123,3 +123,57 @@ iframe{
   font-family: 'Gill Sans MT Condensed';
   font-size:xx-large;
 }
+
+/*--------------------------------------------------------------------------
+  Home Page Side Navigation (User Profile Details)
+--------------------------------------------------------------------------*/
+.sider-navbar {
+  position: fixed;
+  top: 51px; /*Change to reposition .sider-navbar from top*/
+  left: 225px;
+  width: 33.33%;
+  margin-left: -225px;
+  border-right:1px solid #E7E7E7; /*Change for right side border color*/
+  border-radius: 0;
+  overflow-y: auto;
+  background: #F8F8F8; /*Change for background color*/
+  bottom: 0;
+  overflow-x: hidden;
+  padding-bottom: 40px;
+}
+
+/*--------------------------------------------------------------------------
+  Profile container
+  http://bootsnipp.com/snippets/featured/user-profile-sidebar
+--------------------------------------------------------------------------*/
+.profile-userpic img {
+  float: none;
+  margin: 12px auto 0;
+  padding:6px;
+  width: 50%;
+  height: 50%;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
+  border-left: 4px solid #333333;
+  border-right: 4px solid #333333;
+}
+
+.profile-usertitle {
+  text-align: center;
+  margin-top: 16px;
+  color: #333333;
+}
+
+.profile-usertitle-name {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.profile-usertitle-title {
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
