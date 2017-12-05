@@ -1,3 +1,54 @@
-<p>
-  match-lineup works!
-</p>
+<div *ngIf="lineup">
+  <!--Match Lineup-->
+  <div class="row container-fluid">
+
+    <!--first team-->
+    <div class="text-center">First Team</div>
+
+    <div>
+      <!-- Left Pane - Home team -->
+      <div class="col-sm-6 col-md-6 my-left-pane-lineup pull-left">
+        <!--first team-->
+        <div *ngFor="let player of lineup.localteam">
+          <div>
+            {{player.number}} {{player.name}} ({{player.pos}})
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Pane - Away Team -->
+      <div class="col-sm-6 col-md-6 my-right-pane-lineup pull-right">
+        <div *ngFor="let player of lineup.visitorteam">
+          <div>
+            {{player.number}} {{player.name}} ({{player.pos}})
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--subs/ bench-->
+    <div class="text-center">Bench</div>
+
+    <div>
+      <!-- Left Pane - Home team -->
+      <div class="col-sm-6 col-md-6 my-left-pane-lineup pull-left">
+        <!--first team-->
+        <div *ngFor="let player of subs.localteam">
+          <div>
+            {{player.number}} {{player.name}} ({{player.pos}})
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Pane - Away Team -->
+      <div class="col-sm-6 col-md-6 my-right-pane-lineup pull-right">
+        <div *ngFor="let player of subs.visitorteam">
+          <div>
+            {{player.number}} {{player.name}} ({{player.pos}})
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

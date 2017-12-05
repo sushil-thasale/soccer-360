@@ -1,3 +1,55 @@
-<p>
-  match-stats works!
-</p>
+<div *ngIf="stats">
+  <!--Match stats-->
+  <div class="row container-fluid">
+
+    <!-- Left Pane - Home team stats-->
+    <div class="col-sm-4 col-md-4 my-left-pane-lineup pull-left">
+      <div *ngFor="let stat of stats.localteam">
+        <ul class="vertical-menu pull-left">
+          <li>{{stat.shots_total}}</li>
+          <li>{{stat.shots_ongoal}}</li>
+          <li>{{stat.fouls}}</li>
+          <li>{{stat.corners}}</li>
+          <li>{{stat.offsides}}</li>
+          <li>{{stat.possesiontime}}</li>
+          <li>{{stat.yellowcards}}</li>
+          <li>{{stat.redcards}}</li>
+          <li>{{stat.saves}}</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Middle Pane - Stats Name-->
+    <div class="col-sm-4 col-md-4 my-left-pane-lineup text-center">
+      <ul class="vertical-menu">
+        <li>Total Shots</li>
+        <li>Shots On Goal</li>
+        <li>Fouls</li>
+        <li>Corners</li>
+        <li>Offsides</li>
+        <li>Possession</li>
+        <li>Yellow Cards</li>
+        <li>Red Cards</li>
+        <li>Saves</li>
+      </ul>
+    </div>
+
+    <!-- Right Pane - Away Team Stats-->
+    <div class="col-sm-4 col-md-4 my-right-pane-lineup pull-right">
+      <div *ngFor="let stat of stats.visitorteam">
+        <ul class="vertical-menu pull-left">
+          <li>{{stat.shots_total}}</li>
+          <li>{{stat.shots_ongoal}}</li>
+          <li>{{stat.fouls}}</li>
+          <li>{{stat.corners}}</li>
+          <li>{{stat.offsides}}</li>
+          <li>{{stat.possesiontime}}</li>
+          <li>{{stat.yellowcards}}</li>
+          <li>{{stat.redcards}}</li>
+          <li>{{stat.saves}}</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>

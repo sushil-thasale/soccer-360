@@ -41,15 +41,15 @@
       </div>
 
       <div *ngSwitchCase="'LINEUP'">
-        <app-match-lineup></app-match-lineup>
+        <app-match-lineup matchID="{{matchID}}"></app-match-lineup>
       </div>
 
       <div *ngSwitchCase="'COMMENTARY'">
-        <app-match-commentary></app-match-commentary>
+        <app-match-commentary matchID="{{matchID}}"></app-match-commentary>
       </div>
 
       <div *ngSwitchCase="'MATCH_STATS'">
-        <app-match-stats></app-match-stats>
+        <app-match-stats matchID="{{matchID}}"></app-match-stats>
       </div>
 
       <div *ngSwitchCase="'PLAYER_STATS'">
@@ -57,7 +57,7 @@
       </div>
 
       <div *ngSwitchCase="'STANDINGS'">
-        <app-match-team-standings></app-match-team-standings>
+        <app-match-team-standings compId="{{match.comp_id}}"></app-match-team-standings>
       </div>
 
     </div>

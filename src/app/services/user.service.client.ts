@@ -18,7 +18,9 @@ export class UserService {
     // 'findUserByUsername' : this.findUserByUsername,
     'findUserById' : this.findUserById,
     'updateUser' : this.updateUser,
-    'deleteUser' : this.deleteUser
+    'deleteUser' : this.deleteUser,
+    'followUser' : this.followUser,
+    'unfollowUser' : this.unfollowUser
   };
 
   baseUrl: string = environment.baseUrl;
@@ -134,6 +136,22 @@ export class UserService {
   deleteUser(userId: string) {
     const url: string = this.baseUrl + '/api/user/' + userId;
     return this.http.delete(url)
+      .map((res: Response) => {
+        return res.json();
+      });
+  }
+
+  followUser(userId: string, followUserId: string) {
+    const url: string = this.baseUrl + '/api/user/' + userId + '/follow';
+    return this.http.put(url, followUserId)
+      .map((res: Response) => {
+        return res.json();
+      });
+  }
+
+  unfollowUser(userId: string, unfollowUserId: string) {
+    const url: string = this.baseUrl + '/api/user/' + userId + '/unfollow';
+    return this.http.put(url, unfollowUserId)
       .map((res: Response) => {
         return res.json();
       });

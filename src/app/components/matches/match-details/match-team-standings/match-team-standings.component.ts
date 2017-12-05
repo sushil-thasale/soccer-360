@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Input } from '@angular/core';
+import {SoccerServiceClient} from '../../../../services/soccer.service.client';
 
 @Component({
   selector: 'app-match-team-standings',
@@ -7,9 +9,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MatchTeamStandingsComponent implements OnInit {
 
-  constructor() { }
+  @Input() compId: string;
+  errorFlag: boolean;
+  errorMsg: string;
+  standings: any;
+
+  constructor(private soccerService: SoccerServiceClient) { }
 
   ngOnInit() {
+
+    // match commentary - lineup & bench
+    this.soccerService.getCompetitionStandings(this.compId)
+      .subscribe(
+        (compDetails: any) => {
+          this.standings = this.parseBody(compDetails);
+          this.standings.sort((t1, t2) => Number(t1.position) - Number(t2.position));
+          this.errorFlag = false;
+        }, (error) => {
+          console.log(error);
+          this.errorFlag = true;
+          this.errorMsg = 'Unable to retrieve competition standings!';
+        });
   }
 
+  parseBody(data: any) {
+    let val = data._body;
+    val = JSON.parse(val);
+    return val;
+  }
 }

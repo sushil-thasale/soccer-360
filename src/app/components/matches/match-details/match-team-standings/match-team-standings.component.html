@@ -1,3 +1,39 @@
-<p>
-  match-team-standings works!
-</p>
+<div *ngIf="standings">
+    <table class="points_table">
+
+      <thead>
+        <tr>
+          <th class="col-xs-1">Rank</th>
+          <th class="col-xs-3">Team</th>
+          <th class="col-xs-1">PL</th>
+          <th class="col-xs-1">W</th>
+          <th class="col-xs-1">D</th>
+          <th class="col-xs-1">L</th>
+          <th class="col-xs-1">GS</th>
+          <th class="col-xs-1">GA</th>
+          <th class="col-xs-1">GD</th>
+          <th class="col-xs-1">P</th>
+        </tr>
+      </thead>
+
+      <tbody class="points_table_scrollbar">
+        <div *ngFor="let team of standings">
+          <tr class="even">
+            <td class="col-xs-1 text-center">{{team.position}}</td>
+            <td class="col-xs-3 text-center">{{team.team_name}}</td>
+            <td class="col-xs-1 text-center">{{team.overall_gp}}</td>
+            <td class="col-xs-1 text-center">{{team.overall_w}}</td>
+            <td class="col-xs-1 text-center">{{team.overall_d}}</td>
+            <td class="col-xs-1 text-center">{{team.overall_l}}</td>
+            <td class="col-xs-1 text-center">{{team.overall_gs}}</td>
+            <td class="col-xs-1 text-center">{{team.overall_ga}}</td>
+            <td class="col-xs-1 text-center">{{team.gd}}</td>
+            <td class="col-xs-1 text-center">{{team.points}}</td>
+          </tr>
+        </div>
+      </tbody>
+
+    </table>
+
+</div>
+
