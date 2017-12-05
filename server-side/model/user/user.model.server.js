@@ -1,27 +1,45 @@
 module.exports = function () {
-
   var model = null;
-  var mongoose = require('mongoose');
-  var UserSchema = require('./user.schema.server')();
-  var UserModel = mongoose.model('UserModel', UserSchema);
 
   var api = {
     createUser: createUser,
+    deleteUser: deleteUser,
+    updateUser: updateUser,
+    findUsers: findUsers,
     findUserById: findUserById,
     findUserByUsername: findUserByUsername,
     findUserByCredentials: findUserByCredentials,
-    updateUser: updateUser,
-    deleteUser:deleteUser,
     findUserByFacebookId: findUserByFacebookId,
+    followUser: followUser,
+    unfollowUser: unfollowUser,
     setModel: setModel
   };
+
+  var mongoose = require('mongoose');
+
+  var UserSchema = require('./user.schema.server')();
+  var UserModel = mongoose.model('UserModel', UserSchema);
+
+  return api;
 
   function createUser(user) {
     return UserModel.create(user);
   }
 
+  function deleteUser(userId) {
+    return UserModel.remove({_id: userId});
+  }
+
+  function findUserByFacebookId(facebookId) {
+    return UserModel.findOne({'facebook.id': facebookId});
+  }
+
   function findUserById(userId){
     return UserModel.findById(userId);
+  }
+
+  function findUsers(){
+    return UserModel.find();
   }
 
   function findUserByUsername(username){
@@ -29,49 +47,47 @@ module.exports = function () {
   }
 
   function findUserByCredentials(username, password){
-    return UserModel.find({"username": username, "password": password});
+    return UserModel.findOne({"username": username, "password": password});
   }
 
   function updateUser(userId, newUser){
-    return UserModel.update({_id:userId},{$set:newUser});
+    return UserModel.update({_id:userId}, {$set:newUser});
   }
 
-  function deleteUser(userId){
-    return UserModel
-      .findById(userId)
-      .then(function(user) {
-        var userWebsites = user.websites;
-        return deleteUserAndWebsites(userWebsites, userId);
-      }, function(err){
+  function followUser(loggedInUserId, followUserId) {
+    return UserModel.update({_id: loggedInUserId}, {$addToSet: {following: followUserId}})
+      .then(function (response) {
+        return UserModel.update({_id: followUserId}, {$addToSet: {followers: loggedInUserId}})
+          .then(function (res) {
+            return res;
+          }, function (err) {
+            return err;
+          })
+      }, function (err) {
+        console.log(err);
         return err;
       })
   }
 
-  function deleteUserAndWebsites(userWebsites, userId){
-    if(userWebsites.length == 0){
-      return UserModel.remove({_id: userId})
-        .then(function (response) {
-          return response;
-        }, function (err) {
-          return err;
-        });
-    }
-
-    return model.websiteModel.deleteWebsiteHelper(userWebsites.shift())
-      .then(function(response) {
-        return deleteUserAndWebsites(userWebsites, userId);
-      }, function(err){
+  function unfollowUser(loggedInUserId, unfollowUserId){
+    UserModel.findById(loggedInUserId)
+      .then(function (user) {
+        user.following.splice(user.following.indexOf(unfollowUserId),1);
+        return user.save();
+      }, function (err) {
         return err;
-      })
-  }
+      });
 
-  function findUserByFacebookId(facebookId) {
-    return UserModel.findOne({'facebook.id': facebookId});
+    return UserModel.findById(unfollowUserId)
+      .then(function (user) {
+        user.followers.splice(user.followers.indexOf(loggedInUserId),1);
+        return user.save();
+      }, function (err) {
+        return err;
+      });
   }
 
   function setModel(_model) {
     model = _model;
   }
-
-  return api;
 };

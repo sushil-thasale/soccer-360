@@ -1,3 +1,19 @@
-<p>
-  match-facts works!
-</p>
+<div *ngIf="match && match.events && match.events.length>0">
+  <app-match-events matchID="{{matchID}}"></app-match-events>
+</div>
+
+<div *ngIf="match && competition">
+
+  <div class="vertical-menu">
+    <div class="text-center">
+      <a>Competition: {{competition.name}}</a>
+      <a>Season: {{match.season}}</a>
+      <a>Week: {{match.week}}</a>
+      <a>Stadium: {{match.venue}}</a>
+      <a>Venue City: {{match.venue_city}}</a>
+      <a>Date: {{match.formatted_date}}</a>
+      <a>Time: {{match.time}}</a>
+    </div>
+  </div>
+
+</div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {SoccerServiceClient} from '../../../../services/soccer.service.client';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-match-events',
@@ -7,9 +9,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MatchEventsComponent implements OnInit {
 
-  constructor() { }
+  @Input() matchID: string;
+  errorFlag: boolean;
+  errorMsg: string;
+  match: any;
+  matchEvents: any;
+
+  constructor(private soccerService: SoccerServiceClient) { }
 
   ngOnInit() {
+
+    // match details
+    this.soccerService.getMatchDetails(this.matchID)
+      .subscribe(
+        (match: any) => {
+          this.match = this.parseBody(match);
+          this.matchEvents = this.match.events;
+          this.errorFlag = false;
+        }, (error) => {
+          this.errorFlag = true;
+          this.errorMsg = 'Unable to retrieve match details!';
+        });
   }
 
+  parseBody(data: any) {
+    let val = data._body;
+    val = JSON.parse(val);
+    return val;
+  }
 }

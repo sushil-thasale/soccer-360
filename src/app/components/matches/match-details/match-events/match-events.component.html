@@ -1,3 +1,85 @@
-<p>
-  match-events works!
-</p>
+<div *ngIf="matchEvents">
+  <div *ngFor="let event of matchEvents">
+
+    <ul>
+      <li>
+        <!--local team-->
+        <div *ngIf="event.team=='localteam'" class="pull-left">
+
+          <div [ngSwitch]="event.type">
+
+            <!--substitutions-->
+            <div *ngSwitchCase="'subst'">
+              {{event.minute}}'
+              <span class="glyphicon glyphicon-arrow-up"></span>
+              {{event.player}}
+              <span class="glyphicon glyphicon-arrow-down"></span>
+              {{event.assist}}
+            </div>
+
+            <!--yellow card-->
+            <div *ngSwitchCase="'yellowcard'">
+              {{event.minute}}'
+              <span class="glyphicon glyphicon-tag"></span>
+              {{event.player}}
+            </div>
+
+            <!--red card-->
+            <div *ngSwitchCase="'redcard'">
+              {{event.minute}}'
+              <span class="glyphicon glyphicon-tags"></span>
+              {{event.player}}
+            </div>
+
+            <!--goal-->
+            <div *ngSwitchCase="'goal'">
+              {{event.minute}}'
+              <span class="glyphicon glyphicon-cd"></span>
+              {{event.player}}
+            </div>
+
+          </div>
+        </div>
+
+        <!--away team-->
+        <div *ngIf="event.team=='visitorteam'" class="pull-right">
+
+          <div [ngSwitch]="event.type">
+
+            <!--substitutions-->
+            <div *ngSwitchCase="'subst'">
+              <span class="glyphicon glyphicon-arrow-up"></span>
+              {{event.player}}
+              <span class="glyphicon glyphicon-arrow-down"></span>
+              {{event.assist}}
+              {{event.minute}}'
+            </div>
+
+            <!--yellow card-->
+            <div *ngSwitchCase="'yellowcard'">
+              {{event.player}}
+              <span class="glyphicon glyphicon-tag"></span>
+              {{event.minute}}'
+            </div>
+
+            <!--red card-->
+            <div *ngSwitchCase="'redcard'">
+              {{event.player}}
+              <span class="glyphicon glyphicon-tags"></span>
+              {{event.minute}}'
+            </div>
+
+            <!--goal-->
+            <div *ngSwitchCase="'goal'">
+              {{event.player}}
+              <span class="glyphicon glyphicon-cd"></span>
+              {{event.minute}}'
+            </div>
+
+          </div>
+        </div>
+
+      </li>
+    </ul>
+  </div>
+</div>

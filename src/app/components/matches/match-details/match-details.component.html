@@ -37,7 +37,7 @@
     <div [ngSwitch]="matchDetailsType">
 
       <div *ngSwitchCase="'FACTS'">
-        <app-match-facts></app-match-facts>
+        <app-match-facts matchID="{{matchID}}"></app-match-facts>
       </div>
 
       <div *ngSwitchCase="'LINEUP'">

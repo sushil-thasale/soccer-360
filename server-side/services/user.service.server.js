@@ -38,6 +38,8 @@ module.exports = function(app, userModel) {
   app.post('/api/logout', logout);
   app.post('/api/register', register);
   app.post('/api/loggedIn', loggedIn);
+  app.put("/api/user/:userId/follow", followUser);
+  app.put("/api/user/:userId/unfollow", unfollowUser);
 
   // route for facebook authentication and login
   app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
@@ -49,6 +51,34 @@ module.exports = function(app, userModel) {
     var url = "/user/" + req.user._id;
     res.redirect(url);
   });
+
+  function followUser(req, res) {
+    var loggedInUserId = req.params.userId;
+    var followUserId = req.query.followUserId;
+
+    userModel
+      .followUser(loggedInUserId, followUserId)
+      .then(function(user) {
+          res.json(user);
+        },
+        function (error) {
+          res.sendStatus(404).send(error);
+        });
+  }
+
+  function unfollowUser(req, res) {
+    var loggedInUserId = req.params.userId;
+    var unfollowUserId = req.query.unfollowUserId;
+
+    userModel
+      .followUser(loggedInUserId, unfollowUserId)
+      .then(function(user) {
+          res.json(user);
+        },
+        function (error) {
+          res.sendStatus(404).send(error);
+        });
+  }
 
   function createUser(req, res){
     var newUser = req.body;
