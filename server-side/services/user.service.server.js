@@ -54,7 +54,7 @@ module.exports = function(app, userModel) {
 
   function followUser(req, res) {
     var loggedInUserId = req.params.userId;
-    var followUserId = req.query.followUserId;
+    var followUserId = req.body;
 
     userModel
       .followUser(loggedInUserId, followUserId)
@@ -68,7 +68,7 @@ module.exports = function(app, userModel) {
 
   function unfollowUser(req, res) {
     var loggedInUserId = req.params.userId;
-    var unfollowUserId = req.query.unfollowUserId;
+    var unfollowUserId = req.body;
 
     userModel
       .followUser(loggedInUserId, unfollowUserId)
