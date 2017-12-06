@@ -5,6 +5,7 @@ module.exports = function () {
     createLeague: createLeague,
     followLeague: followLeague,
     unfollowLeague: unfollowLeague,
+    findAllLeaguesForUser: findAllLeaguesForUser,
     setModel: setModel
   };
 
@@ -17,6 +18,11 @@ module.exports = function () {
 
   function findLeagueById(leagueId){
     return LeagueModel.find({id:leagueId});
+  }
+
+  function findAllLeaguesForUser(userId) {
+    console.log('in model ' + userId);
+    return LeagueModel.find({"followers" : {"$in" : [userId]}});
   }
 
   function createLeague(newLeague, user){

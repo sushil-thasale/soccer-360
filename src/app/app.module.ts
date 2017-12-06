@@ -65,6 +65,8 @@ import { MatchCommentaryComponent} from './components/matches/match-details/matc
 import { MatchStatsComponent} from './components/matches/match-details/match-stats/match-stats.component';
 import { MatchPlayerStatsComponent} from './components/matches/match-details/match-player-stats/match-player-stats.component';
 import { MatchTeamStandingsComponent} from './components/matches/match-details/match-team-standings/match-team-standings.component';
+import { UserManageFavoritesComponent } from './components/user/user-manage-favorites/user-manage-favorites.component';
+import { LeagueService } from './services/league.service.client';
 
 @NgModule({
   // Declare components here
@@ -110,7 +112,8 @@ import { MatchTeamStandingsComponent} from './components/matches/match-details/m
     MatchCommentaryComponent,
     MatchStatsComponent,
     MatchPlayerStatsComponent,
-    MatchTeamStandingsComponent
+    MatchTeamStandingsComponent,
+    UserManageFavoritesComponent
   ],
   imports: [
     BrowserModule,
@@ -130,7 +133,8 @@ import { MatchTeamStandingsComponent} from './components/matches/match-details/m
     FlickrService,
     SharedService,
     AuthGuard,
-    SoccerServiceClient
+    SoccerServiceClient,
+    LeagueService
   ],
   bootstrap: [AppComponent]
 })

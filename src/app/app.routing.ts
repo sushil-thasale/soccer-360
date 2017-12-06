@@ -23,6 +23,7 @@ import { AuthGuard } from './services/auth-guard.service';
 import { MatchCalenderComponent } from './components/matches/match-calender/match-calender.component';
 import { SearchMatchObjectsComponent } from './components/matches/search-match-objects/search-match-objects.component';
 import { MatchDetailsComponent } from './components/matches/match-details/match-details.component';
+import { UserManageFavoritesComponent } from './components/user/user-manage-favorites/user-manage-favorites.component';
 
 const APP_ROUTES: Routes = [
   { path : '', component : HomeComponent},
@@ -42,6 +43,7 @@ const APP_ROUTES: Routes = [
   { path : 'calender' , component: MatchCalenderComponent},
   { path : 'search' , component: SearchMatchObjectsComponent},
   { path : 'match/:matchID' , component: MatchDetailsComponent},
+  { path : 'user/:userID/favorites' , component: UserManageFavoritesComponent},
 ];
 
 // Export the routes as module providers

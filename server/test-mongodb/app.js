@@ -9,7 +9,7 @@ module.exports = function(app)
     app.delete("/api/test/:id", deleteMessage);
 
   // connection string for local testing
-  var connectionString = 'mongodb://127.0.0.1:27017/test';
+  var connectionString = 'mongodb://127.0.0.1:27017/soccerApp';
 
   // logic to host app on heroku
   if(process.env.MLAB_USERNAME_WEBDEV) { // check if running remotely

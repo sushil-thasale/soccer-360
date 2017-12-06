@@ -13,6 +13,9 @@ var cookieParser = require('cookie-parser');
 var session      = require('express-session');
 var passport = require('passport');
 
+var cors = require('cors');
+app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
+
 // Point static path to dist -- For building -- REMOVE
 app.use(express.static(path.join(__dirname, 'dist')));
 
@@ -28,12 +31,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // CORS
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, X-Auth-Token");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
-  next();
-});
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, X-Auth-Token");
+//   res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
+//   next();
+// });
 
 
 const port = process.env.PORT || '3100';

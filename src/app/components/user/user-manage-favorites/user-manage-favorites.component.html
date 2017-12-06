@@ -1,0 +1,116 @@
+ <!--Header-->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="row container-fluid">
+    <div class="col-xs-12">
+
+      <div class="navbar-text pull-left my-header-left-margin">
+        <a (click)="navigateToProfile()">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+      </div>
+
+      <div class="navbar-text pull-right my-header-right-margin">
+        <a (click)="updateFavorites()" >
+          <span class="glyphicon glyphicon-ok"></span>
+        </a>
+      </div>
+
+      <div class="navbar-header">
+        <a class="navbar-brand" [routerLink]="[]">
+          Websites
+        </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+<!-- favorites List -->
+<div class="row container-fluid">
+  <div class="col-xs-12 my-left-pane">
+
+    <div>
+      <!--user leagues -->
+      Favorite Leagues:
+      <a (click)="addLeagues()" class="pull-right">
+        <span class="glyphicon glyphicon-plus my-right-margin"></span>
+      </a>
+
+      <div *ngIf="leagues">
+        <div id="league">
+          <ul class="list-group">
+
+            <li class="list-group-item my-no-border"
+                *ngFor="let league of leagues">
+              <a class="no-underline-hover">{{league.name}}</a>
+              <a (click)="unfollowLeague(league.apiId)" class="pull-right">
+                <span class="glyphicon glyphicon-remove my-right-margin"></span>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <!--user teams -->
+      Favorite Teams:
+      <a (click)="addTeams()" class="pull-right">
+        <span class="glyphicon glyphicon-plus my-right-margin"></span>
+      </a>
+
+      <div *ngIf="teams">
+        <div id="teams">
+          <ul class="list-group">
+
+            <li class="list-group-item my-no-border"
+                *ngFor="let team of teams">
+              <a class="no-underline-hover">{{team.name}}</a>
+              <a (click)="unfollowTeam(team.apiId)" class="pull-right">
+                <span class="glyphicon glyphicon-remove my-right-margin"></span>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <!--user players -->
+      Favorite Leagues:
+      <a (click)="addPlayers()" class="pull-right">
+        <span class="glyphicon glyphicon-plus my-right-margin"></span>
+      </a>
+
+      <div *ngIf="players">
+        <div id="players">
+          <ul class="list-group">
+
+            <li class="list-group-item my-no-border"
+                *ngFor="let player of players">
+              <a class="no-underline-hover">{{player.name}}</a>
+              <a (click)="unfollowPlayer(player.apiId)" class="pull-right">
+                <span class="glyphicon glyphicon-remove my-right-margin"></span>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+ <!--Footer-->
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+  <div class="container-fluid">
+    <div class="navbar-footer navbar-text pull-right">
+      <a (click) = "navigateToProfile()">
+        <span class="glyphicon glyphicon-user"></span>
+      </a>
+    </div>
+  </div>
+</nav>

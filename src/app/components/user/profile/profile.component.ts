@@ -69,7 +69,7 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(['/user', this.userID]);
   }
 
-  navigateToWebsites() {
-    this.router.navigate(['/user', this.userID, 'website']);
+  navigateToFavorites() {
+    this.router.navigate(['/user', this.userID, 'favorites']);
   }
 }
