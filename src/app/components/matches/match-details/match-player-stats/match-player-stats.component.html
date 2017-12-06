@@ -1,3 +1,15 @@
-<p>
-  match-player-stats works!
-</p>
+<div *ngIf="match && playerStats && localTeamPlayers.length>0 && visitorTeamPlayers.length>0">
+  <select id="myselect">
+    <!--<optgroup label="{{match.localteam_name}}">-->
+      <!--<div *ngFor="let player of localTeamPlayers">-->
+        <!--<option>{{player}}</option>-->
+      <!--</div>-->
+    <!--</optgroup>-->
+
+    <!--<optgroup label="{{match.visitorteam_name}}">-->
+      <!--<div *ngFor="let player of visitorTeamPlayers">-->
+        <!--<option>{{player}}</option>-->
+      <!--</div>-->
+    <!--</optgroup>-->
+  </select>
+</div>

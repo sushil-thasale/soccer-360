@@ -45,5 +45,4 @@ export class MatchDetailsComponent implements OnInit {
   changeMatchDetailsType(type: string) {
     this.matchDetailsType = type;
   }
-
 }
