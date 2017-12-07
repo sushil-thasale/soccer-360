@@ -5,7 +5,7 @@ module.exports = function () {
   var pageModel       = require("./page/page.model.server")();
   var widgetModel     = require("./widget/widget.model.server")();
   var leagueModel     = require("./league/league.model.server")();
-  var teamModel     = require("./league/league.model.server")();
+  var teamModel     = require("./team/team.model.server")();
   var playerModel     = require("./player/player.model.server")();
 
   var model = {
