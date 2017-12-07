@@ -5,5 +5,5 @@ module.exports = function(app) {
   require('./services/website.service.server')(app, models.websiteModel);
   require("./services/page.service.server.js")(app, models.pageModel);
   require("./services/widget.service.server.js")(app, models.widgetModel);
-  require("./services/league.service.server")(app, models.leagueModel);
+  require("./services/league.service.server")(app, models);
 }

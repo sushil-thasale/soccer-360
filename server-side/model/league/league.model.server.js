@@ -1,7 +1,8 @@
 module.exports = function () {
   var model = null;
   var api = {
-    findLeagueById: findLeagueById,
+    findLeagueByApiId: findLeagueByApiId,
+    findLeagueByObjectId: findLeagueByObjectId,
     createLeague: createLeague,
     followLeague: followLeague,
     unfollowLeague: unfollowLeague,
@@ -16,49 +17,36 @@ module.exports = function () {
 
   return api;
 
-  function findLeagueById(leagueId){
-    return LeagueModel.find({id:leagueId});
+  function findLeagueByApiId(leagueApiId){
+    return LeagueModel.find({apiId:leagueApiId});
+  }
+
+  function findLeagueByObjectId(leagueId){
+    return LeagueModel.findById(leagueId);
   }
 
   function findAllLeaguesForUser(userId) {
-    console.log('in model ' + userId);
     return LeagueModel.find({"followers" : {"$in" : [userId]}});
   }
 
-  function createLeague(newLeague, user){
-    return LeagueModel.create(newLeague)
-      .then(function (league) {
-        user.leagues.push(league._id);
-        user.save();
-        league.save();
-      }, function (err) {
-        return err;
-      });
+  function createLeague(newLeague){
+    return LeagueModel.create(newLeague);
   }
 
   function followLeague(userId, apiLeagueId){
     return LeagueModel.findOne({apiId: apiLeagueId})
       .then(function(league) {
-        if (league == null) {
-          var newLeague = new LeagueModel({"apiId": apiLeagueId});
-          model.userModel.findUserById(userId)
-            .then(function (user) {
-              newLeague.followers.push(user._id);
-              createLeague(newLeague, user);
-            }, function (err) {
-              return err;
-            });
-        } else {
-          model.userModel.findUserById(userId)
-            .then(function (user) {
-              league.followers.push(user._id);
-              user.leagues.push(league._id);
-              user.save();
-              league.save();
-            }, function (err) {
-              return err;
-            });
-        }
+        model.userModel.findUserById(userId)
+          .then(function (user) {
+            league.followers.push(user._id);
+            league.save();
+            user.leagues.push(league._id);
+            user.save();
+          }, function (error) {
+            console.log(error + " cannot find user");
+          });
+        }, function (error) {
+        console.log(error + " cannot fins league");
       });
   }
 

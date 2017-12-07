@@ -5,13 +5,17 @@ module.exports = function () {
   var pageModel       = require("./page/page.model.server")();
   var widgetModel     = require("./widget/widget.model.server")();
   var leagueModel     = require("./league/league.model.server")();
+  var teamModel     = require("./league/league.model.server")();
+  var playerModel     = require("./player/player.model.server")();
 
   var model = {
     userModel: userModel,
     websiteModel: websiteModel,
     pageModel:pageModel,
     widgetModel:widgetModel,
-    leagueModel: leagueModel
+    leagueModel: leagueModel,
+    teamModel: teamModel,
+    playerModel: playerModel
   };
 
   userModel.setModel(model);
@@ -19,6 +23,8 @@ module.exports = function () {
   pageModel.setModel(model);
   widgetModel.setModel(model);
   leagueModel.setModel(model);
+  teamModel.setModel(model);
+  playerModel.setModel(model);
 
   return model;
 };

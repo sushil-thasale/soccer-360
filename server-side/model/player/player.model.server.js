@@ -2,10 +2,12 @@ module.exports = function () {
   var model = null;
 
   var api = {
-    findPlayerById: findPlayerById,
+    findPlayerByApiId: findPlayerByApiId,
+    findPlayerByObjectId: findPlayerByObjectId,
     createPlayer: createPlayer,
     followPlayer: followPlayer,
     unfollowPlayer: unfollowPlayer,
+    findAllPlayersForUser: findAllPlayersForUser,
     setModel: setModel
   };
 
@@ -16,44 +18,36 @@ module.exports = function () {
 
   return api;
 
-  function findPlayerById(playerId){
-    return PlayerModel.find({id:playerId});
+  function findPlayerByApiId(playerApiId){
+    return PlayerModel.find({apiId:playerApiId});
   }
 
-  function createPlayer(newPlayer, user){
-    return PlayerModel.create(newPlayer)
-      .then(function (player) {
-        user.players.push(player._id);
-        user.save();
-        player.save();
-      }, function (err) {
-        return err;
-      });
+  function findPlayerByObjectId(playerId){
+    return PlayerModel.findById(playerId);
+  }
+
+  function findAllPlayersForUser(userId) {
+    return PlayerModel.find({"followers" : {"$in" : [userId]}});
+  }
+
+  function createPlayer(newPlayer){
+    return PlayerModel.create(newPlayer);
   }
 
   function followPlayer(userId, apiPlayerId){
     return PlayerModel.findOne({apiId: apiPlayerId})
       .then(function(player) {
-        if (player == null) {
-          var newPlayer= new PlayerModel({"apiId": apiPlayerId});
-          model.userModel.findUserById(userId)
-            .then(function (user) {
-              newPlayer.followers.push(user._id);
-              createPlayer(newPlayer, user);
-            }, function (err) {
-              return err;
-            });
-        } else {
-          model.userModel.findUserById(userId)
-            .then(function (user) {
-              player.followers.push(user._id);
-              user.leagues.push(player._id);
-              user.save();
-              player.save();
-            }, function (err) {
-              return err;
-            });
-        }
+        model.userModel.findUserById(userId)
+          .then(function (user) {
+            player.followers.push(user._id);
+            player.save();
+            user.players.push(player._id);
+            user.save();
+          }, function (error) {
+            console.log(error + " cannot find user");
+          });
+      }, function (error) {
+        console.log(error + " cannot find player");
       });
   }
 
