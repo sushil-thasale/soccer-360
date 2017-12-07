@@ -15,16 +15,23 @@ export class LeagueService {
     'unfollowLeague' : this.unfollowLeague,
     'findLeagueById' : this.findLeagueById,
     'findLeaguesForUser' : this.findLeaguesForUser,
+    'searchLeaguesByName' : this.searchLeaguesByName
   };
 
   baseUrl: string = environment.baseUrl;
 
+  searchLeaguesByName(userID: string, keyword: string) {
+    const url: string = this.baseUrl + '/api/user/' + userID + '/league/' + keyword;
+    return this.http.get(url)
+      .map((res: Response) => {
+        return res.json();
+      });
+  }
+
   findLeaguesForUser(userID: string) {
-    console.log('in service client fucntion start');
     const url: string = this.baseUrl + '/api/user/' + userID + '/league';
     return this.http.get(url)
       .map((res: Response) => {
-        console.log('in service client' + res);
         return res.json();
       });
   }

@@ -51,7 +51,7 @@ export class UserManageFavoritesComponent implements OnInit {
 
   // navigate to league search component
   addLeagues() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/user', this.userID, 'favorites', 'searchLeagues']);
   }
 
   // navigate to team search component

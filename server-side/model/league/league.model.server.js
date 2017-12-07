@@ -1,6 +1,7 @@
 module.exports = function () {
   var model = null;
   var api = {
+    searchLeaguesByName : searchLeaguesByName,
     findLeagueByApiId: findLeagueByApiId,
     findLeagueByObjectId: findLeagueByObjectId,
     createLeague: createLeague,
@@ -16,6 +17,10 @@ module.exports = function () {
   var LeagueModel = mongoose.model('LeagueModel', LeagueSchema);
 
   return api;
+
+  function searchLeaguesByName(keyword) {
+    return LeagueModel.find({'name': {'$regex': keyword}})
+  }
 
   function findLeagueByApiId(leagueApiId){
     return LeagueModel.find({apiId:leagueApiId});

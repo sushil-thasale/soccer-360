@@ -3,10 +3,20 @@ module.exports = function(app, LeagueModel) {
   app.get("/api/league/:leagueId", findLeagueById);
   app.put("/api/user/:userId/followLeague", followLeague);
   app.put("/api/user/:userId/unfollowLeague", unfollowLeague);
+  app.get("/api/user/:userID/league/:keyword", searchLeaguesByName);
   app.get("/api/user/:userID/league", findLeaguesByUser);
 
+  function searchLeaguesByName(req, res) {
+    var keyword = req.params.keyword;
+    LeagueModel
+      .searchLeaguesByName(keyword)
+      .then(function(leagues){
+        res.json(leagues);
+      });
+  }
+
   function findLeagueById(req, res) {
-    var leagueId = req.params.leagueID;
+    var leagueId = req.params.leagueId;
     LeagueModel
       .findLeagueById(leagueId)
       .then(function(league){

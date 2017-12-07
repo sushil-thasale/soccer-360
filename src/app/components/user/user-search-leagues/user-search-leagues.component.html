@@ -1,0 +1,67 @@
+<!--Header-->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="row container-fluid">
+    <div class="col-xs-12">
+
+      <div class="navbar-text pull-left my-header-left-margin">
+        <a (click)="updateFavorites()">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+      </div>
+
+      <div class="navbar-text pull-right my-header-right-margin">
+        <a (click)="updateFavorites()" >
+          <span class="glyphicon glyphicon-ok"></span>
+        </a>
+      </div>
+
+      <div class="navbar-header">
+        <a class="navbar-brand" [routerLink]="[]">
+          Search Favorite Leagues
+        </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+<!--search body-->
+<div class="container">
+  <div class="row">
+    <nav class="navbar navbar-default">
+      <div class="nav nav-justified navbar-nav">
+
+        <form class="navbar-form navbar-search" role="search">
+          <div class="input-group">
+            <input type="text"
+                   class="form-control"
+                   id="searchTerm"
+                   name="searchTerm"
+                   required
+                   placeholder="Search..."
+                   [(ngModel)] = "searchTerm"/>
+
+            <div class="input-group-btn">
+              <button type="button"
+                      (click)="searchItems()"
+                      class="btn btn-search btn-default">GO
+              </button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </nav>
+  </div>
+</div>
+
+<!--Footer-->
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+  <div class="container-fluid">
+    <div class="navbar-footer navbar-text pull-right">
+      <a (click) = "navigateToProfile()">
+        <span class="glyphicon glyphicon-user"></span>
+      </a>
+    </div>
+  </div>
+</nav>

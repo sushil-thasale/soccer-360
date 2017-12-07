@@ -25,6 +25,8 @@ import { SearchMatchObjectsComponent } from './components/matches/search-match-o
 import { MatchDetailsComponent } from './components/matches/match-details/match-details.component';
 import { UserManageFavoritesComponent } from './components/user/user-manage-favorites/user-manage-favorites.component';
 
+import { UserSearchLeaguesComponent } from './components/user/user-search-leagues/user-search-leagues.component';
+
 const APP_ROUTES: Routes = [
   { path : '', component : HomeComponent},
   { path : 'test', component: TestComponent},
@@ -44,6 +46,7 @@ const APP_ROUTES: Routes = [
   { path : 'search' , component: SearchMatchObjectsComponent},
   { path : 'match/:matchID' , component: MatchDetailsComponent},
   { path : 'user/:userID/favorites' , component: UserManageFavoritesComponent},
+  { path : 'user/:userID/favorites/searchLeagues' , component: UserSearchLeaguesComponent},
 ];
 
 // Export the routes as module providers
