@@ -1,0 +1,25 @@
+<!-- Header -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+
+  <!--app logo and name-->
+  <div class="pull-left my-header-left-margin">
+    <a class="navbar-brand" href="#">
+      <span class="glyphicon glyphicon-globe"></span>
+      <b class="app-logo">Soccer 360</b>
+    </a>
+  </div>
+
+  <!--options-->
+  <div class="pull-right my-header-right-margin">
+    <!--calender-->
+    <a class="navbar-brand" (click)="navigateToCalender()">
+      <span class="glyphicon glyphicon-calendar"></span>
+    </a>
+
+    <!--search-->
+    <a class="navbar-brand">
+      <span class="glyphicon glyphicon-search" (click)="navigateToSearch()"></span>
+    </a>
+  </div>
+
+</nav>
