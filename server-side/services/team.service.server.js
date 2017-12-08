@@ -3,10 +3,20 @@ module.exports = function(app, TeamModel) {
   app.get("/api/team/:teamId", findTeamById);
   app.put("/api/user/:userId/followTeam", followTeam);
   app.put("/api/user/:userId/unfollowTeam", unfollowTeam);
-  app.get("/api/user/:userID/team", findTeamsByUser);
+  app.get("/api/user/:userId/team/:keyword", searchTeamsByName);
+  app.get("/api/user/:userId/team", findTeamsByUser);
+
+  function searchTeamsByName(req, res) {
+    var keyword = req.params.keyword;
+    TeamModel
+      .searchTeamsByName(keyword)
+      .then(function(teams){
+        res.json(teams);
+      });
+  }
 
   function findTeamById(req, res) {
-    var teamId = req.params.teamID;
+    var teamId = req.params.teamId;
     TeamModel
       .findTeamById(teamId)
       .then(function(team){
@@ -15,7 +25,7 @@ module.exports = function(app, TeamModel) {
   }
 
   function findTeamsByUser(req, res) {
-    var userID = req.params.userID;
+    var userID = req.params.userId;
 
     TeamModel.findAllTeamsForUser(userID)
       .then(function (teams) {
@@ -26,8 +36,8 @@ module.exports = function(app, TeamModel) {
   }
 
   function followTeam(req, res) {
-    var loggedInUserId = req.params.userID;
-    var followTeamId = req.query.followTeamId;
+    var loggedInUserId = req.params.userId;
+    var followTeamId = req.body.teamId;
 
     TeamModel
       .followTeam(loggedInUserId, followTeamId)
@@ -40,8 +50,8 @@ module.exports = function(app, TeamModel) {
   }
 
   function unfollowTeam(req, res) {
-    var loggedInUserId = req.params.userID;
-    var unfollowTeamId = req.query.unfollowTeamId;
+    var loggedInUserId = req.params.userId;
+    var unfollowTeamId = req.body.teamId;
 
     TeamModel
       .unfollowTeam(loggedInUserId, unfollowTeamId)

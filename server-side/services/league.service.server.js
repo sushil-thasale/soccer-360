@@ -3,8 +3,8 @@ module.exports = function(app, LeagueModel) {
   app.get("/api/league/:leagueId", findLeagueById);
   app.put("/api/user/:userId/followLeague", followLeague);
   app.put("/api/user/:userId/unfollowLeague", unfollowLeague);
-  app.get("/api/user/:userID/league/:keyword", searchLeaguesByName);
-  app.get("/api/user/:userID/league", findLeaguesByUser);
+  app.get("/api/user/:userId/league/:keyword", searchLeaguesByName);
+  app.get("/api/user/:userId/league", findLeaguesByUser);
 
   function searchLeaguesByName(req, res) {
     var keyword = req.params.keyword;
@@ -25,7 +25,7 @@ module.exports = function(app, LeagueModel) {
   }
 
   function findLeaguesByUser(req, res) {
-    var userID = req.params.userID;
+    var userID = req.params.userId;
 
     LeagueModel.findAllLeaguesForUser(userID)
       .then(function (leagues) {
@@ -36,12 +36,13 @@ module.exports = function(app, LeagueModel) {
   }
 
   function followLeague(req, res) {
-    var loggedInUserId = req.params.userID;
-    var followLeagueId = req.query.followLeagueId;
+    var loggedInUserId = req.params.userId;
+    var followLeagueId = req.body.leagueId;
 
     LeagueModel
       .followLeague(loggedInUserId, followLeagueId)
       .then(function(league) {
+          console.log(league);
           res.json(league);
         },
         function (error) {
@@ -50,8 +51,8 @@ module.exports = function(app, LeagueModel) {
   }
 
   function unfollowLeague(req, res) {
-    var loggedInUserId = req.params.userID;
-    var unfollowLeagueId = req.query.unfollowLeagueId;
+    var loggedInUserId = req.params.userId;
+    var unfollowLeagueId = req.body.leagueId;
 
     LeagueModel
       .unfollowLeague(loggedInUserId, unfollowLeagueId)

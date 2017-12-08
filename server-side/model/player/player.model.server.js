@@ -2,6 +2,7 @@ module.exports = function () {
   var model = null;
 
   var api = {
+    searchPlayersByName : searchPlayersByName,
     findPlayerByApiId: findPlayerByApiId,
     findPlayerByObjectId: findPlayerByObjectId,
     createPlayer: createPlayer,
@@ -17,6 +18,10 @@ module.exports = function () {
   var PlayerModel = mongoose.model('PlayerModel', PlayerSchema);
 
   return api;
+
+  function searchPlayersByName(keyword) {
+    return PlayerModel.find({"name": {'$regex' : '.*' + keyword + '.*', '$options' : 'i'}});
+  }
 
   function findPlayerByApiId(playerApiId){
     return PlayerModel.find({apiId:playerApiId});
@@ -39,9 +44,9 @@ module.exports = function () {
       .then(function(player) {
         model.userModel.findUserById(userId)
           .then(function (user) {
-            player.followers.push(user._id);
+            player.followers.addToSet(user._id);
             player.save();
-            user.players.push(player._id);
+            user.players.addToSet(player._id);
             user.save();
           }, function (error) {
             console.log(error + " cannot find user");
@@ -58,7 +63,7 @@ module.exports = function () {
           .then(function (user) {
             player.followers.splice(player.followers.indexOf(user._id), 1);
             player.save();
-            user.leagues.splice(user.leagues.indexOf(player._id), 1);
+            user.players.splice(user.players.indexOf(player._id), 1);
             user.save();
           }, function (err) {
             return err;

@@ -68,7 +68,9 @@ import { MatchTeamStandingsComponent} from './components/matches/match-details/m
 import { UserManageFavoritesComponent } from './components/user/user-manage-favorites/user-manage-favorites.component';
 import { LeagueService } from './services/league.service.client';
 
-import { UserSearchLeaguesComponent } from './components/user/user-search-leagues/user-search-leagues.component';
+import { UserSearchFavoritesComponent } from './components/user/user-search-favorites/user-search-favorites.component';
+import {TeamService } from './services/team.service.client';
+import { PlayerService } from './services/player.service.client';
 
 @NgModule({
   // Declare components here
@@ -116,7 +118,7 @@ import { UserSearchLeaguesComponent } from './components/user/user-search-league
     MatchPlayerStatsComponent,
     MatchTeamStandingsComponent,
     UserManageFavoritesComponent,
-    UserSearchLeaguesComponent
+    UserSearchFavoritesComponent
   ],
   imports: [
     BrowserModule,
@@ -137,7 +139,9 @@ import { UserSearchLeaguesComponent } from './components/user/user-search-league
     SharedService,
     AuthGuard,
     SoccerServiceClient,
-    LeagueService
+    LeagueService,
+    TeamService,
+    PlayerService
   ],
   bootstrap: [AppComponent]
 })

@@ -45,18 +45,25 @@ export class LeagueService {
   }
 
   followLeague(userID: string, leagueID: string) {
+    const body = {
+      leagueId : leagueID
+    };
     const url: string = this.baseUrl + '/api/user/' + userID + '/followLeague';
-    return this.http.get(url, leagueID)
+    return this.http.put(url, body)
       .map((res: Response) => {
-        return res.json();
+        console.log('in client sevice' + res);
+        return res;
       });
   }
 
   unfollowLeague(userID: string, leagueID: string) {
+    const body = {
+      leagueId : leagueID
+    };
     const url: string = this.baseUrl + '/api/user/' + userID + '/unfollowLeague';
-    return this.http.get(url, leagueID)
+    return this.http.put(url, body)
       .map((res: Response) => {
-        return res.json();
+        return res;
       });
   }
 }

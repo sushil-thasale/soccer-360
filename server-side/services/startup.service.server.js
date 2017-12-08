@@ -14,12 +14,6 @@ module.exports = function(app, models) {
 
   function leagueModelStartUp() {
     var leagues = getLeagues();
-
-    // updateLeagues(leagues);
-    //
-    // for (var i = 0; i < leagues.length; i++) {
-    //   teamModelStartUp(leagues[i]);
-    // }
   }
 
   function queryApi(url) {

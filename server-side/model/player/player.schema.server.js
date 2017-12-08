@@ -5,7 +5,7 @@ module.exports = function () {
     apiId: String,
     name: String,
     followers: [{type: mongoose.Schema.Types.ObjectId, ref:'UserModel'}],
-  }, {collection: 'SoccerAppPlayer'});
+  }, {collection: 'SoccerAppPlayers'});
 
   return PlayerSchema;
 };

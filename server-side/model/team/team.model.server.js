@@ -1,6 +1,7 @@
 module.exports = function () {
   var model = null;
   var api = {
+    searchTeamsByName : searchTeamsByName,
     findTeamByApiId: findTeamByApiId,
     findTeamByObjectId: findTeamByObjectId,
     createTeam: createTeam,
@@ -16,6 +17,10 @@ module.exports = function () {
   var TeamModel = mongoose.model('TeamModel', TeamSchema);
 
   return api;
+
+  function searchTeamsByName(keyword) {
+    return TeamModel.find({"name": {'$regex' : '.*' + keyword + '.*', '$options' : 'i'}});
+  }
 
   function findTeamByApiId(teamApiId){
     return TeamModel.find({apiId:teamApiId});
@@ -38,9 +43,9 @@ module.exports = function () {
       .then(function(team) {
         model.userModel.findUserById(userId)
           .then(function (user) {
-            team.followers.push(user._id);
+            team.followers.addToSet(user._id);
             team.save();
-            user.teams.push(team._id);
+            user.teams.addToSet(team._id);
             user.save();
           }, function (error) {
             console.log(error + " cannot find user");
