@@ -12,6 +12,13 @@ module.exports = function () {
     findUserByFacebookId: findUserByFacebookId,
     followUser: followUser,
     unfollowUser: unfollowUser,
+    getAllCritics: getAllCritics,
+    getCriticsByName: getCriticsByName,
+    getAllUsers: getAllUsers,
+    getUsersByName: getUsersByName,
+    findUsersByLeague: findUsersByLeague,
+    findUsersByTeam: findUsersByTeam,
+    findUsersByPlayer: findUsersByPlayer,
     setModel: setModel
   };
 
@@ -21,6 +28,40 @@ module.exports = function () {
   var UserModel = mongoose.model('UserModel', UserSchema);
 
   return api;
+
+  function findUsersByLeague(leagueId) {
+    return UserModel.find({"leagues" : {"$in" : [leagueId]}});
+  }
+
+  function findUsersByTeam(teamId) {
+    return UserModel.find({"teams" : {"$in" : [teamId]}});
+  }
+
+  function findUsersByPlayer(playerId) {
+    return UserModel.find({"players" : {"$in" : [playerId]}});
+  }
+
+  function getAllCritics() {
+    return UserModel.find({'roles': 'critic'});
+  }
+
+  function getCriticsByName(keyword) {
+    return UserModel.find({'$and': [
+      {'roles':'critic'},
+      {'name': {'$regex' : '.*' + keyword + '.*', '$options' : 'i'}}
+      ]});
+  }
+
+  function getAllUsers() {
+    return UserModel.find({'roles': 'user'});
+  }
+
+  function getUsersByName(keyword) {
+    return UserModel.find({'$and': [
+      {'roles':'user'},
+      {'name': {'$regex' : '.*' + keyword + '.*', '$options' : 'i'}}
+    ]});
+  }
 
   function createUser(user) {
     return UserModel.create(user);
