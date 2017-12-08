@@ -1,0 +1,75 @@
+<!--app header-->
+<app-home-header></app-home-header>
+
+<!--main body-->
+<div class="row container-fluid">
+
+  <!-- Left Pane - User details -->
+  <div class="col-sm-4 hidden-xs my-left-pane my-right-border">
+    <app-home-user-profile></app-home-user-profile>
+  </div>
+
+  <!-- Right Pane - Team Details -->
+  <div class="col-sm-8 col-xs-12 my-right-pane">
+
+    <div *ngIf="team">
+      <!--team name-->
+      <div class="text-center">
+        {{team.name}}
+      </div>
+
+      <!--team details menu scrollbar-->
+      <div class="scrollmenu">
+        <a (click)="changeTeamDetailsType('OVERVIEW')">Overview</a>
+        <a (click)="changeTeamDetailsType('PREVIOUS')">Previous Fixtures</a>
+        <a (click)="changeTeamDetailsType('UPCOMING')">Upcoming Fixtures</a>
+        <a (click)="changeTeamDetailsType('STANDINGS')">Table</a>
+        <a (click)="changeTeamDetailsType('NEWS')">News</a>
+        <a (click)="changeTeamDetailsType('STATS')">Stats</a>
+        <a (click)="changeTeamDetailsType('SQUAD')">Squad</a>
+        <a (click)="changeTeamDetailsType('TRANSFERS')">Transfers</a>
+      </div>
+
+      <!--match details component-->
+      <div [ngSwitch]="teamDetailsType">
+
+        <div *ngSwitchCase="'OVERVIEW'">
+          <app-team-overview teamId="{{team.team_id}}"></app-team-overview>
+        </div>
+
+        <div *ngSwitchCase="'PREVIOUS'">
+          <app-match-list searchType="PREVIOUS_TEAM" teamId="{{team.team_id}}" toDate="{{formattedDate}}"></app-match-list>
+        </div>
+
+        <div *ngSwitchCase="'UPCOMING'">
+          <app-match-list searchType="UPCOMING_TEAM" teamId="{{team.team_id}}" fromDate="{{formattedDate}}"></app-match-list>
+        </div>
+
+        <div *ngSwitchCase="'STANDINGS'">
+          <app-match-team-standings compId="{{team.id}}"></app-match-team-standings>
+        </div>
+
+        <div *ngSwitchCase="'NEWS'">
+          <app-soccer-news ></app-soccer-news>
+        </div>
+
+        <div *ngSwitchCase="'STATS'">
+          <app-team-stats></app-team-stats>
+        </div>
+
+        <div *ngSwitchCase="'SQUAD'">
+          <app-team-squad></app-team-squad>
+        </div>
+
+        <div *ngSwitchCase="'TRANSFERS'">
+          <app-team-transfers></app-team-transfers>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!--app footer-->
+<app-home-footer></app-home-footer>

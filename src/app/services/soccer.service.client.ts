@@ -26,6 +26,8 @@ export class SoccerServiceClient {
     'getMatchesByCompetition': this.getMatchesByCompetition,
     'getUpcomingMatchesOfTeam': this.getUpcomingMatchesOfTeam,
     'getUpcomingMatchesOfCompetition': this.getUpcomingMatchesOfCompetition,
+    'getPreviousMatchesOfCompetition': this.getPreviousMatchesOfCompetition,
+    'getPreviousMatchesOfTeam': this.getPreviousMatchesOfTeam,
   };
 
   requestData(searchDomain: string, searchQuery: string) {
@@ -35,15 +37,31 @@ export class SoccerServiceClient {
     return this.http.get(url);
   }
 
-  getUpcomingMatchesOfCompetition(compId: string, fromDate: string) {
+  getPreviousMatchesOfCompetition(compId: string, toDate: string) {
+    const fromDate = '7/1/2017';
     const searchDomain = 'matches';
-    const searchQuery = 'comp_id=' + compId + '&from_date=' + fromDate + '&';
+    const searchQuery = 'comp_id=' + compId + '&from_date=' + fromDate + '&to_date=' + toDate + '&';
+    return this.requestData(searchDomain, searchQuery);
+  }
+
+  getPreviousMatchesOfTeam(teamId: string, toDate: string) {
+    const fromDate = '7/1/2017';
+    const searchDomain = 'matches';
+    const searchQuery = 'team_id=' + teamId + '&from_date=' + fromDate + '&to_date=' + toDate + '&';
+    return this.requestData(searchDomain, searchQuery);
+  }
+
+  getUpcomingMatchesOfCompetition(compId: string, fromDate: string) {
+    const toDate = '7/1/2018';
+    const searchDomain = 'matches';
+    const searchQuery = 'comp_id=' + compId + '&from_date=' + fromDate + '&to_date=' + toDate + '&';
     return this.requestData(searchDomain, searchQuery);
   }
 
   getUpcomingMatchesOfTeam(teamId: string, fromDate: string) {
+    const toDate = '7/1/2018';
     const searchDomain = 'matches';
-    const searchQuery = 'team_id=' + teamId + '&from_date=' + fromDate + '&';
+    const searchQuery = 'team_id=' + teamId + '&from_date=' + fromDate + '&to_date=' + toDate + '&';
     return this.requestData(searchDomain, searchQuery);
   }
 

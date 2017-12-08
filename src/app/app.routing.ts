@@ -14,6 +14,8 @@ import { UserManageFavoritesComponent } from './components/user/user-manage-favo
 
 import { UserSearchFavoritesComponent } from './components/user/user-search-favorites/user-search-favorites.component';
 import { RegisteredUserHomeComponent } from './components/home/registered-user-home/registered-user-home.component';
+import {LeagueComponent} from './components/league/league.component';
+import {TeamComponent} from './components/team/team.component';
 
 const APP_ROUTES: Routes = [
   { path : '', component : HomeComponent},
@@ -27,6 +29,8 @@ const APP_ROUTES: Routes = [
   { path : 'user/:userID/favorites' , component: UserManageFavoritesComponent},
   { path : 'user/:userID/favorites/searchFavorites' , component: UserSearchFavoritesComponent},
   { path : 'user/:userID/home' , component: RegisteredUserHomeComponent},
+  { path : 'user/:userID/league/:leagueID' , component: LeagueComponent},
+  { path : 'user/:userID/team/:teamID' , component: TeamComponent},
 ];
 
 // Export the routes as module providers

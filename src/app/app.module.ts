@@ -51,6 +51,14 @@ import { RegisteredUserHomeComponent } from './components/home/registered-user-h
 import {UnregisteredHomeFooterComponent } from './components/home/unregistered-home-footer/unregistered-home-footer.component';
 import { UnregisteredHomeHeaderComponent} from './components/home/unregistered-home-header/unregistered-home-header.component';
 import { UnregisteredHomeUserProfileComponent } from './components/user/unregistered-home-user-profile/unregistered-home-user-profile.component';
+import { LeagueComponent } from './components/league/league.component';
+import { SoccerNewsComponent } from './components/soccer-news/soccer-news.component';
+import { LeagueStatsComponent } from './components/league/league-stats/league-stats.component';
+import { TeamComponent } from './components/team/team.component';
+import { TeamOverviewComponent} from './components/team/team-overview/team-overview.component';
+import { TeamStatsComponent} from './components/team/team-stats/team-stats.component';
+import { TeamSquadComponent} from './components/team/team-squad/team-squad.component';
+import { TeamTransfersComponent } from './components/team/team-transfers/team-transfers.component';
 
 @NgModule({
   // Declare components here
@@ -82,7 +90,15 @@ import { UnregisteredHomeUserProfileComponent } from './components/user/unregist
     RegisteredUserHomeComponent,
     UnregisteredHomeFooterComponent,
     UnregisteredHomeHeaderComponent,
-    UnregisteredHomeUserProfileComponent
+    UnregisteredHomeUserProfileComponent,
+    LeagueComponent,
+    SoccerNewsComponent,
+    LeagueStatsComponent,
+    TeamComponent,
+    TeamOverviewComponent,
+    TeamStatsComponent,
+    TeamSquadComponent,
+    TeamTransfersComponent
   ],
   imports: [
     BrowserModule,

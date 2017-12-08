@@ -10,24 +10,74 @@ import { Router } from '@angular/router';
 })
 export class MatchListComponent implements OnInit, OnChanges {
 
-  @Input() date: string;
+  @Input() currDate: string;
+  @Input() fromDate: string;
+  @Input() toDate: string;
+  @Input() compId: string;
+  @Input() teamId: string;
+  @Input() searchType: string;
 
   matches: any;
 
   constructor(private soccerService: SoccerServiceClient, private router: Router) { }
 
   ngOnInit() {
-    this.searchMatches();
+    switch (this.searchType) {
+      case 'BY_DAY' : { this.getMatchesByDate(); break; }
+      case 'PREVIOUS_COMP' : { this.getPreviousMatchesOfCompetition(); break; }
+      case 'UPCOMING_COMP' : { this.getUpcomingMatchesOfCompetition(); break; }
+      case 'PREVIOUS_TEAM' : { this.getPreviousMatchesOfTeam(); break; }
+      case 'UPCOMING_TEAM' : { this.getUpcomingMatchesOfTeam(); break; }
+    }
   }
 
   ngOnChanges() {
-    this.searchMatches();
+    this.ngOnInit();
   }
 
-  searchMatches() {
-    console.log(this.date);
+  getMatchesByDate() {
     this.soccerService
-      .getMatchesByDate(this.date)
+      .getMatchesByDate(this.currDate)
+      .subscribe(
+        (data: any) => {
+          this.matches = this.parseBody(data);
+        }
+      );
+  }
+
+  getPreviousMatchesOfCompetition() {
+    this.soccerService
+      .getPreviousMatchesOfCompetition(this.compId, this.toDate)
+      .subscribe(
+        (data: any) => {
+          this.matches = this.parseBody(data);
+        }
+      );
+  }
+
+  getUpcomingMatchesOfCompetition() {
+    this.soccerService
+      .getUpcomingMatchesOfCompetition(this.compId, this.fromDate)
+      .subscribe(
+        (data: any) => {
+          this.matches = this.parseBody(data);
+        }
+      );
+  }
+
+  getPreviousMatchesOfTeam() {
+    this.soccerService
+      .getPreviousMatchesOfTeam(this.teamId, this.toDate)
+      .subscribe(
+        (data: any) => {
+          this.matches = this.parseBody(data);
+        }
+      );
+  }
+
+  getUpcomingMatchesOfTeam() {
+    this.soccerService
+      .getUpcomingMatchesOfTeam(this.teamId, this.fromDate)
       .subscribe(
         (data: any) => {
           this.matches = this.parseBody(data);
