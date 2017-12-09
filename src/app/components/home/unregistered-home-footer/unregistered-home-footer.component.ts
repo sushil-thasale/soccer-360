@@ -13,7 +13,7 @@ export class UnregisteredHomeFooterComponent implements OnInit {
   ngOnInit() {
   }
 
-  navigateToProfile() {
+  navigateToLogin() {
     this.router.navigate(['/login']);
   }
 }

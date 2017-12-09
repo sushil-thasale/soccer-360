@@ -16,7 +16,9 @@ export class MatchDetailsComponent implements OnInit {
   errorMsg: string;
   matchDetailsType: string;
 
-  constructor(private soccerService: SoccerServiceClient, private router: Router, private route: ActivatedRoute) { }
+  constructor(private soccerService: SoccerServiceClient,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.matchDetailsType = 'FACTS';

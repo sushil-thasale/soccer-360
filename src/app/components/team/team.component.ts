@@ -10,7 +10,6 @@ import {SoccerServiceClient} from '../../services/soccer.service.client';
 })
 export class TeamComponent implements OnInit {
 
-
   teamID: string;
   team: any;
   errorFlag: boolean;
@@ -18,12 +17,6 @@ export class TeamComponent implements OnInit {
   teamDetailsType: string;
   currentDate: Date;
   formattedDate: string;
-  leagueId: string;
-  squad: any;
-  sideLined: any;
-  transfersIn: any;
-  transfersOut: any;
-  stats: any;
   compId: string;
 
   constructor(private soccerService: SoccerServiceClient, private router: Router, private route: ActivatedRoute) { }
@@ -40,11 +33,6 @@ export class TeamComponent implements OnInit {
       .subscribe(
         (team: any) => {
           this.team = this.parseBody(team);
-          this.squad = team.squad;
-          this.sideLined = team.sidelined;
-          this.transfersIn = team.transfers_in;
-          this.transfersOut = team.transfers_out;
-          this.stats = team.statistics;
           this.errorFlag = false;
         }, (error) => {
           this.errorFlag = true;

@@ -1,22 +1,39 @@
-<!--app header-->
-<app-unregistered-home-header></app-unregistered-home-header>
+<div *ngIf="user">
 
-<!--main body-->
-<div class="row container-fluid">
-
-  <!-- Left Pane - User details -->
-  <div class="col-sm-4 hidden-xs my-left-pane my-right-border">
-    <app-unregistered-home-user-profile></app-unregistered-home-user-profile>
+  <!--app header-->
+  <div *ngIf="!isLoggedIn">
+    <app-unregistered-home-header></app-unregistered-home-header>
+  </div>
+  <div *ngIf="isLoggedIn">
+    <app-home-header></app-home-header>
   </div>
 
-  <!-- Right Pane - Matches -->
-  <div class="col-sm-8 col-xs-12 my-right-pane">
-    <app-matches date="{{currDate.toDateString()}}"></app-matches>
+  <!--main body-->
+  <div class="row container-fluid">
+
+    <!-- Left Pane - User details -->
+    <div class="col-sm-4 hidden-xs my-left-pane my-right-border">
+      <div *ngIf="!isLoggedIn">
+        <app-unregistered-home-user-profile></app-unregistered-home-user-profile>
+      </div>
+      <div *ngIf="isLoggedIn">
+        <app-home-user-profile></app-home-user-profile>
+      </div>
+    </div>
+
+    <!-- Right Pane - Matches -->
+    <div class="col-sm-8 col-xs-12 my-right-pane">
+      <app-matches date="{{currDate.toDateString()}}"></app-matches>
+    </div>
+
+  </div>
+
+  <!--app footer-->
+  <div *ngIf="!isLoggedIn">
+    <app-unregistered-home-footer></app-unregistered-home-footer>
+  </div>
+  <div *ngIf="isLoggedIn">
+    <app-home-footer></app-home-footer>
   </div>
 
 </div>
-
-<!--app footer-->
-<app-unregistered-home-footer></app-unregistered-home-footer>
-
-

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService} from '../../../services/shared.service';
+import { UserService } from '../../../services/user.service.client';
 
 @Component({
   selector: 'app-search-match-objects',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchMatchObjectsComponent implements OnInit {
 
-  constructor() { }
+  isLoggedIn: boolean;
+  user: any;
+
+  constructor(private userService: UserService,
+              private sharedService: SharedService) { }
 
   ngOnInit() {
+    this.userService.loggedIn()
+      .subscribe(
+        (isLoggedIn: boolean) => {
+          this.isLoggedIn = isLoggedIn;
+          console.log(isLoggedIn);
+          if (this.isLoggedIn) {
+            this.user = this.sharedService.user;
+          } else {
+            this.user = true;
+          }
+          console.log(this.user);
+        }, (error) => {
+          console.log(error + ' cannot check if user is logged in');
+        }
+      );
   }
-
 }

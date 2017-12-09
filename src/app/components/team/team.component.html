@@ -54,15 +54,15 @@
         </div>
 
         <div *ngSwitchCase="'STATS'">
-          <app-team-stats></app-team-stats>
+          <app-team-stats teamId="{{team.team_id}}"></app-team-stats>
         </div>
 
         <div *ngSwitchCase="'SQUAD'">
-          <app-team-squad></app-team-squad>
+          <app-team-squad teamId="{{team.team_id}}"></app-team-squad>
         </div>
 
         <div *ngSwitchCase="'TRANSFERS'">
-          <app-team-transfers></app-team-transfers>
+          <app-team-transfers teamId="{{team.team_id}}"></app-team-transfers>
         </div>
 
       </div>

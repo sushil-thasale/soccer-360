@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
+import { SharedService } from '../../services/shared.service';
+import { UserService } from '../../services/user.service.client';
 
 @Component({
   selector: 'app-matches',
@@ -12,10 +14,27 @@ export class MatchesComponent implements OnInit {
 
   selectedDate: Date;
   formattedDate: string;
+  isLoggedIn: boolean;
+  user: any;
 
-  constructor() { }
+  constructor(private userService: UserService,
+              private sharedService: SharedService) { }
 
   ngOnInit() {
+    this.userService.loggedIn()
+      .subscribe(
+        (isLoggedIn: boolean) => {
+          this.isLoggedIn = isLoggedIn;
+          console.log(isLoggedIn);
+          if (this.isLoggedIn) {
+            this.user = this.sharedService.user;
+          }
+          console.log(this.user);
+        }, (error) => {
+          console.log(error + ' cannot check if user is logged in');
+        }
+      );
+
     this.selectedDate = new Date(this.date);
     this.formatDate();
   }

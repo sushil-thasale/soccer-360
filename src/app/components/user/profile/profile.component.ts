@@ -19,7 +19,9 @@ export class ProfileComponent implements OnInit {
   errorFlag: boolean;
   errorMsg = 'All values are required to update the form!';
 
-  constructor(private userService: UserService, private router: Router, private  route: ActivatedRoute) { }
+  constructor(private userService: UserService,
+              private router: Router,
+              private  route: ActivatedRoute) { }
 
   ngOnInit() {
     this.user = new User('', '', '', '', '', '');
@@ -61,7 +63,7 @@ export class ProfileComponent implements OnInit {
   logout() {
     this.userService.logout()
       .subscribe(
-        (data: any) => this.router.navigate(['/login'])
+        (data: any) => this.router.navigate(['/'])
       );
   }
 

@@ -1,3 +1,60 @@
-<p>
-  team-squad works!
-</p>
+<div *ngIf="squad">
+  <table class="points_table">
+
+    <thead>
+    <tr>
+      <th class="col-xs-1">No.</th>
+      <th class="col-xs-3">Name</th>
+      <th class="col-xs-2">Age</th>
+      <th class="col-xs-2">Position</th>
+      <th class="col-xs-2">Apps</th>
+      <th class="col-xs-2">Minutes</th>
+    </tr>
+    </thead>
+
+    <tbody class="points_table_scrollbar">
+    <div *ngFor="let player of squad">
+      <tr class="even">
+        <td class="col-xs-1 text-center">{{player.number}}</td>
+        <td class="col-xs-3 text-center">{{player.name}}</td>
+        <td class="col-xs-2 text-center">{{player.age}}</td>
+        <td class="col-xs-2 text-center">{{player.position}}</td>
+        <td class="col-xs-2 text-center">{{player.appearences}}</td>
+        <td class="col-xs-2 text-center">{{player.minutes}}</td>
+      </tr>
+    </div>
+    </tbody>
+
+  </table>
+
+</div>
+
+<div>
+  Side Lined:
+<div *ngIf="sideLined">
+  <table class="points_table">
+
+    <thead>
+    <tr>
+      <th class="col-xs-3">Name</th>
+      <th class="col-xs-2">Start Date</th>
+      <th class="col-xs-3">Expected End Date</th>
+      <th class="col-xs-4">Injury Description</th>
+    </tr>
+    </thead>
+
+    <tbody class="points_table_scrollbar">
+    <div *ngFor="let player of sideLined">
+      <tr class="even">
+        <td class="col-xs-3 text-center">{{player.name}}</td>
+        <td class="col-xs-2 text-center">{{player.startdate}}</td>
+        <td class="col-xs-3 text-center">{{player.enddate}}</td>
+        <td class="col-xs-4 text-center">{{player.description}}</td>
+      </tr>
+    </div>
+    </tbody>
+
+  </table>
+
+</div>
+</div>

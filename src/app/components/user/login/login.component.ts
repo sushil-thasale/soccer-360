@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   password: string;
   errorFlag: boolean;
   errorMsg: string;
+  userID: string;
 
   constructor(private userService: UserService, private router: Router, private  sharedService: SharedService) { }
 
@@ -35,11 +36,16 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (user: any) => {
           this.sharedService.user = user;
-          this.router.navigate(['/user', user._id]);
+          this.userID = user._id;
+          this.navigateToHome();
         }, (error: any) => {
           console.log(error);
           this.errorFlag = true;
           this.errorMsg = 'Invalid username or password !';
         });
     }
+
+  navigateToHome() {
+    this.router.navigate(['/user', this.userID, 'home']);
+  }
 }

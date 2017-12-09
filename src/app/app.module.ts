@@ -59,6 +59,13 @@ import { TeamOverviewComponent} from './components/team/team-overview/team-overv
 import { TeamStatsComponent} from './components/team/team-stats/team-stats.component';
 import { TeamSquadComponent} from './components/team/team-squad/team-squad.component';
 import { TeamTransfersComponent } from './components/team/team-transfers/team-transfers.component';
+import { PlayerComponent } from './components/player/player.component';
+import { PlayerFactsComponent} from './components/player/player-facts/player-facts.component';
+import { PlayerClubComponent} from './components/player/player-club/player-club.component';
+import { PlayerCupsComponent} from './components/player/player-cups/player-cups.component';
+import { PlayerClubInternationalComponent} from './components/player/player-club-international/player-club-international.component';
+import { PlayerNationalComponent } from './components/player/player-national/player-national.component';
+import { SearchObjectsComponent } from './components/matches/search-match-objects/search-objects/search-objects.component';
 
 @NgModule({
   // Declare components here
@@ -98,7 +105,14 @@ import { TeamTransfersComponent } from './components/team/team-transfers/team-tr
     TeamOverviewComponent,
     TeamStatsComponent,
     TeamSquadComponent,
-    TeamTransfersComponent
+    TeamTransfersComponent,
+    PlayerComponent,
+    PlayerClubComponent,
+    PlayerCupsComponent,
+    PlayerClubInternationalComponent,
+    PlayerNationalComponent,
+    PlayerFactsComponent,
+    SearchObjectsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,46 @@
-<p>
-  team-stats works!
-</p>
+<div *ngIf="stats">
+  <div class="col-lg-12">
+    <table class="table" id="table">
+      <thead>
+      <tr><th>Statistic</th><th>Value</th></tr>
+      </thead>
+
+      <tbody>
+      <tr><td>Rank</td><td>{{stats.rank}}</td></tr>
+      <tr><td>Wins</td><td>{{stats.wins}}</td></tr>
+      <tr><td>Wins Home</td><td>{{stats.wins_home}}</td></tr>
+      <tr><td>Wins Away</td><td>{{stats.wins_away}}</td></tr>
+      <tr><td>Draws</td><td>{{stats.draws}}</td></tr>
+      <tr><td>Draws Home</td><td>{{stats.draws_home}}</td></tr>
+      <tr><td>Draws Away</td><td>{{stats.draws_away}}</td></tr>
+      <tr><td>Losses</td><td>{{stats.losses}}</td></tr>
+      <tr><td>Losses Home</td><td>{{stats.losses_home}}</td></tr>
+      <tr><td>Losses Away</td><td>{{stats.losses_away}}</td></tr>
+      <tr><td>Clean Sheets</td><td>{{stats.clean_sheets}}</td></tr>
+      <tr><td>Clean Sheets Home</td><td>{{stats.clean_sheets_home}}</td></tr>
+      <tr><td>Clean Sheets Away</td><td>{{stats.clean_sheets_away}}</td></tr>
+      <tr><td>Goals</td><td>{{stats.goals}}</td></tr>
+      <tr><td>Goals Home</td><td>{{stats.goals_home}}</td></tr>
+      <tr><td>Goals Away</td><td>{{stats.goals_away}}</td></tr>
+      <tr><td>Goals Conceded</td><td>{{stats.goals_conceded}}</td></tr>
+      <tr><td>Goals Conceded Home</td><td>{{stats.goals_conceded_home}}</td></tr>
+      <tr><td>Goals Conceded Away</td><td>{{stats.goals_conceded_away}}</td></tr>
+      <tr><td>Avg Goals Scored Per Game</td><td>{{stats.avg_goals_per_game_scored}}</td></tr>
+      <tr><td>Avg Goals Scored Per Game (Home)</td><td>{{stats.avg_goals_per_game_scored_home}}</td></tr>
+      <tr><td>Avg Goals Scored Per Game (Away)</td><td>{{stats.avg_goals_per_game_scored_away}}</td></tr>
+      <tr><td>Avg Goals Conceded Per Game</td><td>{{stats.avg_goals_per_game_conceded}}</td></tr>
+      <tr><td>Avg Goals Conceded Per Game (Home)</td><td>{{stats.avg_goals_per_game_conceded_home}}</td></tr>
+      <tr><td>Avg Goals Conceded Per Game (Away)</td><td>{{stats.avg_goals_per_game_conceded_away}}</td></tr>
+      <tr><td>Avg time to score first goal</td><td>{{stats.avg_first_goal_scored}}</td></tr>
+      <tr><td>Avg time to score first goal (Home)</td><td>{{stats.avg_first_goal_scored_home}}</td></tr>
+      <tr><td>Avg time to score first goal (Away)</td><td>{{stats.avg_first_goal_scored_away}}</td></tr>
+      <tr><td>Avg time to concede first goal</td><td>{{stats.avg_first_goal_conceded}}</td></tr>
+      <tr><td>Avg time to concede first goal (Home)</td><td>{{stats.avg_first_goal_conceded_home}}</td></tr>
+      <tr><td>Avg time to concede first goal (Away)</td><td>{{stats.avg_first_goal_conceded_away}}</td></tr>
+      <tr><td>No. of Matches Failed to Score</td><td>{{stats.failed_to_score}}</td></tr>
+      <tr><td>No. of Matches Failed to Score (Home)</td><td>{{stats.failed_to_score_home}}</td></tr>
+      <tr><td>No. of Matches Failed to Score (Away)</td><td>{{stats.failed_to_score_away}}</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>

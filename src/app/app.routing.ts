@@ -16,21 +16,23 @@ import { UserSearchFavoritesComponent } from './components/user/user-search-favo
 import { RegisteredUserHomeComponent } from './components/home/registered-user-home/registered-user-home.component';
 import {LeagueComponent} from './components/league/league.component';
 import {TeamComponent} from './components/team/team.component';
+import { PlayerComponent } from './components/player/player.component';
 
 const APP_ROUTES: Routes = [
   { path : '', component : HomeComponent},
   { path : 'test', component: TestComponent},
   { path : 'login' , component: LoginComponent},
   { path : 'register' , component: RegisterComponent },
-  { path : 'user/:userID' , component: ProfileComponent, canActivate: [AuthGuard] },
   { path : 'calender' , component: MatchCalenderComponent},
   { path : 'search' , component: SearchMatchObjectsComponent},
-  { path : 'match/:matchID' , component: MatchDetailsComponent},
-  { path : 'user/:userID/favorites' , component: UserManageFavoritesComponent},
-  { path : 'user/:userID/favorites/searchFavorites' , component: UserSearchFavoritesComponent},
-  { path : 'user/:userID/home' , component: RegisteredUserHomeComponent},
-  { path : 'user/:userID/league/:leagueID' , component: LeagueComponent},
-  { path : 'user/:userID/team/:teamID' , component: TeamComponent},
+  { path : 'user/:userID' , component: ProfileComponent, canActivate: [AuthGuard] },
+  { path : 'user/:userID/favorites' , component: UserManageFavoritesComponent, canActivate: [AuthGuard]},
+  { path : 'user/:userID/favorites/searchFavorites' , component: UserSearchFavoritesComponent, canActivate: [AuthGuard]},
+  { path : 'user/:userID/home' , component: RegisteredUserHomeComponent, canActivate: [AuthGuard]},
+  { path : 'league/:leagueID' , component: LeagueComponent, canActivate: [AuthGuard]},
+  { path : 'team/:teamID' , component: TeamComponent, canActivate: [AuthGuard]},
+  { path : 'player/:playerID' , component: PlayerComponent, canActivate: [AuthGuard]},
+  { path : 'match/:matchID' , component: MatchDetailsComponent, canActivate: [AuthGuard]},
 ];
 
 // Export the routes as module providers

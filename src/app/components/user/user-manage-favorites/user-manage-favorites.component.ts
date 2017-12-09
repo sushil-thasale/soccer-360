@@ -69,8 +69,8 @@ export class UserManageFavoritesComponent implements OnInit {
   }
 
   // navigate to home
-  updateFavorites() {
-    this.router.navigate(['/']);
+  navigateToHome() {
+    this.router.navigate(['/user', this.userID, 'home']);
   }
 
   // navigate to search and add favorites components

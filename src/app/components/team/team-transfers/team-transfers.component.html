@@ -1,3 +1,59 @@
-<p>
-  team-transfers works!
-</p>
+<div>
+  Transfer In <--
+  <div *ngIf="transfersIn">
+    <table class="points_table">
+
+      <thead>
+      <tr>
+        <th class="col-xs-3">Player Name</th>
+        <th class="col-xs-3">Transfer Date</th>
+        <th class="col-xs-3">From Team</th>
+        <th class="col-xs-3">Transfer Type</th>
+      </tr>
+      </thead>
+
+      <tbody class="points_table_scrollbar">
+      <div *ngFor="let transfer of transfersIn">
+        <tr class="even">
+          <td class="col-xs-3 text-center">{{transfer.name}}</td>
+          <td class="col-xs-3 text-center">{{transfer.date}}</td>
+          <td class="col-xs-3 text-center">{{transfer.from_team}}</td>
+          <td class="col-xs-3 text-center">{{transfer.type}}</td>
+        </tr>
+      </div>
+      </tbody>
+
+    </table>
+
+  </div>
+</div>
+
+<div>
+  Transfer Out
+  <div *ngIf="transfersOut">
+    <table class="points_table">
+
+      <thead>
+      <tr>
+        <th class="col-xs-3">Player Name</th>
+        <th class="col-xs-3">Transfer Date</th>
+        <th class="col-xs-3">From Team</th>
+        <th class="col-xs-3">Transfer Type</th>
+      </tr>
+      </thead>
+
+      <tbody class="points_table_scrollbar">
+      <div *ngFor="let transfer of transfersOut">
+        <tr class="even">
+          <td class="col-xs-3 text-center">{{transfer.name}}</td>
+          <td class="col-xs-3 text-center">{{transfer.date}}</td>
+          <td class="col-xs-3 text-center">{{transfer.from_team}}</td>
+          <td class="col-xs-3 text-center">{{transfer.type}}</td>
+        </tr>
+      </div>
+      </tbody>
+
+    </table>
+
+  </div>
+</div>

@@ -11,12 +11,60 @@
       </div>
   </div>
 
-  <div class="vertical-menu">
-    <a href="#" class="active">Leagues</a>
-    <a href="#">Teams</a>
-    <a href="#">Players</a>
-    <a href="#">Following</a>
-    <a href="#">Followers</a>
+  <div class="text-center">
+    <button class="btn btn-danger btn-block"
+            (click)="navigateToAddFavorites()"
+            type="button">Add New Favorites
+      <span class="glyphicon glyphicon-plus pull-right"></span>
+    </button>
+  </div>
+
+  <div class="form-group">
+    <!--Leagues-->
+    <div class="dropdown">
+      <button class="btn btn-success btn-block dropdown-toggle"
+              type="button" data-toggle="dropdown">Leagues
+        <span class="caret  pull-right"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <div *ngFor="let league of leagues">
+          <input type="button" class="btn btn-primary btn-block "
+                 (click)="navigateToLeague(league.apiId)"
+                 value="{{league.name}}">
+        </div>
+      </ul>
+    </div>
+
+    <!--Teams-->
+    <div class="dropdown">
+      <button class="btn btn-success btn-block dropdown-toggle"
+              type="button" data-toggle="dropdown">Teams
+        <span class="caret  pull-right"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <div *ngFor="let team of teams">
+          <input type="button" class="btn btn-primary btn-block "
+                 (click)="navigateToTeam(team.apiId)"
+                 value="{{team.name}}">
+        </div>
+      </ul>
+    </div>
+
+    <!--Players-->
+    <div class="dropdown">
+      <button class="btn btn-success btn-block dropdown-toggle"
+              type="button" data-toggle="dropdown">Players
+        <span class="caret  pull-right"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <div *ngFor="let player of players">
+          <input type="button" class="btn btn-primary btn-block "
+                 (click)="navigateToPlayer(player.apiId)"
+                 value="{{player.name}}">
+        </div>
+      </ul>
+    </div>
+
   </div>
 
 </div>
