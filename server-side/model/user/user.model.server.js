@@ -19,6 +19,8 @@ module.exports = function () {
     findUsersByLeague: findUsersByLeague,
     findUsersByTeam: findUsersByTeam,
     findUsersByPlayer: findUsersByPlayer,
+    findFollowing: findFollowing,
+    findFollowers: findFollowers,
     setModel: setModel
   };
 
@@ -28,6 +30,14 @@ module.exports = function () {
   var UserModel = mongoose.model('UserModel', UserSchema);
 
   return api;
+
+  function findFollowers(userId) {
+    return UserModel.find({"following" : {"$in" : [userId]}});
+  }
+
+  function findFollowing(userId) {
+    return UserModel.find({"followers" : {"$in" : [userId]}});
+  }
 
   function findUsersByLeague(leagueId) {
     return UserModel.find({"leagues" : {"$in" : [leagueId]}});
@@ -57,9 +67,10 @@ module.exports = function () {
   }
 
   function getUsersByName(keyword) {
-    return UserModel.find({'$and': [
-      {'roles':'user'},
-      {'name': {'$regex' : '.*' + keyword + '.*', '$options' : 'i'}}
+    return UserModel.find({'$or': [
+      {'firstName': {'$regex' : '.*' + keyword + '.*', '$options' : 'i'}},
+      {'lastName': {'$regex' : '.*' + keyword + '.*', '$options' : 'i'}},
+      {'username': {'$regex' : '.*' + keyword + '.*', '$options' : 'i'}}
     ]});
   }
 

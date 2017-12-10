@@ -1,0 +1,109 @@
+<!--app header-->
+<app-home-header></app-home-header>
+
+<!--main body-->
+<div class="row container-fluid">
+
+  <!-- Left Pane - User details -->
+  <div class="col-sm-4 hidden-xs my-left-pane my-right-border">
+    <app-home-user-profile></app-home-user-profile>
+  </div>
+
+  <!-- Right Pane - Friend Details -->
+  <div class="col-sm-8 col-xs-12 my-right-pane">
+
+    <div class="nav navbar-nav">
+
+      <div *ngIf="friendId && friend">
+        <!--friend profile pic and user name/description-->
+        <div class="text-center">
+          <figure class="profile-userpic">
+            <img src="" class="img-responsive" alt="Profile Picture">
+          </figure>
+
+          <div class="profile-usertitle">
+            <div class="profile-usertitle-name">{{friend.username}}</div>
+            <div class="profile-usertitle-name">{{friend.firstName}} {{friend.lastName}}</div>
+            <div class="profile-usertitle-title">{{friend.email}}</div>
+          </div>
+        </div>
+
+        <!--add as friend if not friend-->
+        <div *ngIf="!isFriend">
+          <div class="text-center">
+            <button class="btn btn-danger btn-block"
+                    (click)="followUser()"
+                    type="button">Add as Friend
+              <span class="glyphicon glyphicon-plus pull-right"></span>
+            </button>
+          </div>
+        </div>
+        <div *ngIf="isFriend">
+          <div class="text-center">
+            <button class="btn btn-danger btn-block"
+                    (click)="unfollowUser()"
+                    type="button">Unfollow
+              <span class="glyphicon glyphicon-remove pull-right"></span>
+            </button>
+          </div>
+        </div>
+
+        <!--friends favorite leagues/ team/ players-->
+        <div class="form-group">
+          <!--Leagues-->
+          <div class="dropdown">
+            <button class="btn btn-success btn-block dropdown-toggle"
+                    type="button" data-toggle="dropdown">
+              Leagues [{{leagues.length}}]
+              <span class="caret  pull-right"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <div *ngFor="let league of leagues">
+                <input type="button" class="btn btn-primary btn-block "
+                       (click)="navigateToLeague(league.apiId)"
+                       value="{{league.name}}">
+              </div>
+            </ul>
+          </div>
+
+          <!--Teams-->
+          <div class="dropdown">
+            <button class="btn btn-success btn-block dropdown-toggle"
+                    type="button" data-toggle="dropdown">
+              Teams [{{teams.length}}]
+              <span class="caret  pull-right"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <div *ngFor="let team of teams">
+                <input type="button" class="btn btn-primary btn-block "
+                       (click)="navigateToTeam(team.apiId)"
+                       value="{{team.name}}">
+              </div>
+            </ul>
+          </div>
+
+          <!--Players-->
+          <div class="dropdown">
+            <button class="btn btn-success btn-block dropdown-toggle"
+                    type="button" data-toggle="dropdown">
+              Players [{{players.length}}]
+              <span class="caret  pull-right"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <div *ngFor="let player of players">
+                <input type="button" class="btn btn-primary btn-block "
+                       (click)="navigateToPlayer(player.apiId)"
+                       value="{{player.name}}">
+              </div>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!--app footer-->
+<app-home-footer></app-home-footer>

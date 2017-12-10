@@ -17,6 +17,10 @@ import { RegisteredUserHomeComponent } from './components/home/registered-user-h
 import {LeagueComponent} from './components/league/league.component';
 import {TeamComponent} from './components/team/team.component';
 import { PlayerComponent } from './components/player/player.component';
+import { FriendProfileComponent } from './components/user/friend-profile/friend-profile.component';
+import {SearchUsersComponent} from './components/user/search-users/search-users.component';
+import {ReviewNewComponent} from './components/review/review-new/review-new.component';
+import {ReviewEditComponent} from './components/review/review-edit/review-edit.component';
 
 const APP_ROUTES: Routes = [
   { path : '', component : HomeComponent},
@@ -33,6 +37,10 @@ const APP_ROUTES: Routes = [
   { path : 'team/:teamID' , component: TeamComponent, canActivate: [AuthGuard]},
   { path : 'player/:playerID' , component: PlayerComponent, canActivate: [AuthGuard]},
   { path : 'match/:matchID' , component: MatchDetailsComponent, canActivate: [AuthGuard]},
+  { path : 'profile/:friendID' , component: FriendProfileComponent, canActivate: [AuthGuard]},
+  { path : 'users/search' , component: SearchUsersComponent, canActivate: [AuthGuard]},
+  { path : 'review/new' , component: ReviewNewComponent, canActivate: [AuthGuard]},
+  { path : 'review/:reviewID' , component: ReviewEditComponent, canActivate: [AuthGuard]},
 ];
 
 // Export the routes as module providers

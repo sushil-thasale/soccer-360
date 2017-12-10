@@ -1,0 +1,25 @@
+<div *ngIf="review" class="list-group">
+
+  <div class="text-center text-capitalize">
+    <h1>{{review.title}}</h1>
+  </div>
+
+  <div *ngIf="!isEmptyOrSpaces(review.imageUrl)">
+    <img width="100%"
+         height="300px"
+         [src]="review.imageUrl"/>
+  </div>
+
+  <div class="text-justify">
+    <h5><p>{{review.comment}}</p></h5>
+  </div>
+
+  <div *ngIf="!isEmptyOrSpaces(review.videoUrl)">
+    <iframe [src]="sanitizedURL"
+            frameborder="0"
+            width="100%"
+            height="300px"
+            allowfullscreen>
+    </iframe>
+  </div>
+</div>

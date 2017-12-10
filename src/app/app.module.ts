@@ -52,7 +52,6 @@ import {UnregisteredHomeFooterComponent } from './components/home/unregistered-h
 import { UnregisteredHomeHeaderComponent} from './components/home/unregistered-home-header/unregistered-home-header.component';
 import { UnregisteredHomeUserProfileComponent } from './components/user/unregistered-home-user-profile/unregistered-home-user-profile.component';
 import { LeagueComponent } from './components/league/league.component';
-import { SoccerNewsComponent } from './components/soccer-news/soccer-news.component';
 import { LeagueStatsComponent } from './components/league/league-stats/league-stats.component';
 import { TeamComponent } from './components/team/team.component';
 import { TeamOverviewComponent} from './components/team/team-overview/team-overview.component';
@@ -66,6 +65,15 @@ import { PlayerCupsComponent} from './components/player/player-cups/player-cups.
 import { PlayerClubInternationalComponent} from './components/player/player-club-international/player-club-international.component';
 import { PlayerNationalComponent } from './components/player/player-national/player-national.component';
 import { SearchObjectsComponent } from './components/matches/search-match-objects/search-objects/search-objects.component';
+import { FollowsSidebarComponent } from './components/user/follows-sidebar/follows-sidebar.component';
+import { FriendProfileComponent } from './components/user/friend-profile/friend-profile.component';
+import {SearchUsersComponent} from './components/user/search-users/search-users.component';
+import {UsersSearchBarComponent} from './components/user/search-users/users-search-bar/users-search-bar.component';
+import { ReviewNewComponent } from './components/review/review-new/review-new.component';
+import { ReviewEditComponent } from './components/review/review-edit/review-edit.component';
+import { ReviewService } from './services/review.service.client';
+import { ReviewListComponent } from './components/review/review-list/review-list.component';
+import {ReviewDisplayComponent} from './components/review/review-display/review-display.component';
 
 @NgModule({
   // Declare components here
@@ -99,7 +107,6 @@ import { SearchObjectsComponent } from './components/matches/search-match-object
     UnregisteredHomeHeaderComponent,
     UnregisteredHomeUserProfileComponent,
     LeagueComponent,
-    SoccerNewsComponent,
     LeagueStatsComponent,
     TeamComponent,
     TeamOverviewComponent,
@@ -112,7 +119,15 @@ import { SearchObjectsComponent } from './components/matches/search-match-object
     PlayerClubInternationalComponent,
     PlayerNationalComponent,
     PlayerFactsComponent,
-    SearchObjectsComponent
+    SearchObjectsComponent,
+    FollowsSidebarComponent,
+    FriendProfileComponent,
+    SearchUsersComponent,
+    UsersSearchBarComponent,
+    ReviewNewComponent,
+    ReviewEditComponent,
+    ReviewListComponent,
+    ReviewDisplayComponent
   ],
   imports: [
     BrowserModule,
@@ -132,7 +147,8 @@ import { SearchObjectsComponent } from './components/matches/search-match-object
     SoccerServiceClient,
     LeagueService,
     TeamService,
-    PlayerService
+    PlayerService,
+    ReviewService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,36 @@
+<!--search body-->
+<nav class="navbar navbar-default">
+  <div class="nav nav-justified navbar-nav">
+
+    <form class="navbar-form navbar-search" role="search">
+
+      <div class="input-group">
+        <input type="text"
+               class="form-control"
+               id="searchTerm"
+               name="searchTerm"
+               required
+               placeholder="Search Friends ..."
+               [(ngModel)] = "searchTerm"/>
+
+        <div class="input-group-btn">
+          <button type="button"
+                  (click)="searchItems()"
+                  class="btn btn-search btn-default">GO
+          </button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</nav>
+
+<ul class="list-group">
+
+  <div class="list-group-item my-no-border"
+       *ngFor="let item of items">
+    <a class="btn btn-danger btn-block" (click)="navigateToFriendProfile(item._id)">
+      {{item.lastName}}, {{item.firstName}} ({{item.username}})
+    </a>
+  </div>
+</ul>

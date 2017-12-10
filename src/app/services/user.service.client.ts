@@ -23,11 +23,38 @@ export class UserService {
     'updateUser' : this.updateUser,
     'deleteUser' : this.deleteUser,
     'followUser' : this.followUser,
-    'unfollowUser' : this.unfollowUser
+    'unfollowUser' : this.unfollowUser,
+    'findFollowing' : this.findFollowing,
+    'findFollowers' : this.findFollowers,
+    'getUsersByName' : this.getUsersByName
   };
 
   baseUrl: string = environment.baseUrl;
   options = new RequestOptions();
+
+  getUsersByName(userKeyword: string) {
+    const url: string = this.baseUrl + '/api/users/' + userKeyword;
+    return this.http.get(url)
+      .map((res: Response) => {
+        return res.json();
+      });
+  }
+
+  findFollowing(userID: string) {
+    const url: string = this.baseUrl + '/api/user/' + userID + '/following';
+    return this.http.get(url)
+      .map((res: Response) => {
+        return res.json();
+      });
+  }
+
+  findFollowers(userID: string) {
+    const url: string = this.baseUrl + '/api/user/' + userID + '/followers';
+    return this.http.get(url)
+      .map((res: Response) => {
+        return res.json();
+      });
+  }
 
   login(username: string, password: string) {
     this.options.withCredentials = true;
@@ -144,16 +171,22 @@ export class UserService {
   }
 
   followUser(userId: string, followUserId: string) {
+    const body = {
+      followUserId : followUserId
+    };
     const url: string = this.baseUrl + '/api/user/' + userId + '/follow';
-    return this.http.put(url, followUserId)
+    return this.http.put(url, body)
       .map((res: Response) => {
         return res.json();
       });
   }
 
   unfollowUser(userId: string, unfollowUserId: string) {
+    const body = {
+      unfollowUserId : unfollowUserId
+    };
     const url: string = this.baseUrl + '/api/user/' + userId + '/unfollow';
-    return this.http.put(url, unfollowUserId)
+    return this.http.put(url, body)
       .map((res: Response) => {
         return res.json();
       });

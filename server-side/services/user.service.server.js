@@ -40,6 +40,9 @@ module.exports = function(app, userModel) {
   app.post('/api/loggedIn', loggedIn);
   app.put("/api/user/:userId/follow", followUser);
   app.put("/api/user/:userId/unfollow", unfollowUser);
+  app.get("/api/user/:userId/following", findFollowing);
+  app.get("/api/user/:userId/followers", findFollowers);
+  app.get("/api/users/:keyword", getUsersByName);
 
   // route for facebook authentication and login
   app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
@@ -52,9 +55,48 @@ module.exports = function(app, userModel) {
     res.redirect(url);
   });
 
+  function getUsersByName(req, res) {
+    var keyword = req.params.keyword;
+
+    userModel
+      .getUsersByName(keyword)
+      .then(function(users) {
+          res.json(users);
+        },
+        function (error) {
+          res.sendStatus(404).send(error);
+        });
+  }
+
+  function findFollowing(req, res) {
+    var userId = req.params.userId;
+
+    userModel
+      .findFollowing(userId)
+      .then(function(users) {
+          res.json(users);
+        },
+        function (error) {
+          res.sendStatus(404).send(error);
+        });
+  }
+
+  function findFollowers(req, res) {
+    var userId = req.params.userId;
+
+    userModel
+      .findFollowers(userId)
+      .then(function(users) {
+          res.json(users);
+        },
+        function (error) {
+          res.sendStatus(404).send(error);
+        });
+  }
+
   function followUser(req, res) {
     var loggedInUserId = req.params.userId;
-    var followUserId = req.body;
+    var followUserId = req.body.followUserId;
 
     userModel
       .followUser(loggedInUserId, followUserId)
@@ -68,10 +110,10 @@ module.exports = function(app, userModel) {
 
   function unfollowUser(req, res) {
     var loggedInUserId = req.params.userId;
-    var unfollowUserId = req.body;
+    var unfollowUserId = req.body.unfollowUserId;
 
     userModel
-      .followUser(loggedInUserId, unfollowUserId)
+      .unfollowUser(loggedInUserId, unfollowUserId)
       .then(function(user) {
           res.json(user);
         },

@@ -38,7 +38,7 @@ export class HomeHeaderComponent implements OnInit {
   logout() {
     this.userService.logout()
       .subscribe(
-        (data: any) => this.router.navigate(['/'])
+        (data: any) => this.router.navigate(['/'] )
       );
   }
 }

@@ -1,0 +1,93 @@
+<!--app header-->
+<app-home-header></app-home-header>
+
+<!--main body-->
+<div class="row container-fluid">
+
+  <!-- Left Pane - User details -->
+  <div class="col-sm-4 hidden-xs my-left-pane my-right-border">
+    <app-home-user-profile></app-home-user-profile>
+  </div>
+
+  <!-- Right Pane - Review Details -->
+  <div class="col-sm-8 col-xs-12 my-right-pane">
+    <form #f="ngForm">
+
+      <div class="form-group">
+        <label for="title">Review Title</label>
+        <input type="text"
+               id="title"
+               name="title"
+               class="form-control"
+               placeholder="Title..."
+               required
+               [(ngModel)] = "title"
+               ngModel
+               #o_title = "ngModel"/>
+      </div>
+
+      <span class="help-block"
+            *ngIf="o_title.touched && title.length == 0">
+      Please enter review title!
+      </span>
+
+      <div class="form-group">
+        <label for="imageUrl">Image URL</label>
+        <input type="text"
+               id="imageUrl"
+               name="imageUrl"
+               class="form-control"
+               placeholder="URL"
+               required
+               [(ngModel)] = "imageUrl"
+               ngModel
+               #o_imageUrl = "ngModel"/>
+      </div>
+
+      <div class="form-group">
+        <label for="videoUrl">Video URL</label>
+        <input type="text"
+               id="videoUrl"
+               name="videoUrl"
+               class="form-control"
+               placeholder="URL"
+               required
+               [(ngModel)] = "videoUrl"
+               ngModel
+               #o_videoUrl = "ngModel"/>
+      </div>
+
+      <div class="form-group">
+        <label for="comment">Analysis</label>
+        <textarea id="comment"
+                  name = "comment"
+                  class="form-control span6"
+                  rows="5"
+                  placeholder="Analysis..."
+                  [(ngModel)] = "comment"
+                  ngModel
+                  #o_comment = "ngModel">
+        </textarea>
+      </div>
+
+      <div class="form-group">
+        <a (click)="updateReview()"
+           class="btn btn-block btn-success">
+          Update
+        </a>
+      </div>
+
+      <div class="form-group">
+        <a (click)="navigateBackToNews()"
+           class="btn btn-block btn-danger">
+          Cancel
+        </a>
+      </div>
+
+    </form>
+  </div>
+
+</div>
+
+<!--app footer-->
+<app-home-footer></app-home-footer>

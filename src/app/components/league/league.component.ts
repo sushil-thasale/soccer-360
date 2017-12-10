@@ -4,41 +4,42 @@ import { ActivatedRoute } from '@angular/router';
 import {SoccerServiceClient} from '../../services/soccer.service.client';
 
 @Component({
-  selector: 'app-team',
-  templateUrl: './team.component.html',
-  styleUrls: ['./team.component.css']
+  selector: 'app-league',
+  templateUrl: './league.component.html',
+  styleUrls: ['./league.component.css']
 })
-export class TeamComponent implements OnInit {
+export class LeagueComponent implements OnInit {
 
-  teamID: string;
-  team: any;
+  leagueID: string;
+  league: any;
   errorFlag: boolean;
   errorMsg: string;
-  teamDetailsType: string;
+  leagueDetailsType: string;
   currentDate: Date;
   formattedDate: string;
-  compId: string;
   isSelected: boolean;
   reviewId: string;
 
   constructor(private soccerService: SoccerServiceClient, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.isSelected = false;
     this.currentDate = new Date();
     this.formatDate();
-    this.teamDetailsType = 'OVERVIEW';
+    this.leagueDetailsType = 'STANDINGS';
     this.route.params.subscribe(params => {
-      this.teamID = params['teamID'];
+      this.leagueID = params['leagueID'];
     });
 
-    this.soccerService.getTeamInformation(this.teamID)
+    this.soccerService.getCompetitionById(this.leagueID)
       .subscribe(
-        (team: any) => {
-          this.team = this.parseBody(team);
+        (league: any) => {
+          this.league = this.parseBody(league);
           this.errorFlag = false;
+          console.log(league);
         }, (error) => {
           this.errorFlag = true;
-          this.errorMsg = 'Unable to retrieve team details!';
+          this.errorMsg = 'Unable to retrieve league details!';
         });
   }
 
@@ -48,8 +49,8 @@ export class TeamComponent implements OnInit {
     return val;
   }
 
-  changeTeamDetailsType(type: string) {
-    this.teamDetailsType = type;
+  changeLeagueDetailsType(type: string) {
+    this.leagueDetailsType = type;
   }
 
   formatDate() {

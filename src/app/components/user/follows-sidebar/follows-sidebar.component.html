@@ -1,0 +1,43 @@
+<div class="text-center">
+  <button class="btn btn-danger btn-block"
+          (click)="navigateToSearchAndAddFriends()"
+          type="button">Add Friends
+    <span class="glyphicon glyphicon-plus pull-right"></span>
+  </button>
+</div>
+
+<div class="form-group">
+  <!--Following-->
+  <div class="dropdown">
+    <button class="btn btn-success btn-block dropdown-toggle"
+            type="button" data-toggle="dropdown">
+      Following [{{following.length}}]
+      <span class="caret  pull-right"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <div *ngFor="let user of following">
+        <input type="button" class="btn btn-primary btn-block "
+               (click)="navigateToFriendsProfile(user._id)"
+               value="{{user.lastName}}, {{user.firstName}} ({{user.username}})">
+      </div>
+    </ul>
+  </div>
+
+  <!--Followers-->
+  <div class="dropdown">
+    <button class="btn btn-success btn-block dropdown-toggle"
+            type="button" data-toggle="dropdown">
+      Followers [{{followers.length}}]
+      <span class="caret  pull-right"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <div *ngFor="let user of followers">
+        <input type="button" class="btn btn-primary btn-block "
+               (click)="navigateToFriendsProfile(user._id)"
+               value="{{user.lastName}}, {{user.firstName}} ({{user.username}})">
+      </div>
+    </ul>
+  </div>
+
+</div>
+

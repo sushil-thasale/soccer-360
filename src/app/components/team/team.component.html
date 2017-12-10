@@ -50,7 +50,15 @@
         </div>
 
         <div *ngSwitchCase="'NEWS'">
-          <app-soccer-news ></app-soccer-news>
+          <div *ngIf="!isSelected">
+            <app-review-list (reviewSelection)="updateReviewSelection($event.isSelected, $event.reviewId)"
+                             itemType="team"
+                             itemID="{{team.team_id}}"></app-review-list>
+          </div>
+
+          <div *ngIf="isSelected">
+            <app-review-display reviewId="{{reviewId}}"></app-review-display>
+          </div>
         </div>
 
         <div *ngSwitchCase="'STATS'">

@@ -6,8 +6,9 @@
       </figure>
 
       <div class="profile-usertitle">
-        <div class="profile-usertitle-name">Sushil Thasale</div>
-        <div class="profile-usertitle-title">Description</div>
+        <div class="profile-usertitle-name">{{user.username}}</div>
+        <div class="profile-usertitle-name">{{user.firstName}} {{user.lastName}}</div>
+        <div class="profile-usertitle-title">{{user.email}}</div>
       </div>
   </div>
 
@@ -23,7 +24,8 @@
     <!--Leagues-->
     <div class="dropdown">
       <button class="btn btn-success btn-block dropdown-toggle"
-              type="button" data-toggle="dropdown">Leagues
+              type="button" data-toggle="dropdown">
+        Leagues [{{leagues.length}}]
         <span class="caret  pull-right"></span>
       </button>
       <ul class="dropdown-menu">
@@ -38,7 +40,8 @@
     <!--Teams-->
     <div class="dropdown">
       <button class="btn btn-success btn-block dropdown-toggle"
-              type="button" data-toggle="dropdown">Teams
+              type="button" data-toggle="dropdown">
+        Teams [{{teams.length}}]
         <span class="caret  pull-right"></span>
       </button>
       <ul class="dropdown-menu">
@@ -53,7 +56,8 @@
     <!--Players-->
     <div class="dropdown">
       <button class="btn btn-success btn-block dropdown-toggle"
-              type="button" data-toggle="dropdown">Players
+              type="button" data-toggle="dropdown">
+        Players [{{players.length}}]
         <span class="caret  pull-right"></span>
       </button>
       <ul class="dropdown-menu">
@@ -67,4 +71,5 @@
 
   </div>
 
+  <app-follows-sidebar></app-follows-sidebar>
 </div>
