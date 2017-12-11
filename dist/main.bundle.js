@@ -2220,14 +2220,14 @@ var SearchMatchObjectsComponent = (function () {
         this.userService.loggedIn()
             .subscribe(function (isLoggedIn) {
             _this.isLoggedIn = isLoggedIn;
-            console.log(isLoggedIn);
+            // console.log(isLoggedIn);
             if (_this.isLoggedIn) {
                 _this.user = _this.sharedService.user;
             }
             else {
                 _this.user = true;
             }
-            console.log(_this.user);
+            // console.log(this.user);
         }, function (error) {
             console.log(error + ' cannot check if user is logged in');
         });
@@ -2346,7 +2346,7 @@ var SearchObjectsComponent = (function () {
         this.leagueService.searchLeaguesByName(this.userID, this.searchTerm)
             .subscribe(function (items) {
             _this.items = items;
-            console.log(items);
+            // console.log(items);
         }, function (error) {
             console.log(error);
         });
@@ -2356,7 +2356,7 @@ var SearchObjectsComponent = (function () {
         this.playerService.searchPlayersByName(this.userID, this.searchTerm)
             .subscribe(function (items) {
             _this.items = items;
-            console.log(items);
+            // console.log(items);
         }, function (error) {
             console.log(error);
         });
@@ -2366,7 +2366,7 @@ var SearchObjectsComponent = (function () {
         this.teamService.searchTeamsByName(this.userID, this.searchTerm)
             .subscribe(function (items) {
             _this.items = items;
-            console.log(items);
+            // console.log(items);
         }, function (error) {
             console.log(error);
         });
@@ -4838,7 +4838,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user/profile/profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Header -->\n<nav class=\"navbar navbar-inverse navbar-fixed-top\">\n  <div class=\"row container-fluid\">\n    <div class=\"col-xs-12\">\n\n      <div class=\"navbar-text pull-right my-header-right-margin\">\n        <a (click)=\"updateProfile()\">\n          <span class=\"glyphicon glyphicon-ok\"></span>\n        </a>\n      </div>\n\n      <div class=\"navbar-header\">\n        <a class=\"navbar-brand\">\n          Profile\n        </a>\n      </div>\n\n    </div>\n  </div>\n</nav>\n\n<!-- Form for Profile -->\n<div class=\"container custom-padding-top-10\">\n\n  <div *ngIf=\"errorFlag\"\n       class=\"alert alert-danger\">\n    {{errorMsg}}\n  </div>\n\n  <form (ngSubmit) = \"updateProfile()\" #f=\"ngForm\">\n\n    <div class=\"form-group\">\n      <label for=\"username\">Username</label>\n      <input type=\"text\"\n             id=\"username\"\n             name=\"username\"\n             class=\"form-control\"\n             value=\"{{user.username}}\"\n             required\n             [(ngModel)] = \"user.username\"\n             placeholder=\"alice\"/>\n    </div>\n\n    <div class=\"form-group\">\n      <label for=\"email\">Email address</label>\n      <input type=\"email\"\n             class=\"form-control\"\n             id=\"email\"\n             name=\"email\"\n             value=\"{{user.email}}\"\n             placeholder=\"alice.wonderland@unicorn.com\"\n             required\n             [(ngModel)] = \"user.email\"/>\n    </div>\n\n    <div class=\"form-group\">\n      <label for=\"firstName\">First Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"firstName\"\n             name=\"firstName\"\n             value=\"{{user.firstName}}\"\n             required\n             placeholder=\"Alice\"\n             [(ngModel)] = \"user.firstName\"/>\n    </div>\n\n    <div class=\"form-group\">\n      <label for=\"lastName\">Last Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"lastName\"\n             name=\"lastName\"\n             value=\"{{user.lastName}}\"\n             required\n             placeholder=\"Wonderland\"\n             [(ngModel)] = \"user.lastName\"/>\n    </div>\n\n  </form>\n\n  <button class=\"btn btn-primary btn-block\"\n     (click)=\"navigateToFavorites()\">Add Favorites</button>\n  <button class=\"btn btn-danger btn-block \"\n     (click)=\"logout()\" >Logout</button>\n\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-inverse navbar-fixed-bottom\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-right\">\n      <a>\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n    </p>\n\n  </div>\n</nav>\n"
+module.exports = "<!-- Header -->\n<nav class=\"navbar navbar-inverse navbar-fixed-top\">\n  <div class=\"row container-fluid\">\n    <div class=\"col-xs-12\">\n\n      <div class=\"navbar-text pull-right my-header-right-margin\">\n        <a (click)=\"updateProfile()\">\n          <span class=\"glyphicon glyphicon-ok\"></span>\n        </a>\n      </div>\n\n      <div class=\"navbar-header\">\n        <a class=\"navbar-brand\">\n          Profile\n        </a>\n      </div>\n\n    </div>\n  </div>\n</nav>\n\n<!-- Form for Profile -->\n<div class=\"container custom-padding-top-10\">\n\n  <div *ngIf=\"errorFlag\"\n       class=\"alert alert-danger\">\n    {{errorMsg}}\n  </div>\n\n  <form (ngSubmit) = \"updateProfile()\" #f=\"ngForm\">\n\n    <div class=\"form-group\">\n      <label for=\"username\">Username</label>\n      <input type=\"text\"\n             id=\"username\"\n             name=\"username\"\n             class=\"form-control\"\n             value=\"{{user.username}}\"\n             required\n             [(ngModel)] = \"user.username\"\n             placeholder=\"alice\"/>\n    </div>\n\n    <div class=\"form-group\">\n      <label for=\"email\">Email address</label>\n      <input type=\"email\"\n             class=\"form-control\"\n             id=\"email\"\n             name=\"email\"\n             value=\"{{user.email}}\"\n             placeholder=\"alice.wonderland@unicorn.com\"\n             required\n             [(ngModel)] = \"user.email\"/>\n    </div>\n\n    <div class=\"form-group\">\n      <label for=\"firstName\">First Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"firstName\"\n             name=\"firstName\"\n             value=\"{{user.firstName}}\"\n             required\n             placeholder=\"Alice\"\n             [(ngModel)] = \"user.firstName\"/>\n    </div>\n\n    <div class=\"form-group\">\n      <label for=\"lastName\">Last Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"lastName\"\n             name=\"lastName\"\n             value=\"{{user.lastName}}\"\n             required\n             placeholder=\"Wonderland\"\n             [(ngModel)] = \"user.lastName\"/>\n    </div>\n\n  </form>\n\n  <div *ngIf=\"user.roles != 'admin'\">\n    <button class=\"btn btn-primary btn-block\"\n       (click)=\"navigateToFavorites()\">Add Favorites</button>\n  </div>\n  <button class=\"btn btn-danger btn-block \"\n     (click)=\"logout()\" >Logout</button>\n\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-inverse navbar-fixed-bottom\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-right\">\n      <a>\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n    </p>\n\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -4899,7 +4899,12 @@ var ProfileComponent = (function () {
             if (!this.errorFlag) {
                 this.userService.updateUser(this.userID, this.user)
                     .subscribe(function (user) {
-                    _this.navigateToProfile();
+                    if (_this.user.roles === 'admin') {
+                        _this.navigateToAdminHome();
+                    }
+                    else {
+                        _this.ngOnInit();
+                    }
                 }, function (error) {
                     _this.errorFlag = true;
                     _this.errorMsg = 'Some problems with update!!';
@@ -4912,11 +4917,11 @@ var ProfileComponent = (function () {
         this.userService.logout()
             .subscribe(function (data) { return _this.router.navigate(['/']); });
     };
-    ProfileComponent.prototype.navigateToProfile = function () {
-        this.router.navigate(['/user', this.userID]);
-    };
     ProfileComponent.prototype.navigateToFavorites = function () {
         this.router.navigate(['/user', this.userID, 'favorites']);
+    };
+    ProfileComponent.prototype.navigateToAdminHome = function () {
+        this.router.navigate(['/admin', this.userID, 'home']);
     };
     return ProfileComponent;
 }());
