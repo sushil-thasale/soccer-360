@@ -59,7 +59,7 @@ export class SearchObjectsComponent implements OnInit {
       .subscribe(
         (items: any) => {
           this.items = items;
-          console.log(items);
+          // console.log(items);
         }, (error) => {
           console.log(error);
         });
@@ -70,7 +70,7 @@ export class SearchObjectsComponent implements OnInit {
       .subscribe(
         (items: any) => {
           this.items = items;
-          console.log(items);
+          // console.log(items);
         }, (error) => {
           console.log(error);
         });
@@ -81,7 +81,7 @@ export class SearchObjectsComponent implements OnInit {
       .subscribe(
         (items: any) => {
           this.items = items;
-          console.log(items);
+          // console.log(items);
         }, (error) => {
           console.log(error);
         });

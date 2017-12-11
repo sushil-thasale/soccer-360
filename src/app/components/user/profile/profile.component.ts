@@ -14,7 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ProfileComponent implements OnInit {
 
   @ViewChild('f') loginForm: NgForm;
-  user: User;
+  user: any;
   userID: string;
   errorFlag: boolean;
   errorMsg = 'All values are required to update the form!';
@@ -32,7 +32,7 @@ export class ProfileComponent implements OnInit {
 
     this.userService.findUserById(this.userID)
       .subscribe(
-        (user: User) => {
+        (user: any) => {
           this.user = user;
           this.errorFlag = false;
         }, (error) => {
@@ -50,8 +50,12 @@ export class ProfileComponent implements OnInit {
       if (!this.errorFlag) {
         this.userService.updateUser(this.userID, this.user)
           .subscribe(
-            (user: User) => {
-              this.navigateToProfile();
+            (user: any) => {
+              if (this.user.roles === 'admin') {
+                this.navigateToAdminHome();
+              } else {
+                this.ngOnInit();
+              }
             }, (error) => {
               this.errorFlag = true;
               this.errorMsg = 'Some problems with update!!';
@@ -67,11 +71,11 @@ export class ProfileComponent implements OnInit {
       );
   }
 
-  navigateToProfile() {
-    this.router.navigate(['/user', this.userID]);
-  }
-
   navigateToFavorites() {
     this.router.navigate(['/user', this.userID, 'favorites']);
+  }
+
+  navigateToAdminHome() {
+    this.router.navigate(['/admin', this.userID, 'home']);
   }
 }
