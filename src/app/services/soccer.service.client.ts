@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/Rx';
 import { Http } from '@angular/http';
-import { environment } from '../../environments/environment';
 
 // injecting service into module
 @Injectable()
 
 export class SoccerServiceClient {
 
-  urlBase = environment.apiBaseUrl + 'SEARCHDOMAIN' + '?' + 'SEARCHQUERY' + 'Authorization=' + environment.apiKey;
+  environment = {
+    apiBaseUrl : 'http://api.football-api.com/2.0/',
+    apiKey : '565ec012251f932ea4000001a46ed46b60254449570215f2e161e291',
+  };
+
+  urlBase = this.environment.apiBaseUrl + 'SEARCHDOMAIN' + '?' + 'SEARCHQUERY' + 'Authorization=' + this.environment.apiKey;
 
   constructor(private http: Http) {
   }
