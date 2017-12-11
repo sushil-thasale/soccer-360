@@ -21,6 +21,7 @@ import { FriendProfileComponent } from './components/user/friend-profile/friend-
 import {SearchUsersComponent} from './components/user/search-users/search-users.component';
 import {ReviewNewComponent} from './components/review/review-new/review-new.component';
 import {ReviewEditComponent} from './components/review/review-edit/review-edit.component';
+import {AdminHomeComponent} from './components/user/admin/admin-home/admin-home.component';
 
 const APP_ROUTES: Routes = [
   { path : '', component : HomeComponent},
@@ -29,6 +30,7 @@ const APP_ROUTES: Routes = [
   { path : 'register' , component: RegisterComponent },
   { path : 'calender' , component: MatchCalenderComponent},
   { path : 'search' , component: SearchMatchObjectsComponent},
+  { path : 'admin/:userID/home' , component: AdminHomeComponent, canActivate: [AuthGuard] },
   { path : 'user/:userID' , component: ProfileComponent, canActivate: [AuthGuard] },
   { path : 'user/:userID/favorites' , component: UserManageFavoritesComponent, canActivate: [AuthGuard]},
   { path : 'user/:userID/favorites/searchFavorites' , component: UserSearchFavoritesComponent, canActivate: [AuthGuard]},

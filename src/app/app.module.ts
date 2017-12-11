@@ -74,6 +74,11 @@ import { ReviewEditComponent } from './components/review/review-edit/review-edit
 import { ReviewService } from './services/review.service.client';
 import { ReviewListComponent } from './components/review/review-list/review-list.component';
 import {ReviewDisplayComponent} from './components/review/review-display/review-display.component';
+import {CriticService} from './services/critic.service.client';
+import {AdminHomeComponent} from './components/user/admin/admin-home/admin-home.component';
+import {AllUsersComponent} from './components/user/admin/all-users/all-users.component';
+import {AllCriticsComponent} from './components/user/admin/all-critics/all-critics.component';
+import {PendingRequestsComponent} from './components/user/admin/pending-requests/pending-requests.component';
 
 @NgModule({
   // Declare components here
@@ -127,7 +132,11 @@ import {ReviewDisplayComponent} from './components/review/review-display/review-
     ReviewNewComponent,
     ReviewEditComponent,
     ReviewListComponent,
-    ReviewDisplayComponent
+    ReviewDisplayComponent,
+    AdminHomeComponent,
+    AllUsersComponent,
+    AllCriticsComponent,
+    PendingRequestsComponent
   ],
   imports: [
     BrowserModule,
@@ -148,7 +157,8 @@ import {ReviewDisplayComponent} from './components/review/review-display/review-
     LeagueService,
     TeamService,
     PlayerService,
-    ReviewService
+    ReviewService,
+    CriticService
   ],
   bootstrap: [AppComponent]
 })

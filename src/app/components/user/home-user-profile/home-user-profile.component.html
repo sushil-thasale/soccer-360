@@ -1,75 +1,77 @@
-<div class="nav navbar-nav sider-navbar">
+<div *ngIf="user">
+  <div class="nav navbar-nav sider-navbar">
 
-  <div class="text-center">
-      <figure class="profile-userpic">
-        <img src="" class="img-responsive" alt="Profile Picture">
-      </figure>
+    <div class="text-center">
+        <figure class="profile-userpic">
+          <img src="" class="img-responsive" alt="Profile Picture">
+        </figure>
 
-      <div class="profile-usertitle">
-        <div class="profile-usertitle-name">{{user.username}}</div>
-        <div class="profile-usertitle-name">{{user.firstName}} {{user.lastName}}</div>
-        <div class="profile-usertitle-title">{{user.email}}</div>
+        <div class="profile-usertitle">
+          <div class="profile-usertitle-name">{{user.username}}</div>
+          <div class="profile-usertitle-name">{{user.firstName}} {{user.lastName}}</div>
+          <div class="profile-usertitle-title">{{user.email}}</div>
+        </div>
+    </div>
+
+    <div class="text-center">
+      <button class="btn btn-danger btn-block"
+              (click)="navigateToAddFavorites()"
+              type="button">Add New Favorites
+        <span class="glyphicon glyphicon-plus pull-right"></span>
+      </button>
+    </div>
+
+    <div class="form-group">
+      <!--Leagues-->
+      <div class="dropdown">
+        <button class="btn btn-success btn-block dropdown-toggle"
+                type="button" data-toggle="dropdown">
+          Leagues [{{leagues.length}}]
+          <span class="caret  pull-right"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <div *ngFor="let league of leagues">
+            <input type="button" class="btn btn-primary btn-block "
+                   (click)="navigateToLeague(league.apiId)"
+                   value="{{league.name}}">
+          </div>
+        </ul>
       </div>
-  </div>
 
-  <div class="text-center">
-    <button class="btn btn-danger btn-block"
-            (click)="navigateToAddFavorites()"
-            type="button">Add New Favorites
-      <span class="glyphicon glyphicon-plus pull-right"></span>
-    </button>
-  </div>
+      <!--Teams-->
+      <div class="dropdown">
+        <button class="btn btn-success btn-block dropdown-toggle"
+                type="button" data-toggle="dropdown">
+          Teams [{{teams.length}}]
+          <span class="caret  pull-right"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <div *ngFor="let team of teams">
+            <input type="button" class="btn btn-primary btn-block "
+                   (click)="navigateToTeam(team.apiId)"
+                   value="{{team.name}}">
+          </div>
+        </ul>
+      </div>
 
-  <div class="form-group">
-    <!--Leagues-->
-    <div class="dropdown">
-      <button class="btn btn-success btn-block dropdown-toggle"
-              type="button" data-toggle="dropdown">
-        Leagues [{{leagues.length}}]
-        <span class="caret  pull-right"></span>
-      </button>
-      <ul class="dropdown-menu">
-        <div *ngFor="let league of leagues">
-          <input type="button" class="btn btn-primary btn-block "
-                 (click)="navigateToLeague(league.apiId)"
-                 value="{{league.name}}">
-        </div>
-      </ul>
+      <!--Players-->
+      <div class="dropdown">
+        <button class="btn btn-success btn-block dropdown-toggle"
+                type="button" data-toggle="dropdown">
+          Players [{{players.length}}]
+          <span class="caret  pull-right"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <div *ngFor="let player of players">
+            <input type="button" class="btn btn-primary btn-block "
+                   (click)="navigateToPlayer(player.apiId)"
+                   value="{{player.name}}">
+          </div>
+        </ul>
+      </div>
+
     </div>
 
-    <!--Teams-->
-    <div class="dropdown">
-      <button class="btn btn-success btn-block dropdown-toggle"
-              type="button" data-toggle="dropdown">
-        Teams [{{teams.length}}]
-        <span class="caret  pull-right"></span>
-      </button>
-      <ul class="dropdown-menu">
-        <div *ngFor="let team of teams">
-          <input type="button" class="btn btn-primary btn-block "
-                 (click)="navigateToTeam(team.apiId)"
-                 value="{{team.name}}">
-        </div>
-      </ul>
-    </div>
-
-    <!--Players-->
-    <div class="dropdown">
-      <button class="btn btn-success btn-block dropdown-toggle"
-              type="button" data-toggle="dropdown">
-        Players [{{players.length}}]
-        <span class="caret  pull-right"></span>
-      </button>
-      <ul class="dropdown-menu">
-        <div *ngFor="let player of players">
-          <input type="button" class="btn btn-primary btn-block "
-                 (click)="navigateToPlayer(player.apiId)"
-                 value="{{player.name}}">
-        </div>
-      </ul>
-    </div>
-
+    <app-follows-sidebar></app-follows-sidebar>
   </div>
-
-  <app-follows-sidebar></app-follows-sidebar>
 </div>

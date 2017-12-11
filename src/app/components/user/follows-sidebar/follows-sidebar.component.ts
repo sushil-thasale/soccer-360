@@ -6,6 +6,7 @@ import { LeagueService } from '../../../services/league.service.client';
 import { TeamService } from '../../../services/team.service.client';
 import { PlayerService } from '../../../services/player.service.client';
 import { SharedService } from '../../../services/shared.service';
+import { CriticService } from '../../../services/critic.service.client';
 
 @Component({
   selector: 'app-follows-sidebar',
@@ -25,7 +26,8 @@ export class FollowsSidebarComponent implements OnInit {
               private leagueService: LeagueService,
               private teamService: TeamService,
               private playerService: PlayerService,
-              private sharedService: SharedService) { }
+              private sharedService: SharedService,
+              private criticService: CriticService) { }
 
   ngOnInit() {
     this.following = [];
@@ -59,5 +61,16 @@ export class FollowsSidebarComponent implements OnInit {
   // navigate to search and add favorites components
   navigateToSearchAndAddFriends() {
     this.router.navigate(['/users/search']);
+  }
+
+  applyForCritic() {
+    const criticRequest = {'isApproved': false, 'applicant': this.userID};
+    this.criticService.createCriticRequest(criticRequest)
+      .subscribe(
+        (cRequest: any) => {
+          console.log('Applied for critic!' + cRequest);
+        }, (error) => {
+          console.log(error + ' error in sending request for critic!');
+        });
   }
 }

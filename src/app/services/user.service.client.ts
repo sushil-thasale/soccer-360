@@ -26,11 +26,39 @@ export class UserService {
     'unfollowUser' : this.unfollowUser,
     'findFollowing' : this.findFollowing,
     'findFollowers' : this.findFollowers,
-    'getUsersByName' : this.getUsersByName
+    'getUsersByName' : this.getUsersByName,
+    'getAllUsers' : this.getAllUsers,
+    'getAllCritics' : this.getAllCritics,
+    'demoteToUser': this.demoteToUser,
   };
 
   baseUrl: string = environment.baseUrl;
   options = new RequestOptions();
+
+  demoteToUser(criticId: string) {
+    const url: string = this.baseUrl + '/api/user/demote/' + criticId;
+    const body = {};
+    return this.http.put(url, body)
+      .map((res: Response) => {
+        return res.json();
+      });
+  }
+
+  getAllCritics() {
+    const url: string = this.baseUrl + '/api/allCritics';
+    return this.http.get(url)
+      .map((res: Response) => {
+        return res.json();
+      });
+  }
+
+  getAllUsers() {
+    const url: string = this.baseUrl + '/api/allUsers';
+    return this.http.get(url)
+      .map((res: Response) => {
+        return res.json();
+      });
+  }
 
   getUsersByName(userKeyword: string) {
     const url: string = this.baseUrl + '/api/users/' + userKeyword;

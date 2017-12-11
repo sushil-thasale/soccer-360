@@ -21,6 +21,8 @@ module.exports = function () {
     findUsersByPlayer: findUsersByPlayer,
     findFollowing: findFollowing,
     findFollowers: findFollowers,
+    demoteToUser: demoteToUser,
+    promoteToCritic: promoteToCritic,
     setModel: setModel
   };
 
@@ -30,6 +32,14 @@ module.exports = function () {
   var UserModel = mongoose.model('UserModel', UserSchema);
 
   return api;
+
+  function promoteToCritic(userId) {
+    return UserModel.update({_id:userId}, {$set:{roles: 'critic'}});
+  }
+
+  function demoteToUser(criticId) {
+    return UserModel.update({_id:criticId}, {$set:{roles: 'user'}});
+  }
 
   function findFollowers(userId) {
     return UserModel.find({"following" : {"$in" : [userId]}});

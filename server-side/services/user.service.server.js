@@ -43,6 +43,9 @@ module.exports = function(app, userModel) {
   app.get("/api/user/:userId/following", findFollowing);
   app.get("/api/user/:userId/followers", findFollowers);
   app.get("/api/users/:keyword", getUsersByName);
+  app.get("/api/allUsers", getAllUsers);
+  app.get("/api/allCritics", getAllCritics);
+  app.put("/api/user/demote/:criticId", demoteToUser);
 
   // route for facebook authentication and login
   app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
@@ -54,6 +57,40 @@ module.exports = function(app, userModel) {
     var url = "/user/" + req.user._id;
     res.redirect(url);
   });
+
+  function demoteToUser(req, res) {
+    var criticId = req.params.criticId;
+    userModel
+      .demoteToUser(criticId)
+      .then(function(critic) {
+          res.json(critic);
+        },
+        function (error) {
+          res.sendStatus(404).send(error);
+        });
+  }
+
+  function getAllCritics(req, res) {
+    userModel
+      .getAllCritics()
+      .then(function(critics) {
+          res.json(critics);
+        },
+        function (error) {
+          res.sendStatus(404).send(error);
+        });
+  }
+
+  function getAllUsers(req, res) {
+    userModel
+      .getAllUsers()
+      .then(function(users) {
+          res.json(users);
+        },
+        function (error) {
+          res.sendStatus(404).send(error);
+        });
+  }
 
   function getUsersByName(req, res) {
     var keyword = req.params.keyword;
@@ -204,8 +241,8 @@ module.exports = function(app, userModel) {
 
     userModel
       .deleteUser(userId)
-      .then(function (response) {
-        res.sendStatus(200);
+      .then(function (user) {
+        res.json(user);
       },function (err) {
         res.sendStatus(404);
       });

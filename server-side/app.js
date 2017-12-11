@@ -6,5 +6,6 @@ module.exports = function(app) {
   require("./services/team.service.server")(app, models.teamModel);
   require("./services/player.service.server")(app, models.playerModel);
   require("./services/review.service.server")(app, models.reviewModel);
+  require("./services/critic.service.server")(app, models.criticModel);
   // require("./services/startup.service.server")(app, models);
 }

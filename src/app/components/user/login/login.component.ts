@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
 
   @ViewChild('f') loginForm: NgForm;
 
+  user: any;
   username: string;
   password: string;
   errorFlag: boolean;
@@ -36,8 +37,13 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (user: any) => {
           this.sharedService.user = user;
+          this.user = user;
           this.userID = user._id;
-          this.navigateToHome();
+          if (this.user.roles === 'admin') {
+            this.navigateToAdminHome();
+          } else {
+            this.navigateToHome();
+          }
         }, (error: any) => {
           console.log(error);
           this.errorFlag = true;
@@ -47,5 +53,9 @@ export class LoginComponent implements OnInit {
 
   navigateToHome() {
     this.router.navigate(['/user', this.userID, 'home']);
+  }
+
+  navigateToAdminHome() {
+    this.router.navigate(['/admin', this.userID, 'home']);
   }
 }

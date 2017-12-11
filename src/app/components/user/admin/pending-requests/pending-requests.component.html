@@ -1,0 +1,33 @@
+<div *ngIf="requests">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>UserID</th>
+      <th>Date Created</th>
+      <th>Accept</th>
+      <th>Reject</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let request of requests">
+      <td>{{request.applicant}}</td>
+      <td>{{request.dateCreated}}</td>
+      <td>
+        <button (click)="acceptCriticRequest(request.applicant)"
+                class="btn btn-success text-center">
+          Accept
+          <span class="glyphicon glyphicon-ok"></span>
+        </button>
+      </td>
+      <td>
+        <button (click)="rejectCriticRequest(request._id)"
+                class="btn btn-danger text-center">
+          Reject
+          <span class="glyphicon glyphicon-remove"></span>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
