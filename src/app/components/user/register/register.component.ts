@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
                 this.sharedService.user = newUser;
                 this.navigateToUserProfile();
               }, (error2: any) => {
-                console.log(error2 + ' unable to register');
+                // console.log(error2 + ' unable to register');
               }
             );
         } else {

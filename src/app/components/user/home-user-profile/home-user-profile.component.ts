@@ -48,7 +48,7 @@ export class HomeUserProfileComponent implements OnInit {
     this.teamService.findTeamsForUser(this.userID)
       .subscribe(
         (teams: any) => {
-          console.log('in api call' + teams);
+          // console.log('in api call' + teams);
           this.teams = teams;
         }, (error) => {
           console.log(error + ' user teams cannot be loaded');
@@ -57,7 +57,7 @@ export class HomeUserProfileComponent implements OnInit {
     this.playerService.findPlayersForUser(this.userID)
       .subscribe(
         (players: any) => {
-          console.log('in api call' + players);
+          // console.log('in api call' + players);
           this.players = players;
         }, (error) => {
           console.log(error + ' user players cannot be loaded');

@@ -26,7 +26,7 @@ export class MatchCommentaryComponent implements OnInit {
           this.comments = commentary.comments;
           this.errorFlag = false;
         }, (error) => {
-          console.log(error);
+          console.log(error + ' unable to retrieve match commentary!');
           this.errorFlag = true;
           this.errorMsg = 'Unable to retrieve match commentary!';
         });

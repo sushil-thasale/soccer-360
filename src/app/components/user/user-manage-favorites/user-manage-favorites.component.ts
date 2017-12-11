@@ -31,36 +31,33 @@ export class UserManageFavoritesComponent implements OnInit {
       this.userID = params['userID'];
     });
 
-    console.log('in client' + this.userID);
+    // console.log('in client' + this.userID);
 
     this.leagueService.findLeaguesForUser(this.userID)
       .subscribe(
         (leagues: any) => {
-          console.log('in api call' + leagues);
+          // console.log('in api call' + leagues);
           this.leagues = leagues;
         }, (error) => {
-          console.log(error);
-          console.log('user leagues cannot be loaded');
+          console.log(error + ' user leagues cannot be loaded');
         });
 
     this.teamService.findTeamsForUser(this.userID)
       .subscribe(
         (teams: any) => {
-          console.log('in api call' + teams);
+          // console.log('in api call' + teams);
           this.teams = teams;
         }, (error) => {
-          console.log(error);
-          console.log('user teams cannot be loaded');
+          console.log(error + ' user teams cannot be loaded');
         });
 
     this.playerService.findPlayersForUser(this.userID)
       .subscribe(
         (players: any) => {
-          console.log('in api call' + players);
+          // console.log('in api call' + players);
           this.players = players;
         }, (error) => {
-          console.log(error);
-          console.log('user players cannot be loaded');
+          console.log(error + ' user players cannot be loaded');
         });
   }
 
@@ -82,11 +79,11 @@ export class UserManageFavoritesComponent implements OnInit {
     this.leagueService.unfollowLeague(this.userID, leagueID)
       .subscribe(
         (league: any) => {
-          console.log('in api call' + league);
+          // console.log('in api call' + league);
           this.ngOnInit();
         }, (error) => {
-          console.log(error);
-          console.log('unable to unfollow a league');
+          // console.log(error);
+          console.log(error + ' unable to unfollow a league');
         });
   }
 
@@ -94,11 +91,11 @@ export class UserManageFavoritesComponent implements OnInit {
     this.teamService.unfollowTeam(this.userID, teamID)
       .subscribe(
         (team: any) => {
-          console.log('in api call' + team);
+          // console.log('in api call' + team);
           this.ngOnInit();
         }, (error) => {
-          console.log(error);
-          console.log('unable to unfollow a team');
+          // console.log(error);
+          console.log(error + ' unable to unfollow a team');
         });
     }
 
@@ -106,11 +103,11 @@ export class UserManageFavoritesComponent implements OnInit {
     this.playerService.unfollowPlayer(this.userID, playerID)
       .subscribe(
         (player: any) => {
-          console.log('in api call' + player);
+          // console.log('in api call' + player);
           this.ngOnInit();
         }, (error) => {
-          console.log(error);
-          console.log('unable to unfollow a player');
+          // console.log(error);
+          console.log(error + ' unable to unfollow a player');
         });
   }
 

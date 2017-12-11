@@ -40,7 +40,7 @@ export class UserSearchFavoritesComponent implements OnInit {
 
   searchItems() {
     if (this.searchTerm === '' || this.searchTerm.length <= 2) {
-      console.log('please enter valid name');
+      console.log('please enter valid name!!');
       return;
     }
 
@@ -75,10 +75,10 @@ export class UserSearchFavoritesComponent implements OnInit {
       .subscribe(
         (items: any) => {
           this.items = items;
-          console.log(items);
+          // console.log(items);
           this.constructOptions();
         }, (error) => {
-          console.log(error);
+          console.log(error + ' unable to search league by name! The search keyword has to be greater than 2 letters!');
         });
   }
 
@@ -87,10 +87,10 @@ export class UserSearchFavoritesComponent implements OnInit {
       .subscribe(
         (items: any) => {
           this.items = items;
-          console.log(items);
+          // console.log(items);
           this.constructOptions();
         }, (error) => {
-          console.log(error);
+          console.log(error + ' unable to search players by name! The search keyword has to be greater than 2 letters!');
         });
   }
 
@@ -99,10 +99,10 @@ export class UserSearchFavoritesComponent implements OnInit {
       .subscribe(
         (items: any) => {
           this.items = items;
-          console.log(items);
+          // console.log(items);
           this.constructOptions();
         }, (error) => {
-          console.log(error);
+          console.log(error + ' unable to search teams by name! The search keyword has to be greater than 2 letters!');
         });
   }
 
@@ -112,8 +112,8 @@ export class UserSearchFavoritesComponent implements OnInit {
 
   // update followed leagues/team/player and navigate to favorites
   updateFavorites() {
-    console.log('in updateFavorites()');
-    console.log(this.selectedOptions());
+    // console.log('in updateFavorites()');
+    // console.log(this.selectedOptions());
     const selectedItems = this.selectedOptions();
     this.itemsCounter = selectedItems.length;
 
@@ -145,11 +145,11 @@ export class UserSearchFavoritesComponent implements OnInit {
     this.leagueService.followLeague(this.userID, leagueId)
       .subscribe(
         (res: any) => {
-          console.log('in res' + res);
+          // console.log('in res' + res);
           this.decrementCounter();
         }, (error) => {
-          console.log('in error');
-          console.log(error);
+          // console.log('in error');
+          console.log(error + ' error in following league!');
         });
   }
 
@@ -164,10 +164,10 @@ export class UserSearchFavoritesComponent implements OnInit {
     this.teamService.followTeam(this.userID, teamId)
       .subscribe(
         (res: any) => {
-          console.log(res);
+          // console.log(res);
           this.decrementCounter();
         }, (error) => {
-          console.log(error);
+          console.log(error + ' error in following team!');
         });
   }
 
@@ -175,10 +175,10 @@ export class UserSearchFavoritesComponent implements OnInit {
     this.playerService.followPlayer(this.userID, playerId)
       .subscribe(
         (res: any) => {
-          console.log(res);
+          // console.log(res);
           this.decrementCounter();
         }, (error) => {
-          console.log(error);
+          console.log(error + ' error in following player!');
         });
   }
 

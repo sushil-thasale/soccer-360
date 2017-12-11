@@ -26,7 +26,7 @@ export class MatchStatsComponent implements OnInit {
           this.stats = commentary.match_stats;
           this.errorFlag = false;
         }, (error) => {
-          console.log(error);
+          console.log(error + ' unable to retrieve match stats!');
           this.errorFlag = true;
           this.errorMsg = 'Unable to retrieve match stats!';
         });

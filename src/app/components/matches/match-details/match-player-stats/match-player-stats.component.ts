@@ -47,7 +47,7 @@ export class MatchPlayerStatsComponent implements OnInit {
             this.visitorTeamPlayers = this.getPlayerNames('visitorteam');
           }
         }, (error) => {
-          console.log(error);
+          console.log(error + ' unable to retrieve player stats!');
           this.errorFlag = true;
           this.errorMsg = 'Unable to retrieve player stats!';
         });

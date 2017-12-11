@@ -25,11 +25,11 @@ export class ReviewService {
   options = new RequestOptions();
 
   findReviewById(reviewId: string) {
-    console.log('in client service' + reviewId);
+    // console.log('in client service' + reviewId);
     const url: string = this.baseUrl + '/api/findReview/' + reviewId;
     return this.http.get(url)
       .map((res: Response) => {
-        console.log('in client service then' + res);
+        // console.log('in client service then' + res);
         return res.json();
       });
   }
@@ -43,7 +43,7 @@ export class ReviewService {
   }
 
   createReview(newReview: any) {
-    console.log('in client service' + newReview.title);
+    // console.log('in client service' + newReview.title);
     const url: string = this.baseUrl + '/api/review';
     return this.http.post(url, newReview)
       .map((res: Response) => {

@@ -28,7 +28,7 @@ export class MatchLineupComponent implements OnInit {
           this.subs = commentary.subs;
           this.errorFlag = false;
         }, (error) => {
-          console.log(error);
+          console.log(error + ' unable to retrieve match lineup!');
           this.errorFlag = true;
           this.errorMsg = 'Unable to retrieve match lineup!';
         });

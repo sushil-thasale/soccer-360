@@ -51,7 +51,7 @@ export class LeagueService {
     const url: string = this.baseUrl + '/api/user/' + userID + '/followLeague';
     return this.http.put(url, body)
       .map((res: Response) => {
-        console.log('in client sevice' + res);
+        // console.log('in client sevice' + res);
         return res;
       });
   }

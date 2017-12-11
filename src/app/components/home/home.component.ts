@@ -22,13 +22,13 @@ export class HomeComponent implements OnInit {
       .subscribe(
         (isLoggedIn: boolean) => {
           this.isLoggedIn = isLoggedIn;
-          console.log(isLoggedIn);
+          // console.log(isLoggedIn);
           if (this.isLoggedIn) {
             this.user = this.sharedService.user;
           } else {
             this.user = true;
           }
-          console.log(this.user);
+          // console.log(this.user);
         }, (error) => {
           console.log(error + ' cannot check if user is logged in');
         }

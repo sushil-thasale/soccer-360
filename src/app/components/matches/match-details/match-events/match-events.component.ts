@@ -29,6 +29,7 @@ export class MatchEventsComponent implements OnInit {
         }, (error) => {
           this.errorFlag = true;
           this.errorMsg = 'Unable to retrieve match details!';
+          console.log(error + ' unable to retrieve match events!');
         });
   }
 

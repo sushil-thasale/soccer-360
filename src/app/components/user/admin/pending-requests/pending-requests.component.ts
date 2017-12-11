@@ -36,7 +36,7 @@ export class PendingRequestsComponent implements OnInit {
     this.criticService.promoteToCritic(userId)
       .subscribe(
         (user: any) => {
-          console.log(user + ' this user has been promoted!');
+          // console.log(user + ' this user has been promoted!');
           this.ngOnInit();
         }, (error) => {
           console.log(error + ' error in promoting this user!');
@@ -47,7 +47,7 @@ export class PendingRequestsComponent implements OnInit {
     this.criticService.deleteRequest(requestId)
       .subscribe(
         (request: any) => {
-          console.log(request + ' this request has been deleted!');
+          // console.log(request + ' this request has been deleted!');
           this.ngOnInit();
         }, (error) => {
           console.log(error + ' error in delete this request!');

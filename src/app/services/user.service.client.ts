@@ -152,7 +152,7 @@ export class UserService {
     const user = {'username': username, 'password': password};
     return this.http.post(url, user)
       .map((res: Response) => {
-        console.log('createUser service client ' + res.json());
+        // console.log('createUser service client ' + res.json());
         return res.json();
       });
   }
@@ -161,7 +161,7 @@ export class UserService {
     const url: string = this.baseUrl + '/api/user?username=' + username;
     return this.http.get(url)
       .map((res: Response) => {
-        console.log('findUserByUsername service client ' + res.json());
+        // console.log('findUserByUsername service client ' + res.json());
         return res.json();
       });
   }

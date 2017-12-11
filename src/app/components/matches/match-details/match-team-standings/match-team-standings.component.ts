@@ -26,7 +26,7 @@ export class MatchTeamStandingsComponent implements OnInit {
           this.standings.sort((t1, t2) => Number(t1.position) - Number(t2.position));
           this.errorFlag = false;
         }, (error) => {
-          console.log(error);
+          console.log(error + ' unable to retrieve competition standings!');
           this.errorFlag = true;
           this.errorMsg = 'Unable to retrieve competition standings!';
         });

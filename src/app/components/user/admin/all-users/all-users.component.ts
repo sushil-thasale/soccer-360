@@ -34,7 +34,7 @@ export class AllUsersComponent implements OnInit {
     this.userService.deleteUser(userId)
       .subscribe(
         (user: any) => {
-          console.log(user + ' this user has been deleted!');
+          // console.log(user + ' this user has been deleted!');
           this.ngOnInit();
         }, (error) => {
           console.log(error + ' error in deleting this users!');

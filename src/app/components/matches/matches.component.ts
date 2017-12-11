@@ -25,11 +25,11 @@ export class MatchesComponent implements OnInit {
       .subscribe(
         (isLoggedIn: boolean) => {
           this.isLoggedIn = isLoggedIn;
-          console.log(isLoggedIn);
+          // console.log(isLoggedIn);
           if (this.isLoggedIn) {
             this.user = this.sharedService.user;
           }
-          console.log(this.user);
+          // console.log(this.user);
         }, (error) => {
           console.log(error + ' cannot check if user is logged in');
         }

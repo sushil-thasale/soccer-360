@@ -26,8 +26,8 @@ export class TeamSquadComponent implements OnInit {
           this.squad = this.team.squad;
           this.sideLined = this.team.sidelined;
           this.errorFlag = false;
-          console.log(this.team);
-          console.log(this.squad);
+          // console.log(this.team);
+          // console.log(this.squad);
         }, (error) => {
           this.errorFlag = true;
           this.errorMsg = 'Unable to retrieve team details!';

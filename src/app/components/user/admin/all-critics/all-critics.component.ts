@@ -36,7 +36,7 @@ export class AllCriticsComponent implements OnInit {
     this.userService.deleteUser(criticId)
       .subscribe(
         (user: any) => {
-          console.log(user + ' this critic has been deleted!');
+          // console.log(user + ' this critic has been deleted!');
           this.ngOnInit();
         }, (error) => {
           console.log(error + ' error in deleting this critic!');
@@ -47,7 +47,7 @@ export class AllCriticsComponent implements OnInit {
     this.userService.demoteToUser(criticId)
       .subscribe(
         (user: any) => {
-          console.log(user + ' this critic has been demoted!');
+          // console.log(user + ' this critic has been demoted!');
           this.ngOnInit();
         }, (error) => {
           console.log(error + ' error in demoting this critic!');

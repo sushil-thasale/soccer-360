@@ -68,7 +68,7 @@ export class FollowsSidebarComponent implements OnInit {
     this.criticService.createCriticRequest(criticRequest)
       .subscribe(
         (cRequest: any) => {
-          console.log('Applied for critic!' + cRequest);
+          // console.log('Applied for critic!' + cRequest);
         }, (error) => {
           console.log(error + ' error in sending request for critic!');
         });

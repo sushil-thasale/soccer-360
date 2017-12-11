@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
             this.navigateToHome();
           }
         }, (error: any) => {
-          console.log(error);
+          // console.log(error);
           this.errorFlag = true;
           this.errorMsg = 'Invalid username or password !';
         });
