@@ -1,6 +1,6 @@
 <div *ngIf="isCritic">
   <div class="text-center">
-    <button class="btn btn-danger btn-block"
+    <button class="btn btn-success btn-block"
             (click)="navigateToNewReview()"
             type="button">Post New Reviews!
       <span class="glyphicon glyphicon-plus pull-right"></span>
@@ -17,11 +17,11 @@
 <div *ngIf="reviews.length > 0">
   <ul class="list-group">
 
-    <li class="list-group-item my-no-border"
+    <li class="list-group-item"
         *ngFor="let review of reviews">
       <a (click)="navigateToReview(review)"
          class="no-underline-hover">
-        {{review.title}}</a>
+        <strong>{{review.title}}</strong></a>
       <a *ngIf="isCritic && review.criticId == criticId"
          (click)="navigateToReviewEdit(review)"
          class="pull-right">

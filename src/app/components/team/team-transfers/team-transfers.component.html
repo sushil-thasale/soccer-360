@@ -1,5 +1,5 @@
 <div>
-  Transfer In <--
+  <h2><span class="label label-default">Transfers In</span></h2>
   <div *ngIf="transfersIn">
     <table class="points_table">
 
@@ -15,9 +15,9 @@
       <tbody class="points_table_scrollbar">
       <div *ngFor="let transfer of transfersIn">
         <tr class="even">
-          <td class="col-xs-3 text-center">{{transfer.name}}</td>
+          <td class="col-xs-3 text-left">{{transfer.name}}</td>
           <td class="col-xs-3 text-center">{{transfer.date}}</td>
-          <td class="col-xs-3 text-center">{{transfer.from_team}}</td>
+          <td class="col-xs-3 text-left">{{transfer.from_team}}</td>
           <td class="col-xs-3 text-center">{{transfer.type}}</td>
         </tr>
       </div>
@@ -29,7 +29,7 @@
 </div>
 
 <div>
-  Transfer Out
+  <h2><span class="label label-default">Transfers Out</span></h2>
   <div *ngIf="transfersOut">
     <table class="points_table">
 
@@ -45,9 +45,9 @@
       <tbody class="points_table_scrollbar">
       <div *ngFor="let transfer of transfersOut">
         <tr class="even">
-          <td class="col-xs-3 text-center">{{transfer.name}}</td>
+          <td class="col-xs-3 text-left">{{transfer.name}}</td>
           <td class="col-xs-3 text-center">{{transfer.date}}</td>
-          <td class="col-xs-3 text-center">{{transfer.from_team}}</td>
+          <td class="col-xs-3 text-left">{{transfer.from_team}}</td>
           <td class="col-xs-3 text-center">{{transfer.type}}</td>
         </tr>
       </div>

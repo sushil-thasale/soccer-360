@@ -12,8 +12,6 @@
   <!-- Right Pane - Friend Details -->
   <div class="col-sm-8 col-xs-12 my-right-pane">
 
-    <div class="nav navbar-nav">
-
       <div *ngIf="friendId && friend">
         <!--friend profile pic and user name/description-->
         <div class="text-center">
@@ -31,7 +29,7 @@
         <!--add as friend if not friend-->
         <div *ngIf="!isFriend">
           <div class="text-center">
-            <button class="btn btn-danger btn-block"
+            <button class="btn btn-success btn-block"
                     (click)="followUser()"
                     type="button">Add as Friend
               <span class="glyphicon glyphicon-plus pull-right"></span>
@@ -52,48 +50,54 @@
         <div class="form-group">
           <!--Leagues-->
           <div class="dropdown">
-            <button class="btn btn-success btn-block dropdown-toggle"
+            <button class="btn btn-block dropdown-toggle"
                     type="button" data-toggle="dropdown">
-              Leagues [{{leagues.length}}]
+              Leagues
+              <span class="badge badge-pill badge-danger">{{leagues.length}}</span>
               <span class="caret  pull-right"></span>
             </button>
             <ul class="dropdown-menu">
               <div *ngFor="let league of leagues">
-                <input type="button" class="btn btn-primary btn-block "
-                       (click)="navigateToLeague(league.apiId)"
-                       value="{{league.name}}">
+                <a class="btn btn-block btn-info"
+                       (click)="navigateToLeague(league.apiId)">
+                  {{league.name}}
+                </a>
               </div>
             </ul>
           </div>
 
           <!--Teams-->
           <div class="dropdown">
-            <button class="btn btn-success btn-block dropdown-toggle"
+            <button class="btn  btn-block dropdown-toggle"
                     type="button" data-toggle="dropdown">
-              Teams [{{teams.length}}]
+              Teams
+              <span class="badge badge-pill badge-danger">{{teams.length}}</span>
               <span class="caret  pull-right"></span>
             </button>
             <ul class="dropdown-menu">
               <div *ngFor="let team of teams">
-                <input type="button" class="btn btn-primary btn-block "
-                       (click)="navigateToTeam(team.apiId)"
-                       value="{{team.name}}">
+                <a class="btn btn-block btn-info"
+                   (click)="navigateToLeague(team.apiId)">
+                  {{team.name}}
+                </a>
               </div>
             </ul>
           </div>
 
           <!--Players-->
           <div class="dropdown">
-            <button class="btn btn-success btn-block dropdown-toggle"
+            <button class="btn  btn-block dropdown-toggle"
                     type="button" data-toggle="dropdown">
-              Players [{{players.length}}]
+              Players
+              <span class="badge badge-pill badge-danger">{{players.length}}</span>
               <span class="caret  pull-right"></span>
             </button>
             <ul class="dropdown-menu">
               <div *ngFor="let player of players">
-                <input type="button" class="btn btn-primary btn-block "
-                       (click)="navigateToPlayer(player.apiId)"
-                       value="{{player.name}}">
+                <a class="btn btn-block btn-info"
+                   (click)="navigateToLeague(player.apiId)">
+                  {{player.name}}
+                </a>
               </div>
             </ul>
           </div>
@@ -101,7 +105,6 @@
 
       </div>
 
-    </div>
   </div>
 </div>
 

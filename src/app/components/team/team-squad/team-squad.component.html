@@ -16,7 +16,7 @@
     <div *ngFor="let player of squad">
       <tr class="even">
         <td class="col-xs-1 text-center">{{player.number}}</td>
-        <td class="col-xs-3 text-center">{{player.name}}</td>
+        <td class="col-xs-3 text-left">{{player.name}}</td>
         <td class="col-xs-2 text-center">{{player.age}}</td>
         <td class="col-xs-2 text-center">{{player.position}}</td>
         <td class="col-xs-2 text-center">{{player.appearences}}</td>
@@ -30,7 +30,9 @@
 </div>
 
 <div>
-  Side Lined:
+  <h2><span class="label label-default">Side Lined</span></h2>
+</div>
+
 <div *ngIf="sideLined">
   <table class="points_table">
 
@@ -56,5 +58,4 @@
 
   </table>
 
-</div>
 </div>

@@ -1,5 +1,5 @@
 <div class="text-center">
-  <button class="btn btn-danger btn-block"
+  <button class="btn btn-success btn-block"
           (click)="navigateToSearchAndAddFriends()"
           type="button">Add Friends
     <span class="glyphicon glyphicon-plus pull-right"></span>
@@ -9,32 +9,34 @@
 <div class="form-group">
   <!--Following-->
   <div class="dropdown">
-    <button class="btn btn-success btn-block dropdown-toggle"
+    <button class="btn btn-block dropdown-toggle"
             type="button" data-toggle="dropdown">
-      Following [{{following.length}}]
+      Following
+      <span class="badge badge-pill badge-danger">{{following.length}}</span>
       <span class="caret  pull-right"></span>
     </button>
     <ul class="dropdown-menu">
       <div *ngFor="let user of following">
-        <input type="button" class="btn btn-primary btn-block "
-               (click)="navigateToFriendsProfile(user._id)"
-               value="{{user.lastName}}, {{user.firstName}} ({{user.username}})">
+        <a class="btn btn-block btn-info" (click)="navigateToFriendsProfile(user._id)">
+          {{user.lastName}}, {{user.firstName}} ({{user.username}})
+        </a>
       </div>
     </ul>
   </div>
 
   <!--Followers-->
   <div class="dropdown">
-    <button class="btn btn-success btn-block dropdown-toggle"
+    <button class="btn btn-block dropdown-toggle"
             type="button" data-toggle="dropdown">
-      Followers [{{followers.length}}]
+      Followers
+      <span class="badge badge-pill badge-danger">{{followers.length}}</span>
       <span class="caret  pull-right"></span>
     </button>
     <ul class="dropdown-menu">
       <div *ngFor="let user of followers">
-        <input type="button" class="btn btn-primary btn-block "
-               (click)="navigateToFriendsProfile(user._id)"
-               value="{{user.lastName}}, {{user.firstName}} ({{user.username}})">
+        <a class="btn btn-block btn-info" (click)="navigateToFriendsProfile(user._id)">
+          {{user.lastName}}, {{user.firstName}} ({{user.username}})
+        </a>
       </div>
     </ul>
   </div>
