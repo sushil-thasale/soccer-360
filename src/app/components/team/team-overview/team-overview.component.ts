@@ -7,7 +7,7 @@ import { SoccerServiceClient } from '../../../services/soccer.service.client';
   templateUrl: './team-overview.component.html',
   styleUrls: ['./team-overview.component.css']
 })
-export class TeamOverviewComponent implements OnInit {
+export class TeamOverviewComponent implements OnInit, OnChanges {
 
   @Input() teamId: string;
   team: any;
@@ -26,6 +26,10 @@ export class TeamOverviewComponent implements OnInit {
           this.errorFlag = true;
           this.errorMsg = 'Unable to retrieve team details!';
         });
+  }
+
+  ngOnChanges() {
+    this.ngOnInit();
   }
 
   parseBody(data: any) {

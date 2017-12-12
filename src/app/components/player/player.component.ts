@@ -26,17 +26,16 @@ export class PlayerComponent implements OnInit {
     this.playerDetailsType = 'FACTS';
     this.route.params.subscribe(params => {
       this.playerID = params['playerID'];
+      this.soccerService.getPlayerInformation(this.playerID)
+        .subscribe(
+          (player: any) => {
+            this.player = this.parseBody(player);
+            this.errorFlag = false;
+          }, (error) => {
+            this.errorFlag = true;
+            this.errorMsg = 'Unable to retrieve player details!';
+          });
     });
-
-    this.soccerService.getPlayerInformation(this.playerID)
-      .subscribe(
-        (player: any) => {
-          this.player = this.parseBody(player);
-          this.errorFlag = false;
-        }, (error) => {
-          this.errorFlag = true;
-          this.errorMsg = 'Unable to retrieve player details!';
-        });
   }
 
   parseBody(data: any) {

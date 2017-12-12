@@ -29,18 +29,17 @@ export class LeagueComponent implements OnInit {
     this.leagueDetailsType = 'STANDINGS';
     this.route.params.subscribe(params => {
       this.leagueID = params['leagueID'];
+      this.soccerService.getCompetitionById(this.leagueID)
+        .subscribe(
+          (league: any) => {
+            this.league = this.parseBody(league);
+            this.errorFlag = false;
+            // console.log(league);
+          }, (error) => {
+            this.errorFlag = true;
+            this.errorMsg = 'Unable to retrieve league details!';
+          });
     });
-
-    this.soccerService.getCompetitionById(this.leagueID)
-      .subscribe(
-        (league: any) => {
-          this.league = this.parseBody(league);
-          this.errorFlag = false;
-          console.log(league);
-        }, (error) => {
-          this.errorFlag = true;
-          this.errorMsg = 'Unable to retrieve league details!';
-        });
   }
 
   parseBody(data: any) {

@@ -12,7 +12,7 @@ import { SharedService } from '../../../services/shared.service';
   templateUrl: './friend-profile.component.html',
   styleUrls: ['./friend-profile.component.css']
 })
-export class FriendProfileComponent implements OnInit {
+export class FriendProfileComponent implements OnInit, OnChanges {
 
   leagues: any;
   teams: any;
@@ -32,6 +32,10 @@ export class FriendProfileComponent implements OnInit {
               private playerService: PlayerService,
               private sharedService: SharedService) { }
 
+  ngOnChanges() {
+    this.ngOnInit();
+  }
+
   ngOnInit() {
     this.leagues = [];
     this.teams = [];
@@ -40,6 +44,40 @@ export class FriendProfileComponent implements OnInit {
     // get friend's userId
     this.route.params.subscribe(params => {
       this.friendId = params['friendID'];
+
+      this.userService.findUserById(this.friendId)
+        .subscribe(
+          (friend: any) => {
+            this.friend = friend;
+            this.errorFlag = false;
+          }, (error) => {
+            this.errorFlag = true;
+            this.errorMsg = 'User not found!!';
+          });
+
+      this.leagueService.findLeaguesForUser(this.friendId)
+        .subscribe(
+          (leagues: any) => {
+            this.leagues = leagues;
+          }, (error) => {
+            console.log(error + ' friends leagues cannot be loaded');
+          });
+
+      this.teamService.findTeamsForUser(this.friendId)
+        .subscribe(
+          (teams: any) => {
+            this.teams = teams;
+          }, (error) => {
+            console.log(error + ' friends teams cannot be loaded');
+          });
+
+      this.playerService.findPlayersForUser(this.friendId)
+        .subscribe(
+          (players: any) => {
+            this.players = players;
+          }, (error) => {
+            console.log(error + ' friends players cannot be loaded');
+          });
     });
 
     // get user details from shared service
@@ -50,40 +88,6 @@ export class FriendProfileComponent implements OnInit {
     } else {
       this.isFriend = false;
     }
-
-    this.userService.findUserById(this.friendId)
-      .subscribe(
-        (friend: any) => {
-          this.friend = friend;
-          this.errorFlag = false;
-        }, (error) => {
-          this.errorFlag = true;
-          this.errorMsg = 'User not found!!';
-        });
-
-    this.leagueService.findLeaguesForUser(this.friendId)
-      .subscribe(
-        (leagues: any) => {
-          this.leagues = leagues;
-        }, (error) => {
-          console.log(error + ' friends leagues cannot be loaded');
-        });
-
-    this.teamService.findTeamsForUser(this.friendId)
-      .subscribe(
-        (teams: any) => {
-          this.teams = teams;
-        }, (error) => {
-          console.log(error + ' friends teams cannot be loaded');
-        });
-
-    this.playerService.findPlayersForUser(this.friendId)
-      .subscribe(
-        (players: any) => {
-          this.players = players;
-        }, (error) => {
-          console.log(error + ' friends players cannot be loaded');
-        });
   }
 
   followUser() {

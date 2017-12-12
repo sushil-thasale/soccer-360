@@ -42,7 +42,7 @@
 
       <!--Teams-->
       <div class="dropdown">
-        <button class="btn  btn-block dropdown-toggle"
+        <button class="btn btn-block dropdown-toggle"
                 type="button" data-toggle="dropdown">
           Teams
           <span class="badge badge-pill badge-danger">{{teams.length}}</span>
@@ -51,7 +51,7 @@
         <ul class="dropdown-menu">
           <div *ngFor="let team of teams">
             <a class="btn btn-block btn-info"
-               (click)="navigateToLeague(team.apiId)">
+               (click)="navigateToTeam(team.apiId)">
               {{team.name}}
             </a>
           </div>
@@ -69,7 +69,7 @@
         <ul class="dropdown-menu">
           <div *ngFor="let player of players">
             <a class="btn btn-block btn-info"
-               (click)="navigateToLeague(player.apiId)">
+               (click)="navigateToPlayer(player.apiId)">
               {{player.name}}
             </a>
           </div>

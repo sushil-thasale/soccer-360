@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, OnChanges, OnInit, ViewChild} from '@angular/core';
 import { Input } from '@angular/core';
 import {SoccerServiceClient} from '../../../../services/soccer.service.client';
 
@@ -7,7 +7,7 @@ import {SoccerServiceClient} from '../../../../services/soccer.service.client';
   templateUrl: './match-team-standings.component.html',
   styleUrls: ['./match-team-standings.component.css']
 })
-export class MatchTeamStandingsComponent implements OnInit {
+export class MatchTeamStandingsComponent implements OnInit, OnChanges {
 
   @Input() compId: string;
   errorFlag: boolean;
@@ -30,6 +30,10 @@ export class MatchTeamStandingsComponent implements OnInit {
           this.errorFlag = true;
           this.errorMsg = 'Unable to retrieve competition standings!';
         });
+  }
+
+  ngOnChanges() {
+    this.ngOnInit();
   }
 
   parseBody(data: any) {

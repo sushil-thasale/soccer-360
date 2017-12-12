@@ -1030,15 +1030,15 @@ var LeagueComponent = (function () {
         this.leagueDetailsType = 'STANDINGS';
         this.route.params.subscribe(function (params) {
             _this.leagueID = params['leagueID'];
-        });
-        this.soccerService.getCompetitionById(this.leagueID)
-            .subscribe(function (league) {
-            _this.league = _this.parseBody(league);
-            _this.errorFlag = false;
-            console.log(league);
-        }, function (error) {
-            _this.errorFlag = true;
-            _this.errorMsg = 'Unable to retrieve league details!';
+            _this.soccerService.getCompetitionById(_this.leagueID)
+                .subscribe(function (league) {
+                _this.league = _this.parseBody(league);
+                _this.errorFlag = false;
+                // console.log(league);
+            }, function (error) {
+                _this.errorFlag = true;
+                _this.errorMsg = 'Unable to retrieve league details!';
+            });
         });
     };
     LeagueComponent.prototype.parseBody = function (data) {
@@ -1874,6 +1874,9 @@ var MatchTeamStandingsComponent = (function () {
             _this.errorFlag = true;
             _this.errorMsg = 'Unable to retrieve competition standings!';
         });
+    };
+    MatchTeamStandingsComponent.prototype.ngOnChanges = function () {
+        this.ngOnInit();
     };
     MatchTeamStandingsComponent.prototype.parseBody = function (data) {
         var val = data._body;
@@ -2728,6 +2731,9 @@ var PlayerFactsComponent = (function () {
             _this.errorMsg = 'Unable to retrieve player details!';
         });
     };
+    PlayerFactsComponent.prototype.ngOnChanges = function () {
+        this.ngOnInit();
+    };
     PlayerFactsComponent.prototype.parseBody = function (data) {
         var val = data._body;
         val = JSON.parse(val);
@@ -2895,14 +2901,14 @@ var PlayerComponent = (function () {
         this.playerDetailsType = 'FACTS';
         this.route.params.subscribe(function (params) {
             _this.playerID = params['playerID'];
-        });
-        this.soccerService.getPlayerInformation(this.playerID)
-            .subscribe(function (player) {
-            _this.player = _this.parseBody(player);
-            _this.errorFlag = false;
-        }, function (error) {
-            _this.errorFlag = true;
-            _this.errorMsg = 'Unable to retrieve player details!';
+            _this.soccerService.getPlayerInformation(_this.playerID)
+                .subscribe(function (player) {
+                _this.player = _this.parseBody(player);
+                _this.errorFlag = false;
+            }, function (error) {
+                _this.errorFlag = true;
+                _this.errorMsg = 'Unable to retrieve player details!';
+            });
         });
     };
     PlayerComponent.prototype.parseBody = function (data) {
@@ -3457,6 +3463,9 @@ var TeamOverviewComponent = (function () {
             _this.errorMsg = 'Unable to retrieve team details!';
         });
     };
+    TeamOverviewComponent.prototype.ngOnChanges = function () {
+        this.ngOnInit();
+    };
     TeamOverviewComponent.prototype.parseBody = function (data) {
         var val = data._body;
         val = JSON.parse(val);
@@ -3800,14 +3809,14 @@ var TeamComponent = (function () {
         this.teamDetailsType = 'OVERVIEW';
         this.route.params.subscribe(function (params) {
             _this.teamID = params['teamID'];
-        });
-        this.soccerService.getTeamInformation(this.teamID)
-            .subscribe(function (team) {
-            _this.team = _this.parseBody(team);
-            _this.errorFlag = false;
-        }, function (error) {
-            _this.errorFlag = true;
-            _this.errorMsg = 'Unable to retrieve team details!';
+            _this.soccerService.getTeamInformation(_this.teamID)
+                .subscribe(function (team) {
+                _this.team = _this.parseBody(team);
+                _this.errorFlag = false;
+            }, function (error) {
+                _this.errorFlag = true;
+                _this.errorMsg = 'Unable to retrieve team details!';
+            });
         });
     };
     TeamComponent.prototype.parseBody = function (data) {
@@ -4334,7 +4343,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user/follows-sidebar/follows-sidebar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"text-center\">\n  <button class=\"btn btn-success btn-block\"\n          (click)=\"navigateToSearchAndAddFriends()\"\n          type=\"button\">Add Friends\n    <span class=\"glyphicon glyphicon-plus pull-right\"></span>\n  </button>\n</div>\n\n<div class=\"form-group\">\n  <!--Following-->\n  <div class=\"dropdown\">\n    <button class=\"btn btn-block dropdown-toggle\"\n            type=\"button\" data-toggle=\"dropdown\">\n      Following\n      <span class=\"badge badge-pill badge-danger\">{{following.length}}</span>\n      <span class=\"caret  pull-right\"></span>\n    </button>\n    <ul class=\"dropdown-menu\">\n      <div *ngFor=\"let user of following\">\n        <a class=\"btn btn-block btn-info\" (click)=\"navigateToFriendsProfile(user._id)\">\n          {{user.lastName}}, {{user.firstName}} ({{user.username}})\n        </a>\n      </div>\n    </ul>\n  </div>\n\n  <!--Followers-->\n  <div class=\"dropdown\">\n    <button class=\"btn btn-block dropdown-toggle\"\n            type=\"button\" data-toggle=\"dropdown\">\n      Followers\n      <span class=\"badge badge-pill badge-danger\">{{followers.length}}</span>\n      <span class=\"caret  pull-right\"></span>\n    </button>\n    <ul class=\"dropdown-menu\">\n      <div *ngFor=\"let user of followers\">\n        <a class=\"btn btn-block btn-info\" (click)=\"navigateToFriendsProfile(user._id)\">\n          {{user.lastName}}, {{user.firstName}} ({{user.username}})\n        </a>\n      </div>\n    </ul>\n  </div>\n\n</div>\n\n<div *ngIf=\"user && user.roles == 'user'\" class=\"text-center\">\n  <button class=\"btn btn-danger btn-block\"\n          (click)=\"applyForCritic()\"\n          type=\"button\">Apply for Critic!\n    <span class=\"glyphicon glyphicon-plus pull-right\"></span>\n  </button>\n</div>\n\n"
+module.exports = "<div class=\"text-center\">\n  <button class=\"btn btn-success btn-block\"\n          (click)=\"navigateToSearchAndAddFriends()\"\n          type=\"button\">Add Friends\n    <span class=\"glyphicon glyphicon-plus pull-right\"></span>\n  </button>\n</div>\n\n<div class=\"form-group\">\n  <!--Following-->\n  <div class=\"dropdown\">\n    <button class=\"btn btn-block dropdown-toggle\"\n            type=\"button\" data-toggle=\"dropdown\">\n      Following\n      <span class=\"badge badge-pill badge-danger\">{{following.length}}</span>\n      <span class=\"caret  pull-right\"></span>\n    </button>\n    <ul class=\"dropdown-menu\">\n      <div *ngFor=\"let user of following\">\n        <a class=\"btn btn-block btn-info\" (click)=\"navigateToFriendsProfile(user._id)\">\n          {{user.lastName}}, {{user.firstName}} ({{user.username}})\n        </a>\n      </div>\n    </ul>\n  </div>\n\n  <!--Followers-->\n  <div class=\"dropdown\">\n    <button class=\"btn btn-block dropdown-toggle\"\n            type=\"button\" data-toggle=\"dropdown\">\n      Followers\n      <span class=\"badge badge-pill badge-danger\">{{followers.length}}</span>\n      <span class=\"caret  pull-right\"></span>\n    </button>\n    <ul class=\"dropdown-menu\">\n      <div *ngFor=\"let user of followers\">\n        <a class=\"btn btn-block btn-info\" (click)=\"navigateToFriendsProfile(user._id)\">\n          {{user.lastName}}, {{user.firstName}} ({{user.username}})\n        </a>\n      </div>\n    </ul>\n  </div>\n\n</div>\n\n<div *ngIf=\"user && user.roles == 'user'\" class=\"text-center\">\n  <button class=\"btn btn-success btn-block\"\n          (click)=\"applyForCritic()\"\n          type=\"button\">Apply for Critic!\n    <span class=\"glyphicon glyphicon-plus pull-right\"></span>\n  </button>\n</div>\n\n"
 
 /***/ }),
 
@@ -4453,7 +4462,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user/friend-profile/friend-profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--app header-->\n<app-home-header></app-home-header>\n\n<!--main body-->\n<div class=\"row container-fluid\">\n\n  <!-- Left Pane - User details -->\n  <div class=\"col-sm-4 hidden-xs my-left-pane my-right-border\">\n    <app-home-user-profile></app-home-user-profile>\n  </div>\n\n  <!-- Right Pane - Friend Details -->\n  <div class=\"col-sm-8 col-xs-12 my-right-pane\">\n\n      <div *ngIf=\"friendId && friend\">\n        <!--friend profile pic and user name/description-->\n        <div class=\"text-center\">\n          <figure class=\"profile-userpic\">\n            <img src=\"\" class=\"img-responsive\" alt=\"Profile Picture\">\n          </figure>\n\n          <div class=\"profile-usertitle\">\n            <div class=\"profile-usertitle-name\">{{friend.username}}</div>\n            <div class=\"profile-usertitle-name\">{{friend.firstName}} {{friend.lastName}}</div>\n            <div class=\"profile-usertitle-title\">{{friend.email}}</div>\n          </div>\n        </div>\n\n        <!--add as friend if not friend-->\n        <div *ngIf=\"!isFriend\">\n          <div class=\"text-center\">\n            <button class=\"btn btn-success btn-block\"\n                    (click)=\"followUser()\"\n                    type=\"button\">Add as Friend\n              <span class=\"glyphicon glyphicon-plus pull-right\"></span>\n            </button>\n          </div>\n        </div>\n        <div *ngIf=\"isFriend\">\n          <div class=\"text-center\">\n            <button class=\"btn btn-danger btn-block\"\n                    (click)=\"unfollowUser()\"\n                    type=\"button\">Unfollow\n              <span class=\"glyphicon glyphicon-remove pull-right\"></span>\n            </button>\n          </div>\n        </div>\n\n        <!--friends favorite leagues/ team/ players-->\n        <div class=\"form-group\">\n          <!--Leagues-->\n          <div class=\"dropdown\">\n            <button class=\"btn btn-block dropdown-toggle\"\n                    type=\"button\" data-toggle=\"dropdown\">\n              Leagues\n              <span class=\"badge badge-pill badge-danger\">{{leagues.length}}</span>\n              <span class=\"caret  pull-right\"></span>\n            </button>\n            <ul class=\"dropdown-menu\">\n              <div *ngFor=\"let league of leagues\">\n                <a class=\"btn btn-block btn-info\"\n                       (click)=\"navigateToLeague(league.apiId)\">\n                  {{league.name}}\n                </a>\n              </div>\n            </ul>\n          </div>\n\n          <!--Teams-->\n          <div class=\"dropdown\">\n            <button class=\"btn  btn-block dropdown-toggle\"\n                    type=\"button\" data-toggle=\"dropdown\">\n              Teams\n              <span class=\"badge badge-pill badge-danger\">{{teams.length}}</span>\n              <span class=\"caret  pull-right\"></span>\n            </button>\n            <ul class=\"dropdown-menu\">\n              <div *ngFor=\"let team of teams\">\n                <a class=\"btn btn-block btn-info\"\n                   (click)=\"navigateToLeague(team.apiId)\">\n                  {{team.name}}\n                </a>\n              </div>\n            </ul>\n          </div>\n\n          <!--Players-->\n          <div class=\"dropdown\">\n            <button class=\"btn  btn-block dropdown-toggle\"\n                    type=\"button\" data-toggle=\"dropdown\">\n              Players\n              <span class=\"badge badge-pill badge-danger\">{{players.length}}</span>\n              <span class=\"caret  pull-right\"></span>\n            </button>\n            <ul class=\"dropdown-menu\">\n              <div *ngFor=\"let player of players\">\n                <a class=\"btn btn-block btn-info\"\n                   (click)=\"navigateToLeague(player.apiId)\">\n                  {{player.name}}\n                </a>\n              </div>\n            </ul>\n          </div>\n        </div>\n\n      </div>\n\n  </div>\n</div>\n\n<!--app footer-->\n<app-home-footer></app-home-footer>\n"
+module.exports = "<!--app header-->\n<app-home-header></app-home-header>\n\n<!--main body-->\n<div class=\"row container-fluid\">\n\n  <!-- Left Pane - User details -->\n  <div class=\"col-sm-4 hidden-xs my-left-pane my-right-border\">\n    <app-home-user-profile></app-home-user-profile>\n  </div>\n\n  <!-- Right Pane - Friend Details -->\n  <div class=\"col-sm-8 col-xs-12 my-right-pane\">\n\n      <div *ngIf=\"friendId && friend\">\n        <!--friend profile pic and user name/description-->\n        <div class=\"text-center\">\n          <figure class=\"profile-userpic\">\n            <img src=\"\" class=\"img-responsive\" alt=\"Profile Picture\">\n          </figure>\n\n          <div class=\"profile-usertitle\">\n            <div class=\"profile-usertitle-name\">{{friend.username}}</div>\n            <div class=\"profile-usertitle-name\">{{friend.firstName}} {{friend.lastName}}</div>\n            <div class=\"profile-usertitle-title\">{{friend.email}}</div>\n          </div>\n        </div>\n\n        <!--add as friend if not friend-->\n        <div *ngIf=\"!isFriend\">\n          <div class=\"text-center\">\n            <button class=\"btn btn-success btn-block\"\n                    (click)=\"followUser()\"\n                    type=\"button\">Add as Friend\n              <span class=\"glyphicon glyphicon-plus pull-right\"></span>\n            </button>\n          </div>\n        </div>\n        <div *ngIf=\"isFriend\">\n          <div class=\"text-center\">\n            <button class=\"btn btn-danger btn-block\"\n                    (click)=\"unfollowUser()\"\n                    type=\"button\">Unfollow\n              <span class=\"glyphicon glyphicon-remove pull-right\"></span>\n            </button>\n          </div>\n        </div>\n\n        <!--friends favorite leagues/ team/ players-->\n        <div class=\"form-group\">\n          <!--Leagues-->\n          <div class=\"dropdown\">\n            <button class=\"btn btn-block dropdown-toggle\"\n                    type=\"button\" data-toggle=\"dropdown\">\n              Leagues\n              <span class=\"badge badge-pill badge-danger\">{{leagues.length}}</span>\n              <span class=\"caret  pull-right\"></span>\n            </button>\n            <ul class=\"dropdown-menu\">\n              <div *ngFor=\"let league of leagues\">\n                <a class=\"btn btn-block btn-info\"\n                       (click)=\"navigateToLeague(league.apiId)\">\n                  {{league.name}}\n                </a>\n              </div>\n            </ul>\n          </div>\n\n          <!--Teams-->\n          <div class=\"dropdown\">\n            <button class=\"btn  btn-block dropdown-toggle\"\n                    type=\"button\" data-toggle=\"dropdown\">\n              Teams\n              <span class=\"badge badge-pill badge-danger\">{{teams.length}}</span>\n              <span class=\"caret  pull-right\"></span>\n            </button>\n            <ul class=\"dropdown-menu\">\n              <div *ngFor=\"let team of teams\">\n                <a class=\"btn btn-block btn-info\"\n                   (click)=\"navigateToTeam(team.apiId)\">\n                  {{team.name}}\n                </a>\n              </div>\n            </ul>\n          </div>\n\n          <!--Players-->\n          <div class=\"dropdown\">\n            <button class=\"btn  btn-block dropdown-toggle\"\n                    type=\"button\" data-toggle=\"dropdown\">\n              Players\n              <span class=\"badge badge-pill badge-danger\">{{players.length}}</span>\n              <span class=\"caret  pull-right\"></span>\n            </button>\n            <ul class=\"dropdown-menu\">\n              <div *ngFor=\"let player of players\">\n                <a class=\"btn btn-block btn-info\"\n                   (click)=\"navigateToPlayer(player.apiId)\">\n                  {{player.name}}\n                </a>\n              </div>\n            </ul>\n          </div>\n        </div>\n\n      </div>\n\n  </div>\n</div>\n\n<!--app footer-->\n<app-home-footer></app-home-footer>\n"
 
 /***/ }),
 
@@ -4497,6 +4506,9 @@ var FriendProfileComponent = (function () {
         this.sharedService = sharedService;
         this.errorMsg = 'All values are required to update the form!';
     }
+    FriendProfileComponent.prototype.ngOnChanges = function () {
+        this.ngOnInit();
+    };
     FriendProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.leagues = [];
@@ -4505,6 +4517,32 @@ var FriendProfileComponent = (function () {
         // get friend's userId
         this.route.params.subscribe(function (params) {
             _this.friendId = params['friendID'];
+            _this.userService.findUserById(_this.friendId)
+                .subscribe(function (friend) {
+                _this.friend = friend;
+                _this.errorFlag = false;
+            }, function (error) {
+                _this.errorFlag = true;
+                _this.errorMsg = 'User not found!!';
+            });
+            _this.leagueService.findLeaguesForUser(_this.friendId)
+                .subscribe(function (leagues) {
+                _this.leagues = leagues;
+            }, function (error) {
+                console.log(error + ' friends leagues cannot be loaded');
+            });
+            _this.teamService.findTeamsForUser(_this.friendId)
+                .subscribe(function (teams) {
+                _this.teams = teams;
+            }, function (error) {
+                console.log(error + ' friends teams cannot be loaded');
+            });
+            _this.playerService.findPlayersForUser(_this.friendId)
+                .subscribe(function (players) {
+                _this.players = players;
+            }, function (error) {
+                console.log(error + ' friends players cannot be loaded');
+            });
         });
         // get user details from shared service
         // and check if the searched user is a friend or not
@@ -4515,32 +4553,6 @@ var FriendProfileComponent = (function () {
         else {
             this.isFriend = false;
         }
-        this.userService.findUserById(this.friendId)
-            .subscribe(function (friend) {
-            _this.friend = friend;
-            _this.errorFlag = false;
-        }, function (error) {
-            _this.errorFlag = true;
-            _this.errorMsg = 'User not found!!';
-        });
-        this.leagueService.findLeaguesForUser(this.friendId)
-            .subscribe(function (leagues) {
-            _this.leagues = leagues;
-        }, function (error) {
-            console.log(error + ' friends leagues cannot be loaded');
-        });
-        this.teamService.findTeamsForUser(this.friendId)
-            .subscribe(function (teams) {
-            _this.teams = teams;
-        }, function (error) {
-            console.log(error + ' friends teams cannot be loaded');
-        });
-        this.playerService.findPlayersForUser(this.friendId)
-            .subscribe(function (players) {
-            _this.players = players;
-        }, function (error) {
-            console.log(error + ' friends players cannot be loaded');
-        });
     };
     FriendProfileComponent.prototype.followUser = function () {
         var _this = this;
@@ -4610,7 +4622,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user/home-user-profile/home-user-profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"user\">\n  <div class=\"nav navbar-nav sider-navbar\">\n\n    <div class=\"text-center\">\n        <figure class=\"profile-userpic\">\n          <img src=\"\" class=\"img-responsive\" alt=\"Profile Picture\">\n        </figure>\n\n        <div class=\"profile-usertitle\">\n          <div class=\"profile-usertitle-name\">{{user.username}}</div>\n          <div class=\"profile-usertitle-name\">{{user.firstName}} {{user.lastName}}</div>\n          <div class=\"profile-usertitle-title\">{{user.email}}</div>\n        </div>\n    </div>\n\n    <div class=\"text-center\">\n      <button class=\"btn btn-success btn-block\"\n              (click)=\"navigateToAddFavorites()\"\n              type=\"button\">Add New Favorites\n        <span class=\"glyphicon glyphicon-plus pull-right\"></span>\n      </button>\n    </div>\n\n    <div class=\"form-group\">\n      <!--Leagues-->\n      <div class=\"dropdown\">\n        <button class=\"btn btn-block dropdown-toggle\"\n                type=\"button\" data-toggle=\"dropdown\">\n          Leagues\n          <span class=\"badge badge-pill badge-danger\">{{leagues.length}}</span>\n          <span class=\"caret  pull-right\"></span>\n        </button>\n        <ul class=\"dropdown-menu\">\n          <div *ngFor=\"let league of leagues\">\n            <a class=\"btn btn-block btn-info\"\n               (click)=\"navigateToLeague(league.apiId)\">\n              {{league.name}}\n            </a>\n          </div>\n        </ul>\n      </div>\n\n      <!--Teams-->\n      <div class=\"dropdown\">\n        <button class=\"btn  btn-block dropdown-toggle\"\n                type=\"button\" data-toggle=\"dropdown\">\n          Teams\n          <span class=\"badge badge-pill badge-danger\">{{teams.length}}</span>\n          <span class=\"caret  pull-right\"></span>\n        </button>\n        <ul class=\"dropdown-menu\">\n          <div *ngFor=\"let team of teams\">\n            <a class=\"btn btn-block btn-info\"\n               (click)=\"navigateToLeague(team.apiId)\">\n              {{team.name}}\n            </a>\n          </div>\n        </ul>\n      </div>\n\n      <!--Players-->\n      <div class=\"dropdown\">\n        <button class=\"btn  btn-block dropdown-toggle\"\n                type=\"button\" data-toggle=\"dropdown\">\n          Players\n          <span class=\"badge badge-pill badge-danger\">{{players.length}}</span>\n          <span class=\"caret  pull-right\"></span>\n        </button>\n        <ul class=\"dropdown-menu\">\n          <div *ngFor=\"let player of players\">\n            <a class=\"btn btn-block btn-info\"\n               (click)=\"navigateToLeague(player.apiId)\">\n              {{player.name}}\n            </a>\n          </div>\n        </ul>\n      </div>\n    </div>\n\n    <app-follows-sidebar></app-follows-sidebar>\n  </div>\n</div>\n"
+module.exports = "<div *ngIf=\"user\">\n  <div class=\"nav navbar-nav sider-navbar\">\n\n    <div class=\"text-center\">\n        <figure class=\"profile-userpic\">\n          <img src=\"\" class=\"img-responsive\" alt=\"Profile Picture\">\n        </figure>\n\n        <div class=\"profile-usertitle\">\n          <div class=\"profile-usertitle-name\">{{user.username}}</div>\n          <div class=\"profile-usertitle-name\">{{user.firstName}} {{user.lastName}}</div>\n          <div class=\"profile-usertitle-title\">{{user.email}}</div>\n        </div>\n    </div>\n\n    <div class=\"text-center\">\n      <button class=\"btn btn-success btn-block\"\n              (click)=\"navigateToAddFavorites()\"\n              type=\"button\">Add New Favorites\n        <span class=\"glyphicon glyphicon-plus pull-right\"></span>\n      </button>\n    </div>\n\n    <div class=\"form-group\">\n      <!--Leagues-->\n      <div class=\"dropdown\">\n        <button class=\"btn btn-block dropdown-toggle\"\n                type=\"button\" data-toggle=\"dropdown\">\n          Leagues\n          <span class=\"badge badge-pill badge-danger\">{{leagues.length}}</span>\n          <span class=\"caret  pull-right\"></span>\n        </button>\n        <ul class=\"dropdown-menu\">\n          <div *ngFor=\"let league of leagues\">\n            <a class=\"btn btn-block btn-info\"\n               (click)=\"navigateToLeague(league.apiId)\">\n              {{league.name}}\n            </a>\n          </div>\n        </ul>\n      </div>\n\n      <!--Teams-->\n      <div class=\"dropdown\">\n        <button class=\"btn btn-block dropdown-toggle\"\n                type=\"button\" data-toggle=\"dropdown\">\n          Teams\n          <span class=\"badge badge-pill badge-danger\">{{teams.length}}</span>\n          <span class=\"caret  pull-right\"></span>\n        </button>\n        <ul class=\"dropdown-menu\">\n          <div *ngFor=\"let team of teams\">\n            <a class=\"btn btn-block btn-info\"\n               (click)=\"navigateToTeam(team.apiId)\">\n              {{team.name}}\n            </a>\n          </div>\n        </ul>\n      </div>\n\n      <!--Players-->\n      <div class=\"dropdown\">\n        <button class=\"btn  btn-block dropdown-toggle\"\n                type=\"button\" data-toggle=\"dropdown\">\n          Players\n          <span class=\"badge badge-pill badge-danger\">{{players.length}}</span>\n          <span class=\"caret  pull-right\"></span>\n        </button>\n        <ul class=\"dropdown-menu\">\n          <div *ngFor=\"let player of players\">\n            <a class=\"btn btn-block btn-info\"\n               (click)=\"navigateToPlayer(player.apiId)\">\n              {{player.name}}\n            </a>\n          </div>\n        </ul>\n      </div>\n    </div>\n\n    <app-follows-sidebar></app-follows-sidebar>\n  </div>\n</div>\n"
 
 /***/ }),
 

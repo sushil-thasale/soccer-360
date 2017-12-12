@@ -29,17 +29,16 @@ export class TeamComponent implements OnInit {
     this.teamDetailsType = 'OVERVIEW';
     this.route.params.subscribe(params => {
       this.teamID = params['teamID'];
+      this.soccerService.getTeamInformation(this.teamID)
+        .subscribe(
+          (team: any) => {
+            this.team = this.parseBody(team);
+            this.errorFlag = false;
+          }, (error) => {
+            this.errorFlag = true;
+            this.errorMsg = 'Unable to retrieve team details!';
+          });
     });
-
-    this.soccerService.getTeamInformation(this.teamID)
-      .subscribe(
-        (team: any) => {
-          this.team = this.parseBody(team);
-          this.errorFlag = false;
-        }, (error) => {
-          this.errorFlag = true;
-          this.errorMsg = 'Unable to retrieve team details!';
-        });
   }
 
   parseBody(data: any) {
