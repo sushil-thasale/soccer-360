@@ -1,55 +1,61 @@
 <div *ngIf="stats">
   <!--Match stats-->
-  <div class="row container-fluid">
+  <table class="table table-responsive table-striped">
+    <tbody>
+      <tr>
+        <td class="col-xs-3 text-left">{{localTeamStats.shots_total}}</td>
+        <td class="col-xs-6 text-center">Total Shots</td>
+        <td class="col-xs-3 text-right">{{awayTeamStats.shots_total}}</td>
+      </tr>
 
-    <!-- Left Pane - Home team stats-->
-    <div class="col-sm-4 col-md-4 my-left-pane-lineup pull-left">
-      <div *ngFor="let stat of stats.localteam">
-        <ul class="vertical-menu pull-left">
-          <li>{{stat.shots_total}}</li>
-          <li>{{stat.shots_ongoal}}</li>
-          <li>{{stat.fouls}}</li>
-          <li>{{stat.corners}}</li>
-          <li>{{stat.offsides}}</li>
-          <li>{{stat.possesiontime}}</li>
-          <li>{{stat.yellowcards}}</li>
-          <li>{{stat.redcards}}</li>
-          <li>{{stat.saves}}</li>
-        </ul>
-      </div>
-    </div>
+      <tr>
+        <td class="col-xs-3 text-left">{{localTeamStats.shots_ongoal}}</td>
+        <td class="col-xs-6 text-center">Shots On Goal</td>
+        <td class="col-xs-3 text-right">{{awayTeamStats.shots_ongoal}}</td>
+      </tr>
 
-    <!-- Middle Pane - Stats Name-->
-    <div class="col-sm-4 col-md-4 my-left-pane-lineup text-center">
-      <ul class="vertical-menu">
-        <li>Total Shots</li>
-        <li>Shots On Goal</li>
-        <li>Fouls</li>
-        <li>Corners</li>
-        <li>Offsides</li>
-        <li>Possession</li>
-        <li>Yellow Cards</li>
-        <li>Red Cards</li>
-        <li>Saves</li>
-      </ul>
-    </div>
+      <tr>
+        <td class="col-xs-3 text-left">{{localTeamStats.fouls}}</td>
+        <td class="col-xs-6 text-center">Fouls</td>
+        <td class="col-xs-3 text-right">{{awayTeamStats.fouls}}</td>
+      </tr>
 
-    <!-- Right Pane - Away Team Stats-->
-    <div class="col-sm-4 col-md-4 my-right-pane-lineup pull-right">
-      <div *ngFor="let stat of stats.visitorteam">
-        <ul class="vertical-menu pull-left">
-          <li>{{stat.shots_total}}</li>
-          <li>{{stat.shots_ongoal}}</li>
-          <li>{{stat.fouls}}</li>
-          <li>{{stat.corners}}</li>
-          <li>{{stat.offsides}}</li>
-          <li>{{stat.possesiontime}}</li>
-          <li>{{stat.yellowcards}}</li>
-          <li>{{stat.redcards}}</li>
-          <li>{{stat.saves}}</li>
-        </ul>
-      </div>
-    </div>
+      <tr>
+        <td class="col-xs-3 text-left">{{localTeamStats.corners}}</td>
+        <td class="col-xs-6 text-center">Corners</td>
+        <td class="col-xs-3 text-right">{{awayTeamStats.corners}}</td>
+      </tr>
 
-  </div>
+      <tr>
+        <td class="col-xs-3 text-left">{{localTeamStats.offsides}}</td>
+        <td class="col-xs-6 text-center">Offsides</td>
+        <td class="col-xs-3 text-right">{{awayTeamStats.offsides}}</td>
+      </tr>
+
+      <tr>
+        <td class="col-xs-3 text-left">{{localTeamStats.possesiontime}}</td>
+        <td class="col-xs-6 text-center">Possession</td>
+        <td class="col-xs-3 text-right">{{awayTeamStats.possesiontime}}</td>
+      </tr>
+
+      <tr>
+        <td class="col-xs-3 text-left">{{localTeamStats.yellowcards}}</td>
+        <td class="col-xs-6 text-center">Yellow Cards</td>
+        <td class="col-xs-3 text-right">{{awayTeamStats.yellowcards}}</td>
+      </tr>
+
+      <tr>
+        <td class="col-xs-3 text-left">{{localTeamStats.redcards}}</td>
+        <td class="col-xs-6 text-center">Red Cards</td>
+        <td class="col-xs-3 text-right">{{awayTeamStats.redcards}}</td>
+      </tr>
+
+      <tr>
+        <td class="col-xs-3 text-left">{{localTeamStats.saves}}</td>
+        <td class="col-xs-6 text-center">Saves</td>
+        <td class="col-xs-3 text-right">{{awayTeamStats.saves}}</td>
+      </tr>
+
+    </tbody>
+  </table>
 </div>

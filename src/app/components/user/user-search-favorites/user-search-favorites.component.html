@@ -17,7 +17,7 @@
 
       <div class="navbar-header">
         <a class="navbar-brand" [routerLink]="[]">
-          Search Favorite Leagues
+          Search Favorites
         </a>
       </div>
 
@@ -31,7 +31,7 @@
     <nav class="navbar navbar-default">
       <div class="nav nav-justified navbar-nav">
 
-        <form class="navbar-form navbar-search" role="search">
+        <form class="navbar-form navbar-search text-center" role="search">
 
           <div class="input-group">
             <select class="form-control" name="selectType"
@@ -54,16 +54,16 @@
             <div class="input-group-btn">
               <button type="button"
                       (click)="searchItems()"
-                      class="btn btn-search btn-default">GO
+                      class="btn btn-search btn-primary">Search
               </button>
             </div>
 
           </div>
         </form>
 
-        <ul class="list-group">
+        <ul class="list-group" style="list-style: none">
 
-          <div class="list-group-item my-no-border"
+          <div class="list-group-item"
               *ngFor="let option of options">
             <li>
               <label>

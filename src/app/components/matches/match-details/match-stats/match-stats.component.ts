@@ -13,6 +13,8 @@ export class MatchStatsComponent implements OnInit {
   errorFlag: boolean;
   errorMsg: string;
   stats: any;
+  localTeamStats: any;
+  awayTeamStats: any;
 
   constructor(private soccerService: SoccerServiceClient) { }
 
@@ -24,6 +26,8 @@ export class MatchStatsComponent implements OnInit {
         (match: any) => {
           const commentary = this.parseBody(match);
           this.stats = commentary.match_stats;
+          this.localTeamStats = this.stats.localteam[0];
+          this.awayTeamStats = this.stats.visitorteam[0];
           this.errorFlag = false;
         }, (error) => {
           console.log(error + ' unable to retrieve match stats!');

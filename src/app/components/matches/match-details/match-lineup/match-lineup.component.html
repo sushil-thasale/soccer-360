@@ -1,54 +1,76 @@
+<!--Match Lineup-->
 <div *ngIf="lineup">
-  <!--Match Lineup-->
+  <!--first team-->
+  <div class="text-left">
+    <h3><span class="label label-default">
+      First Team
+    </span></h3>
+  </div>
+
   <div class="row container-fluid">
-
-    <!--first team-->
-    <div class="text-center">First Team</div>
-
-    <div>
-      <!-- Left Pane - Home team -->
-      <div class="col-sm-6 col-md-6 my-left-pane-lineup pull-left">
-        <!--first team-->
-        <div *ngFor="let player of lineup.localteam">
-          <div>
-            {{player.number}} {{player.name}} ({{player.pos}})
-          </div>
-        </div>
-      </div>
-
-      <!-- Right Pane - Away Team -->
-      <div class="col-sm-6 col-md-6 my-right-pane-lineup pull-right">
-        <div *ngFor="let player of lineup.visitorteam">
-          <div>
-            {{player.number}} {{player.name}} ({{player.pos}})
-          </div>
-        </div>
-      </div>
+    <!-- Left Pane - Home team -->
+    <div class="col-sm-6 col-md-6 my-left-pane-lineup pull-left">
+      <!--first team-->
+      <ul *ngFor="let player of lineup.localteam"
+          style="list-style: none"
+          class="list-group">
+        <li>
+          <span class="badge badge-pill">{{player.number}}</span>
+          {{player.name}}
+          <span class="label label-info">({{player.pos}})</span>
+        </li>
+      </ul>
     </div>
 
-    <!--subs/ bench-->
-    <div class="text-center">Bench</div>
+    <!-- Right Pane - Away Team -->
+    <div class="col-sm-6 col-md-6 my-right-pane-lineup pull-right">
+      <!--first team-->
+      <ul *ngFor="let player of lineup.visitorteam"
+          style="list-style: none"
+          class="list-group">
+        <li>
+          <span class="badge badge-pill">{{player.number}}</span>
+          {{player.name}}
+          <span class="label label-info">({{player.pos}})</span>
+        </li>
+      </ul>
+    </div>
+  </div>
 
-    <div>
-      <!-- Left Pane - Home team -->
-      <div class="col-sm-6 col-md-6 my-left-pane-lineup pull-left">
-        <!--first team-->
-        <div *ngFor="let player of subs.localteam">
-          <div>
-            {{player.number}} {{player.name}} ({{player.pos}})
-          </div>
-        </div>
-      </div>
+  <!--subs/ bench-->
+  <div class="text-left">
+    <h3><span class="label label-default">
+      Bench
+    </span></h3>
+  </div>
 
-      <!-- Right Pane - Away Team -->
-      <div class="col-sm-6 col-md-6 my-right-pane-lineup pull-right">
-        <div *ngFor="let player of subs.visitorteam">
-          <div>
-            {{player.number}} {{player.name}} ({{player.pos}})
-          </div>
-        </div>
-      </div>
+  <div class="row container-fluid">
+    <!-- Left Pane - Home team -->
+    <div class="col-sm-6 col-md-6 my-left-pane-lineup pull-left">
+      <!--first team-->
+      <ul *ngFor="let player of subs.localteam"
+          style="list-style: none"
+          class="list-group">
+        <li>
+          <span class="badge badge-pill">{{player.number}}</span>
+          {{player.name}}
+          <span class="label label-info">({{player.pos}})</span>
+        </li>
+      </ul>
     </div>
 
+    <!-- Right Pane - Away Team -->
+    <div class="col-sm-6 col-md-6 my-right-pane-lineup pull-right">
+      <!--first team-->
+      <ul *ngFor="let player of subs.visitorteam"
+          style="list-style: none"
+          class="list-group">
+        <li>
+          <span class="badge badge-pill">{{player.number}}</span>
+          {{player.name}}
+          <span class="label label-info">({{player.pos}})</span>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

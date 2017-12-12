@@ -26,25 +26,28 @@
 </nav>
 
 <!-- favorites List -->
-<div class="row container-fluid">
-  <div class="col-xs-12 my-left-pane">
+<div class="container-fluid">
+  <div class="col-xs-12">
 
+    <!--user leagues -->
     <div>
-      <!--user leagues -->
-      Favorite Leagues:
-      <a (click)="addFavorites()" class="pull-right">
-        <span class="glyphicon glyphicon-plus my-right-margin"></span>
-      </a>
+      <span>
+        <h2><span class="label label-default">Favorite Leagues:</span>
+          <a (click)="addFavorites()" class="pull-right">
+            <span class="glyphicon glyphicon-plus btn btn-success"></span>
+          </a>
+        </h2>
+      </span>
 
       <div *ngIf="leagues">
         <div id="league">
           <ul class="list-group">
 
-            <li class="list-group-item my-no-border"
+            <li class="list-group-item"
                 *ngFor="let league of leagues">
               <a class="no-underline-hover">{{league.name}}</a>
               <a (click)="unfollowLeague(league.apiId)" class="pull-right">
-                <span class="glyphicon glyphicon-remove my-right-margin"></span>
+                <span class="glyphicon glyphicon-remove"></span>
               </a>
             </li>
 
@@ -53,18 +56,17 @@
       </div>
     </div>
 
+    <!--user teams -->
     <div>
-      <!--user teams -->
-      Favorite Teams:
-      <a (click)="addFavorites()" class="pull-right">
-        <span class="glyphicon glyphicon-plus my-right-margin"></span>
-      </a>
+      <span>
+        <h2><span class="label label-default">Favorite Teams:</span>        </h2>
+      </span>
 
       <div *ngIf="teams">
         <div id="teams">
           <ul class="list-group">
 
-            <li class="list-group-item my-no-border"
+            <li class="list-group-item"
                 *ngFor="let team of teams">
               <a class="no-underline-hover">{{team.name}}</a>
               <a (click)="unfollowTeam(team.apiId)" class="pull-right">
@@ -77,18 +79,17 @@
       </div>
     </div>
 
+    <!--user players -->
     <div>
-      <!--user players -->
-      Favorite Players:
-      <a (click)="addFavorites()" class="pull-right">
-        <span class="glyphicon glyphicon-plus my-right-margin"></span>
-      </a>
+      <span>
+        <h2><span class="label label-default">Favorite Players:</span></h2>
+      </span>
 
       <div *ngIf="players">
         <div id="players">
           <ul class="list-group">
 
-            <li class="list-group-item my-no-border"
+            <li class="list-group-item"
                 *ngFor="let player of players">
               <a class="no-underline-hover">{{player.name}}</a>
               <a (click)="unfollowPlayer(player.apiId)" class="pull-right">

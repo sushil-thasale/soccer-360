@@ -1,18 +1,16 @@
-<ul class="list-group">
-
-  <li class="list-group-item my-no-border"
-      *ngFor="let match of matches">
-    <a class="text-center" (click)="navigateToMatchDetails(match.id)">
-
-      <div *ngIf="match.localteam_score == '?' || match.localteam_score == ''">
-        {{match.localteam_name}} - {{match.visitorteam_name}}
-      </div>
-
-      <div *ngIf="match.localteam_score != '?' && match.localteam_score != ''">
-        {{match.localteam_name}} ({{match.localteam_score}}) - ({{match.visitorteam_score}}) {{match.visitorteam_name}}
-      </div>
-
-    </a>
-  </li>
-
-</ul>
+<table class="table table-responsive table-striped">
+  <tbody>
+    <tr *ngFor="let match of matches"
+        class="tr-match-score"
+        (click)="navigateToMatchDetails(match.id)">
+        <td class="col-xs-5 text-right">{{match.localteam_name}}</td>
+        <td class="col-xs-2 text-center"
+            *ngIf="match.localteam_score == '?' || match.localteam_score == ''">
+          -</td>
+        <td class="col-xs-2 text-center"
+            *ngIf="match.localteam_score != '?' && match.localteam_score != ''">
+          ({{match.localteam_score}}) - ({{match.visitorteam_score}})</td>
+        <td class="col-xs-5 text-left">{{match.visitorteam_name}}</td>
+    </tr>
+  </tbody>
+</table>

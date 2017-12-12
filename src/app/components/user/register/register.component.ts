@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service.client';
 import { User } from '../user.model.client';
-import { NgForm } from '@angular/forms';
 import { SharedService } from '../../../services/shared.service';
 
 @Component({
@@ -12,8 +11,6 @@ import { SharedService } from '../../../services/shared.service';
 })
 
 export class RegisterComponent implements OnInit {
-
-  @ViewChild('f') loginForm: NgForm;
 
   username: string;
   password: string;
@@ -28,9 +25,9 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.errorFlag = false;
-    this.username = this.loginForm.value.username;
-    this.password = this.loginForm.value.password;
-    this.verifyPassword = this.loginForm.value.verifyPassword;
+    this.username = '';
+    this.password = '';
+    this.verifyPassword = '';
   }
 
   register() {

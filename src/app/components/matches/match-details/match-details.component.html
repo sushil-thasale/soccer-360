@@ -14,13 +14,47 @@
 
     <!--match score-->
     <div *ngIf="match" class="text-center">
-      <div *ngIf="match.localteam_score == '?' || match.localteam_score == ''">
-        {{match.localteam_name}} - {{match.visitorteam_name}}
-      </div>
+      <table class="table table-responsive">
+        <tbody>
+          <h2><span class="label label-default">
+            <!--home team-->
+            <td class="col-xs-3 text-right">
+              {{match.localteam_name}}
+            </td>
 
-      <div *ngIf="match.localteam_score != '?' && match.localteam_score != ''">
-        {{match.localteam_name}} ({{match.localteam_score}}) - ({{match.visitorteam_score}}) {{match.visitorteam_name}}
-      </div>
+            <!--score-->
+            <td class="col-xs-2 text-center"
+                *ngIf="match.localteam_score == '?' || match.localteam_score == ''">
+              -
+            </td>
+
+            <!--score-->
+            <td class="col-xs-2 text-center"
+                *ngIf="match.localteam_score != '?' && match.localteam_score != ''">
+                ({{match.localteam_score}})  -  ({{match.visitorteam_score}})
+            </td>
+
+            <!--away team-->
+            <td class="col-xs-3 text-left">
+              {{match.visitorteam_name}}
+            </td>
+          </span></h2>
+
+          <!--match status-->
+          <td class="col-xs-2 text-left">
+            <h3>
+              <span class="badge badge-success pull-right"><h4>{{match.status}}</h4></span>
+            </h3>
+          </td>
+
+          <!--match time-->
+          <td class="col-xs-2 text-left" *ngIf="match.timer != ''">
+            <h3>
+              <span class="badge badge-success pull-right"><h4>{{match.timer}}</h4></span>
+            </h3>
+          </td>
+        </tbody>
+      </table>
     </div>
 
     <!--match details menu scrollbar-->

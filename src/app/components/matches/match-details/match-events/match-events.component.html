@@ -1,16 +1,14 @@
 <div *ngIf="matchEvents">
-  <div *ngFor="let event of matchEvents">
 
-    <ul>
-      <li>
-        <!--local team-->
-        <div *ngIf="event.team=='localteam'" class="pull-left">
-
+  <table class="table table-responsive">
+    <tbody *ngFor="let event of matchEvents">
+      <tr *ngIf="event.team=='localteam'">
+        <td class="col-xs-6 text-left">
+          <!--local team-->
           <div [ngSwitch]="event.type">
-
             <!--substitutions-->
             <div *ngSwitchCase="'subst'">
-              {{event.minute}}'
+              <span class="badge badge-pill">{{event.minute}}'</span>
               <span class="glyphicon glyphicon-arrow-up"></span>
               {{event.player}}
               <span class="glyphicon glyphicon-arrow-down"></span>
@@ -19,31 +17,33 @@
 
             <!--yellow card-->
             <div *ngSwitchCase="'yellowcard'">
-              {{event.minute}}'
+              <span class="badge badge-pill">{{event.minute}}'</span>
               <span class="glyphicon glyphicon-tag"></span>
               {{event.player}}
             </div>
 
             <!--red card-->
             <div *ngSwitchCase="'redcard'">
-              {{event.minute}}'
+              <span class="badge badge-pill">{{event.minute}}'</span>
               <span class="glyphicon glyphicon-tags"></span>
               {{event.player}}
             </div>
 
             <!--goal-->
             <div *ngSwitchCase="'goal'">
-              {{event.minute}}'
-              <span class="glyphicon glyphicon-cd"></span>
+              <span class="badge badge-pill">{{event.minute}}'</span>
+              <span class="fa fa-futbol-o"></span>
               {{event.player}}
             </div>
-
           </div>
-        </div>
+        </td>
+        <td class="col-xs-6"></td>
+      </tr>
 
+      <tr *ngIf="event.team=='visitorteam'">
         <!--away team-->
-        <div *ngIf="event.team=='visitorteam'" class="pull-right">
-
+        <td class="col-xs-6"></td>
+        <td class="col-xs-6 text-right">
           <div [ngSwitch]="event.type">
 
             <!--substitutions-->
@@ -52,34 +52,35 @@
               {{event.player}}
               <span class="glyphicon glyphicon-arrow-down"></span>
               {{event.assist}}
-              {{event.minute}}'
+              <span class="badge badge-pill">{{event.minute}}'</span>
             </div>
 
             <!--yellow card-->
             <div *ngSwitchCase="'yellowcard'">
               {{event.player}}
               <span class="glyphicon glyphicon-tag"></span>
-              {{event.minute}}'
+              <span class="badge badge-pill">{{event.minute}}'</span>
             </div>
 
             <!--red card-->
             <div *ngSwitchCase="'redcard'">
               {{event.player}}
               <span class="glyphicon glyphicon-tags"></span>
-              {{event.minute}}'
+              <span class="badge badge-pill">{{event.minute}}'</span>
             </div>
 
             <!--goal-->
             <div *ngSwitchCase="'goal'">
               {{event.player}}
-              <span class="glyphicon glyphicon-cd"></span>
-              {{event.minute}}'
+              <span class="fa fa-futbol-o"></span>
+              <span class="badge badge-pill">{{event.minute}}'</span>
             </div>
 
           </div>
-        </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-      </li>
-    </ul>
-  </div>
+  <hr style="border: 4px solid black !important;"/>
 </div>

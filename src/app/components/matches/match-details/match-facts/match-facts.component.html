@@ -3,17 +3,15 @@
 </div>
 
 <div *ngIf="match && competition">
-
-  <div class="vertical-menu">
-    <div class="text-center">
-      <a>Competition: {{competition.name}}</a>
-      <a>Season: {{match.season}}</a>
-      <a>Week: {{match.week}}</a>
-      <a>Stadium: {{match.venue}}</a>
-      <a>Venue City: {{match.venue_city}}</a>
-      <a>Date: {{match.formatted_date}}</a>
-      <a>Time: {{match.time}}</a>
-    </div>
-  </div>
-
+    <table class="table table-responsive table-striped" id="table">
+      <tbody>
+        <tr><td>Competition</td><td>{{competition.name}}</td></tr>
+        <tr><td>Season</td><td>{{match.season}}</td></tr>
+        <tr><td>Week</td><td>{{match.week}}</td></tr>
+        <tr><td>Stadium</td><td>{{match.venue}}</td></tr>
+        <tr><td>Venue City</td><td>{{match.venue_city}}</td></tr>
+        <tr><td>Date</td><td>{{match.formatted_date}}</td></tr>
+        <tr><td>Time</td><td>{{match.time}}</td></tr>
+      </tbody>
+    </table>
 </div>

@@ -9,7 +9,7 @@
 
   <h1>Register</h1>
 
-  <form #f="ngForm">
+  <form>
 
     <input placeholder="username"
            name="username"
@@ -56,10 +56,12 @@
 
     <button class="btn btn-primary btn-block input-margin-top"
             type="submit"
-            [disabled]="!f.valid"
-            (click)="register()">Register</button>
+            [disabled]="username.length == 0 || password.length == 0 ||  verifyPassword != password"
+            (click)="register()">
+      Register
+    </button>
 
-    <button class="btn btn-danger btn-block"
+    <button class="btn btn-danger btn-block input-margin-top"
        routerLink="/login" >Cancel</button>
 
   </form>

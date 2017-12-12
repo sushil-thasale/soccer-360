@@ -52,11 +52,11 @@ export class ReviewNewComponent implements OnInit {
         'itemType': this.itemType,
         'itemId': this.itemID,
         'criticId': this.criticId};
-      console.log('new review' + newReview);
+      // console.log('new review' + newReview);
       this.reviewService.createReview(newReview)
         .subscribe(
           (review: any) => {
-            console.log(review);
+            // console.log(review);
             this.errorFlag = false;
             this.errorMsg = '';
             this.navigateBackToNews();

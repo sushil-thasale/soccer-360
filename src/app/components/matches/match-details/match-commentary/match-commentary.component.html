@@ -1,24 +1,25 @@
 <div *ngIf="comments">
   <div *ngFor="let event of comments">
 
-    <ul>
-      <li>
+    <ul class="list-group">
+      <li class="list-group-item">
           <!--unimportant event-->
           <div *ngIf="event.important == '0'">
-            {{event.minute}} {{event.comment}}
+            <span class="badge badge-pill">{{event.minute}}</span>
+            {{event.comment}}
           </div>
 
           <!--important event but not goal-->
           <div *ngIf="event.important == '1' && event.isgoal == '0'">
-            {{event.minute}}
+            <span class="badge badge-pill">{{event.minute}}</span>
             <span class="glyphicon glyphicon-alert"></span>
             {{event.comment}}
           </div>
 
           <!--goal!!-->
           <div *ngIf="event.isgoal == '1'">
-            {{event.minute}}
-            <span class="glyphicon glyphicon-cd"></span>
+            <span class="badge badge-pill">{{event.minute}}</span>
+            <span class="fa fa-futbol-o"></span>
             {{event.comment}}
           </div>
 

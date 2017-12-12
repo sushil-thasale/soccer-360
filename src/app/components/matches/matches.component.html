@@ -1,25 +1,27 @@
 <!-- Date Scroll -->
 <nav class="navbar navbar-inverse">
 
-  <!--previous date-->
-  <div class="pull-left my-header-left-margin">
-    <a class="navbar-brand" (click)="decrementDate()">
-      <span class="glyphicon glyphicon-hand-left"></span>
-    </a>
-  </div>
+  <div class="row container-fluid">
+    <!--previous date-->
+    <div class="col-xs-4">
+      <a class="navbar-brand pull-left" (click)="decrementDate()">
+        <span class="glyphicon glyphicon-hand-left pull-left"></span>
+      </a>
+    </div>
 
-  <!--next date-->
-  <div class="pull-right my-header-right-margin">
-    <a class="navbar-brand" (click)="incrementDate()">
-      <span class="glyphicon glyphicon-hand-right"></span>
-    </a>
-  </div>
+    <!--matches-->
+    <div class="col-xs-4">
+      <a class="navbar-brand text-center">
+        {{formattedDate}}
+      </a>
+    </div>
 
-  <!--matches-->
-  <div class="text-center">
-    <a class="navbar-brand">
-      {{formattedDate}}
-    </a>
+    <!--next date-->
+    <div class="col-xs-4">
+      <a class="navbar-brand pull-right" (click)="incrementDate()">
+        <span class="glyphicon glyphicon-hand-right pull-right"></span>
+      </a>
+    </div>
   </div>
 
 </nav>

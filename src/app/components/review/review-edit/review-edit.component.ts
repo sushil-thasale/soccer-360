@@ -36,7 +36,7 @@ export class ReviewEditComponent implements OnInit {
       this.reviewService.findReviewById(this.reviewId)
         .subscribe(
           (review: any) => {
-            console.log(review);
+            // console.log(review);
             this.review = review;
             this.title = this.review.title;
             this.imageUrl = this.review.imageUrl;
@@ -78,7 +78,7 @@ export class ReviewEditComponent implements OnInit {
       this.reviewService.updateReview(this.reviewId, newReview)
         .subscribe(
           (review: any) => {
-            console.log(review);
+            // console.log(review);
             this.errorFlag = false;
             this.errorMsg = '';
             this.navigateBackToNews();
