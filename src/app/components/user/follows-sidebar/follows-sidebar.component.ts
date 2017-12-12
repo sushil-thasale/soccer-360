@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../../services/user.service.client';
@@ -13,7 +13,7 @@ import { CriticService } from '../../../services/critic.service.client';
   templateUrl: './follows-sidebar.component.html',
   styleUrls: ['./follows-sidebar.component.css']
 })
-export class FollowsSidebarComponent implements OnInit {
+export class FollowsSidebarComponent implements OnInit, OnChanges {
 
   following: any;
   followers: any;
@@ -28,6 +28,10 @@ export class FollowsSidebarComponent implements OnInit {
               private playerService: PlayerService,
               private sharedService: SharedService,
               private criticService: CriticService) { }
+
+  ngOnChanges() {
+    this.ngOnInit();
+  }
 
   ngOnInit() {
     this.following = [];

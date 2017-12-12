@@ -2,7 +2,7 @@
 <nav class="navbar navbar-default">
   <div class="nav nav-justified navbar-nav">
 
-    <form class="navbar-form navbar-search" role="search">
+    <form class="navbar-form navbar-search text-center" role="search">
 
       <div class="input-group">
         <input type="text"
@@ -16,7 +16,8 @@
         <div class="input-group-btn">
           <button type="button"
                   (click)="searchItems()"
-                  class="btn btn-search btn-default">GO
+                  class="btn btn-search btn-success">
+            Search
           </button>
         </div>
 
@@ -25,12 +26,13 @@
   </div>
 </nav>
 
-<ul class="list-group">
+<table class="table table-responsive table-striped">
+  <tbody>
+    <tr *ngFor="let item of items"
+        class="tr-match-score text-center"
+        (click)="navigateToFriendProfile(item._id)">
+        <h4><strong>{{item.lastName}}, {{item.firstName}} ({{item.username}})</strong></h4>
+    </tr>
+  </tbody>
+</table>
 
-  <div class="list-group-item my-no-border"
-       *ngFor="let item of items">
-    <a class="btn btn-danger btn-block" (click)="navigateToFriendProfile(item._id)">
-      {{item.lastName}}, {{item.firstName}} ({{item.username}})
-    </a>
-  </div>
-</ul>
