@@ -25,7 +25,8 @@
         <div class="input-group-btn">
           <button type="button"
                   (click)="searchItems()"
-                  class="btn btn-search btn-default">GO
+                  class="btn btn-search btn-success">
+            Search
           </button>
         </div>
 
@@ -34,12 +35,12 @@
   </div>
 </nav>
 
-<ul class="list-group">
-
-  <div class="list-group-item my-no-border"
-       *ngFor="let item of items">
-      <a class="btn btn-danger btn-block" (click)="navigateToSearchedItem(item.apiId)">
-        {{item.name}}
-      </a>
-  </div>
-</ul>
+<table class="table table-responsive table-striped">
+  <tbody>
+    <tr *ngFor="let item of items"
+        class="tr-match-score text-center"
+        (click)="navigateToSearchedItem(item.apiId)">
+      <h4><strong>{{item.name}}</strong></h4>
+    </tr>
+  </tbody>
+</table>

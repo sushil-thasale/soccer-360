@@ -38,8 +38,17 @@ body{
   text-decoration: none;
 }
 
+a:hover{
+  text-decoration: none !important;
+  cursor: pointer !important;
+}
+
 a.no-underline-hover{
-  text-decoration: none;
+  text-decoration: none !important;
+}
+
+a:-webkit-any-link{
+  text-decoration: none !important;
 }
 
 li.my-no-border{
@@ -326,3 +335,29 @@ div.scrollmenu a:hover {
   background-image: -webkit-linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.4) 50%, transparent, transparent)
 }
 
+tr.tr-match-score:hover{
+  background: lightgrey !important;
+  cursor: pointer !important;
+}
+
+/*--------------------------------------------------------------------------
+  Match Events - player in/out, yellow and red cards
+--------------------------------------------------------------------------*/
+.glyphicon-arrow-up{
+  color: green;
+}
+.glyphicon-arrow-down{
+  color: red;
+}
+
+.glyphicon-tag{
+  color: darkgoldenrod;
+}
+
+.glyphicon-tags{
+  color: red;
+}
+
+.glyphicon-alert{
+  color: red;
+}
