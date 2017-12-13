@@ -31,7 +31,7 @@ export class MatchDetailsComponent implements OnInit {
         (match: any) => {
           this.match = this.parseBody(match);
           this.errorFlag = false;
-          console.log(match);
+          // console.log(match);
         }, (error) => {
           this.errorFlag = true;
           this.errorMsg = 'Unable to retrieve match details!';

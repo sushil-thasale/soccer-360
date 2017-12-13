@@ -1,7 +1,3 @@
-/**
- * Created by sesha on 6/2/17.
- */
-
 // Get the dependencies
 
 const express = require('express');

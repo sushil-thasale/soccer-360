@@ -1,12 +1,31 @@
 <!--app header-->
-<app-home-header></app-home-header>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+
+    <!--profile drop-down button-->
+    <div class="col-xs-2 hidden-sm hidden-md hidden-lg">
+      <button type="button" class="navbar-toggle pull-left"
+              data-toggle="collapse" data-target="#profile-sidebar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!--header type-->
+    <app-home-header></app-home-header>
+
+  </div>
+</nav>
 
 <!--main body-->
-<div class="row container-fluid">
+<div class="container-fluid">
 
   <!-- Left Pane - User details -->
-  <div class="col-sm-4 hidden-xs my-left-pane my-right-border">
-    <app-home-user-profile></app-home-user-profile>
+  <div class="col-xs-12 col-sm-4">
+    <div class="collapse navbar-collapse" id="profile-sidebar">
+      <app-home-user-profile></app-home-user-profile>
+    </div>
   </div>
 
   <!-- Right Pane - League Details -->

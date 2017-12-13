@@ -80,6 +80,7 @@ import {AllUsersComponent} from './components/user/admin/all-users/all-users.com
 import {AllCriticsComponent} from './components/user/admin/all-critics/all-critics.component';
 import {PendingRequestsComponent} from './components/user/admin/pending-requests/pending-requests.component';
 import {UserHomeNewComponent} from './components/home/user-home-new/user-home-new.component';
+import {HerderNewComponent} from './components/home/herder-new/herder-new.component';
 
 @NgModule({
   // Declare components here
@@ -138,7 +139,8 @@ import {UserHomeNewComponent} from './components/home/user-home-new/user-home-ne
     AllUsersComponent,
     AllCriticsComponent,
     PendingRequestsComponent,
-    UserHomeNewComponent
+    UserHomeNewComponent,
+    HerderNewComponent
   ],
   imports: [
     BrowserModule,

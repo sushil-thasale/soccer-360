@@ -1,59 +1,74 @@
-<!-- Header -->
+<!--app header-->
 <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
 
-  <!--app logo and name-->
-  <div class="pull-left my-header-left-margin">
-    <a class="navbar-brand" href="#">
-      <span class="fa fa-futbol-o"></span>
-      <b>Soccer 360</b>
-    </a>
+    <!--profile drop-down button-->
+    <div class="col-xs-2 hidden-sm hidden-md hidden-lg">
+      <button type="button" class="navbar-toggle pull-left"
+              data-toggle="collapse" data-target="#profile-sidebar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!--app logo and name-->
+    <div class="pull-left my-header-left-margin">
+      <a class="navbar-brand">
+        <span class="fa fa-futbol-o"></span>
+        <b>Soccer 360</b>
+      </a>
+    </div>
+
+    <!--logout-->
+    <div class="pull-right my-header-right-margin">
+      <a class="navbar-brand">
+        <span class="glyphicon glyphicon-off" (click)="logout()"></span>
+      </a>
+    </div>
+
   </div>
-
-  <!--logout-->
-  <div class="pull-right my-header-right-margin">
-    <a class="navbar-brand">
-      <span class="glyphicon glyphicon-off" (click)="logout()"></span>
-    </a>
-  </div>
-
 </nav>
 
 <!--main body-->
-<div class="row container-fluid">
+<div class="container-fluid">
 
   <!-- Left Pane - User details -->
-  <div class="col-sm-4 hidden-xs my-left-pane my-right-border">
-    <div class="nav navbar-nav sider-navbar">
+  <div class="col-xs-12 col-sm-4">
+    <div class="collapse navbar-collapse" id="profile-sidebar">
 
-      <!--admin profile details-->
-      <div class="text-center">
-        <figure class="profile-userpic">
-          <img src="" class="img-responsive" alt="Profile Picture">
-        </figure>
+      <!--admin profile sidebar-->
+      <div class="nav navbar-nav sider-navbar">
 
-        <div class="profile-usertitle">
-          <div class="profile-usertitle-name">{{user.username}}</div>
-          <div class="profile-usertitle-name">{{user.firstName}} {{user.lastName}}</div>
-          <div class="profile-usertitle-title">{{user.email}}</div>
+        <!--admin profile details-->
+        <div class="text-center">
+          <figure class="profile-userpic">
+            <img src="" class="img-responsive" alt="Profile Picture">
+          </figure>
+
+          <div class="profile-usertitle">
+            <div class="profile-usertitle-name">{{user.username}}</div>
+            <div class="profile-usertitle-name">{{user.firstName}} {{user.lastName}}</div>
+            <div class="profile-usertitle-title">{{user.email}}</div>
+          </div>
         </div>
-      </div>
 
-      <!--list of functions for admin-->
-      <div class="vertical-menu">
-        <button class="btn btn-primary btn-block"
-                (click)="changeSelectionType('USERS')">Users</button>
-        <button class="btn btn-primary btn-block"
-                (click)="changeSelectionType('CRITICS')">Critics</button>
-        <button class="btn btn-primary btn-block"
-                (click)="changeSelectionType('REQUESTS')">Pending Requests Critics</button>
-      </div>
+        <!--list of functions for admin-->
+        <div class="vertical-menu">
+          <button class="btn btn-primary btn-block"
+                  (click)="changeSelectionType('USERS')">Users</button>
+          <button class="btn btn-primary btn-block"
+                  (click)="changeSelectionType('CRITICS')">Critics</button>
+          <button class="btn btn-primary btn-block"
+                  (click)="changeSelectionType('REQUESTS')">Pending Requests Critics</button>
+        </div>
 
+      </div>
     </div>
   </div>
 
   <!-- Right Pane - Matches -->
   <div class="col-sm-8 col-xs-12 my-right-pane">
-
     <div [ngSwitch]="selectionType">
 
       <div *ngSwitchCase="'USERS'">
@@ -69,19 +84,16 @@
       </div>
 
     </div>
-
   </div>
 
 </div>
 
 <!-- Footer -->
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
-
   <!--profile and settings-->
   <div class="pull-right my-header-right-margin">
     <a class="navbar-brand">
       <span class="glyphicon glyphicon-user" (click)="navigateToProfile()"></span>
     </a>
   </div>
-
 </nav>

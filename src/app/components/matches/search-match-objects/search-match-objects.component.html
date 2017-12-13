@@ -1,23 +1,42 @@
-<div *ngIf="user">
+ <!-- Header -->
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
 
-  <!--app header-->
-  <div *ngIf="!isLoggedIn">
-    <app-unregistered-home-header></app-unregistered-home-header>
-  </div>
-  <div *ngIf="isLoggedIn">
-    <app-home-header></app-home-header>
-  </div>
+      <!--profile drop-down button-->
+      <div class="col-xs-2 hidden-sm hidden-md hidden-lg">
+        <button type="button" class="navbar-toggle pull-left"
+                data-toggle="collapse" data-target="#profile-sidebar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
 
-  <!--main body-->
-  <div class="row container-fluid">
-
-    <!-- Left Pane - User details -->
-    <div class="col-sm-4 hidden-xs my-left-pane my-right-border">
+      <!--header type-->
       <div *ngIf="!isLoggedIn">
-        <app-unregistered-home-user-profile></app-unregistered-home-user-profile>
+        <app-unregistered-home-header></app-unregistered-home-header>
       </div>
       <div *ngIf="isLoggedIn">
-        <app-home-user-profile></app-home-user-profile>
+        <app-home-header></app-home-header>
+      </div>
+
+    </div>
+  </nav>
+
+  <!--main body-->
+  <div class="container-fluid">
+
+    <!-- Left Pane - User details -->
+    <div class="col-xs-12 col-sm-4">
+      <div class="collapse navbar-collapse" id="profile-sidebar">
+
+        <div *ngIf="!isLoggedIn">
+          <app-unregistered-home-user-profile></app-unregistered-home-user-profile>
+        </div>
+        <div *ngIf="isLoggedIn">
+          <app-home-user-profile></app-home-user-profile>
+        </div>
+
       </div>
     </div>
 
@@ -34,5 +53,3 @@
   <div *ngIf="isLoggedIn">
     <app-home-footer></app-home-footer>
   </div>
-
-</div>
