@@ -1,82 +1,88 @@
-<div *ngIf="user">
-  <div class="nav navbar-nav sider-navbar">
+<div class="col-xs-12 col-sm-4">
+  <div class="collapse navbar-collapse" id="profile-sidebar">
 
-    <div class="text-center">
-        <figure class="profile-userpic">
-          <img src="" class="img-responsive" alt="Profile Picture">
-        </figure>
+    <div *ngIf="user">
+      <div class="nav navbar-nav sider-navbar">
 
-        <div class="profile-usertitle">
-          <div class="profile-usertitle-name">{{user.username}}</div>
-          <div class="profile-usertitle-name">{{user.firstName}} {{user.lastName}}</div>
-          <div class="profile-usertitle-title">{{user.email}}</div>
+        <div class="text-center">
+            <figure class="profile-userpic">
+              <img src="" class="img-responsive" alt="Profile Picture">
+            </figure>
+
+            <div class="profile-usertitle">
+              <div class="profile-usertitle-name">{{user.username}}</div>
+              <div class="profile-usertitle-name">{{user.firstName}} {{user.lastName}}</div>
+              <div class="profile-usertitle-title">{{user.email}}</div>
+            </div>
         </div>
+
+        <div class="text-center">
+          <button class="btn btn-success btn-block"
+                  (click)="navigateToAddFavorites()"
+                  type="button">Add New Favorites
+            <span class="glyphicon glyphicon-plus pull-right"></span>
+          </button>
+        </div>
+
+        <div class="form-group">
+          <!--Leagues-->
+          <div class="dropdown">
+            <button class="btn btn-block dropdown-toggle"
+                    type="button" data-toggle="dropdown">
+              Leagues
+              <span class="badge badge-pill badge-danger">{{leagues.length}}</span>
+              <span class="caret  pull-right"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <div *ngFor="let league of leagues">
+                <a class="btn btn-block btn-info"
+                   (click)="navigateToLeague(league.apiId)">
+                  {{league.name}}
+                </a>
+              </div>
+            </ul>
+          </div>
+
+          <!--Teams-->
+          <div class="dropdown">
+            <button class="btn btn-block dropdown-toggle"
+                    type="button" data-toggle="dropdown">
+              Teams
+              <span class="badge badge-pill badge-danger">{{teams.length}}</span>
+              <span class="caret  pull-right"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <div *ngFor="let team of teams">
+                <a class="btn btn-block btn-info"
+                   (click)="navigateToTeam(team.apiId)">
+                  {{team.name}}
+                </a>
+              </div>
+            </ul>
+          </div>
+
+          <!--Players-->
+          <div class="dropdown">
+            <button class="btn  btn-block dropdown-toggle"
+                    type="button" data-toggle="dropdown">
+              Players
+              <span class="badge badge-pill badge-danger">{{players.length}}</span>
+              <span class="caret  pull-right"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <div *ngFor="let player of players">
+                <a class="btn btn-block btn-info"
+                   (click)="navigateToPlayer(player.apiId)">
+                  {{player.name}}
+                </a>
+              </div>
+            </ul>
+          </div>
+        </div>
+
+        <app-follows-sidebar></app-follows-sidebar>
+      </div>
     </div>
 
-    <div class="text-center">
-      <button class="btn btn-success btn-block"
-              (click)="navigateToAddFavorites()"
-              type="button">Add New Favorites
-        <span class="glyphicon glyphicon-plus pull-right"></span>
-      </button>
-    </div>
-
-    <div class="form-group">
-      <!--Leagues-->
-      <div class="dropdown">
-        <button class="btn btn-block dropdown-toggle"
-                type="button" data-toggle="dropdown">
-          Leagues
-          <span class="badge badge-pill badge-danger">{{leagues.length}}</span>
-          <span class="caret  pull-right"></span>
-        </button>
-        <ul class="dropdown-menu">
-          <div *ngFor="let league of leagues">
-            <a class="btn btn-block btn-info"
-               (click)="navigateToLeague(league.apiId)">
-              {{league.name}}
-            </a>
-          </div>
-        </ul>
-      </div>
-
-      <!--Teams-->
-      <div class="dropdown">
-        <button class="btn btn-block dropdown-toggle"
-                type="button" data-toggle="dropdown">
-          Teams
-          <span class="badge badge-pill badge-danger">{{teams.length}}</span>
-          <span class="caret  pull-right"></span>
-        </button>
-        <ul class="dropdown-menu">
-          <div *ngFor="let team of teams">
-            <a class="btn btn-block btn-info"
-               (click)="navigateToTeam(team.apiId)">
-              {{team.name}}
-            </a>
-          </div>
-        </ul>
-      </div>
-
-      <!--Players-->
-      <div class="dropdown">
-        <button class="btn  btn-block dropdown-toggle"
-                type="button" data-toggle="dropdown">
-          Players
-          <span class="badge badge-pill badge-danger">{{players.length}}</span>
-          <span class="caret  pull-right"></span>
-        </button>
-        <ul class="dropdown-menu">
-          <div *ngFor="let player of players">
-            <a class="btn btn-block btn-info"
-               (click)="navigateToPlayer(player.apiId)">
-              {{player.name}}
-            </a>
-          </div>
-        </ul>
-      </div>
-    </div>
-
-    <app-follows-sidebar></app-follows-sidebar>
   </div>
 </div>

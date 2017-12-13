@@ -53,14 +53,11 @@
     </div>
 </nav>
 
+<!--main body-->
 <div class="container-fluid">
   <div class="row">
 
-    <div class="col-xs-12 col-sm-4">
-        <div class="collapse navbar-collapse" id="profile-sidebar">
-          <app-unregistered-home-user-profile></app-unregistered-home-user-profile>
-        </div>
-    </div>
+    <app-unregistered-home-user-profile></app-unregistered-home-user-profile>
 
     <div class="col-xs-12 col-sm-8">
       <app-matches date="{{currDate.toDateString()}}"></app-matches>
@@ -69,4 +66,5 @@
   </div>
 </div>
 
-<app-home-footer></app-home-footer>
+<!--footer-->
+<app-unregistered-home-footer></app-unregistered-home-footer>

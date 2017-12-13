@@ -1,14 +1,27 @@
 <!-- Header -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
+  <div class="row container-fluid">
 
-    <!--main header-->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+    <!--profile drop-down button-->
+    <div class="col-xs-2 hidden-sm hidden-md hidden-lg">
+      <button type="button" class="navbar-toggle pull-left"
+              data-toggle="collapse" data-target="#profile-sidebar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
+    </div>
+
+    <!--app-logo and other options -->
+    <div class="col-xs-10 col-sm-12">
+      <!--hamburger - collapse-->
+      <button type="button" class="navbar-toggle pull-right"
+              data-toggle="collapse" data-target="#extraOption">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
       <!--app logo and name-->
       <div class="pull-left my-header-left-margin">
         <a class="navbar-brand" (click)="navigateToHome()">
@@ -16,25 +29,23 @@
           <b>Soccer 360</b>
         </a>
       </div>
-    </div>
 
-    <!--collapse options-->
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <!--options-->
-      <div class="pull-right my-header-right-margin">
+      <!--collapse options-->
+      <div class="collapse navbar-collapse pull-right" id="extraOption">
+        <!--options-->
         <!--calender-->
         <a class="navbar-brand" (click)="navigateToCalender()">
           <span class="glyphicon glyphicon-calendar"></span>
         </a>
 
         <!--search-->
-        <a class="navbar-brand">
-          <span class="glyphicon glyphicon-search" (click)="navigateToSearch()"></span>
+        <a class="navbar-brand" (click)="navigateToSearch()">
+          <span class="glyphicon glyphicon-search"></span>
         </a>
 
         <!--logout-->
-        <a class="navbar-brand">
-          <span class="glyphicon glyphicon-off" (click)="logout()"></span>
+        <a class="navbar-brand" (click)="logout()">
+          <span class="glyphicon glyphicon-off"></span>
         </a>
       </div>
     </div>
