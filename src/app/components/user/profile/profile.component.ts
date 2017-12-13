@@ -78,4 +78,12 @@ export class ProfileComponent implements OnInit {
   navigateToAdminHome() {
     this.router.navigate(['/admin', this.userID, 'home']);
   }
+
+  navigateToHome() {
+    if (this.user.roles === 'admin') {
+      this.navigateToAdminHome();
+    } else {
+      this.router.navigate(['/user', this.userID, 'home']);
+    }
+  }
 }

@@ -1,10 +1,8 @@
 <!--search body-->
-<nav class="navbar navbar-default">
-  <div class="nav nav-justified navbar-nav">
+<nav class="navbar navbar-default text-center">
 
-    <form class="navbar-form navbar-search text-center" role="search">
-
-      <div class="input-group">
+    <form class="form-inline text-center">
+      <div class="form-group">
         <input type="text"
                class="form-control"
                id="searchTerm"
@@ -12,18 +10,16 @@
                required
                placeholder="Search Friends ..."
                [(ngModel)] = "searchTerm"/>
+      </div>
 
-        <div class="input-group-btn">
-          <button type="button"
-                  (click)="searchItems()"
-                  class="btn btn-search btn-success">
-            Search
-          </button>
-        </div>
-
+      <div class="form-group">
+        <button class="btn btn-success btn-block"
+                (click)="searchItems()">
+          Search
+        </button>
       </div>
     </form>
-  </div>
+
 </nav>
 
 <table class="table table-responsive table-striped">

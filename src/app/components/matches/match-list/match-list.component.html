@@ -3,14 +3,14 @@
     <tr *ngFor="let match of matches"
         class="tr-match-score"
         (click)="navigateToMatchDetails(match.id)">
-        <td class="col-xs-5 text-right">{{match.localteam_name}}</td>
-        <td class="col-xs-2 text-center"
+        <td class="col-xs-4 text-right">{{match.localteam_name}}</td>
+        <td class="col-xs-4 text-center"
             *ngIf="match.localteam_score == '?' || match.localteam_score == ''">
           -</td>
-        <td class="col-xs-2 text-center"
+        <td class="col-xs-4 text-center"
             *ngIf="match.localteam_score != '?' && match.localteam_score != ''">
           ({{match.localteam_score}}) - ({{match.visitorteam_score}})</td>
-        <td class="col-xs-5 text-left">{{match.visitorteam_name}}</td>
+        <td class="col-xs-4 text-left">{{match.visitorteam_name}}</td>
     </tr>
   </tbody>
 </table>
