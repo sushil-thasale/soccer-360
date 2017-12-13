@@ -79,6 +79,7 @@ import {AdminHomeComponent} from './components/user/admin/admin-home/admin-home.
 import {AllUsersComponent} from './components/user/admin/all-users/all-users.component';
 import {AllCriticsComponent} from './components/user/admin/all-critics/all-critics.component';
 import {PendingRequestsComponent} from './components/user/admin/pending-requests/pending-requests.component';
+import {UserHomeNewComponent} from './components/home/user-home-new/user-home-new.component';
 
 @NgModule({
   // Declare components here
@@ -136,7 +137,8 @@ import {PendingRequestsComponent} from './components/user/admin/pending-requests
     AdminHomeComponent,
     AllUsersComponent,
     AllCriticsComponent,
-    PendingRequestsComponent
+    PendingRequestsComponent,
+    UserHomeNewComponent
   ],
   imports: [
     BrowserModule,

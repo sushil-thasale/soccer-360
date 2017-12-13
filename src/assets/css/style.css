@@ -138,7 +138,7 @@ iframe{
 --------------------------------------------------------------------------*/
 .sider-navbar {
   position: fixed;
-  top: 51px; /*Change to reposition .sider-navbar from top*/
+  top: 43px; /*Change to reposition .sider-navbar from top*/
   left: 225px;
   width: 33.33%;
   margin-left: -225px;
@@ -149,6 +149,7 @@ iframe{
   bottom: 0;
   overflow-x: hidden;
   padding-bottom: 40px;
+  z-index: 1;
 }
 
 /*--------------------------------------------------------------------------

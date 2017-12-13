@@ -22,6 +22,7 @@ import {SearchUsersComponent} from './components/user/search-users/search-users.
 import {ReviewNewComponent} from './components/review/review-new/review-new.component';
 import {ReviewEditComponent} from './components/review/review-edit/review-edit.component';
 import {AdminHomeComponent} from './components/user/admin/admin-home/admin-home.component';
+import {UserHomeNewComponent} from './components/home/user-home-new/user-home-new.component';
 
 const APP_ROUTES: Routes = [
   { path : '', component : HomeComponent},
@@ -43,6 +44,7 @@ const APP_ROUTES: Routes = [
   { path : 'users/search' , component: SearchUsersComponent, canActivate: [AuthGuard]},
   { path : 'review/new' , component: ReviewNewComponent, canActivate: [AuthGuard]},
   { path : 'review/:reviewID' , component: ReviewEditComponent, canActivate: [AuthGuard]},
+  { path : 'home/new' , component: UserHomeNewComponent},
 ];
 
 // Export the routes as module providers
